@@ -5,22 +5,30 @@
     <title>ChatGPT prompts for Photographers by Liliya</title>
     <base target="_top">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style-desktop.css">
-    <script src="encryption.js"></script>
-</head>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/encryption.js"></script>
+ </head>
 <body>
 <div id="header">
     <div class="logo"></div>
+    <div id="languageSelectContainer">
+        <label for="languageSelect" data-i18n="SELECT_LANGUAGE" id="languageLabel">Select Language:</label>
+        <select id="languageSelect">
+            <option value="en">English</option>
+            <option value="ru">Russian</option>
+            <!-- Add more language options as needed -->
+        </select>
+    </div>
     <div class="content">
-        <h2 id="modalTitle">ChatGPT prompts for Photographers by Liliya:</h2>
+        <h2 id="modalTitle" data-i18n="modalTitle">ChatGPT prompts for Photographers by Liliya:</h2>
+
         <select id="selection" class="select">
-            <option value="SEO Text promotion">SEO Text promotion</option>
-            <option value="Instagram Stories">Instagram Stories</option>
-            <option value="Ideas for reels">Ideas for reels</option>
-            <option value="Create a content plan for Instagram posts for a week/month (2-steps Prompt)">Create a content plan for Instagram posts for a week/month (2-steps Prompt)</option>
-            <option value="A template for emailing clients about a photo day">A template for emailing clients about a photo day</option>
-            <option value="Neural network to generate ideas for collaborations">Neural network to generate ideas for collaborations</option>
-            <!-- Add other options here -->
+            <option value="SEO Text promotion" data-i18n="selection.SEO">SEO Text promotion</option>
+            <option value="Instagram Stories" data-i18n="selection.Stories">Instagram Stories</option>
+            <option value="Ideas for reels" data-i18n="selection.reels">Ideas for reels</option>
+            <option value="Create a content plan for Instagram posts for a week/month (2-steps Prompt)" data-i18n="selection.instagram_post">Create a content plan for Instagram posts for a week/month (2-steps Prompt)</option>
+            <option value="A template for emailing clients about a photo day" data-i18n="selection.emailing">A template for emailing clients about a photo day</option>
+            <option value="Neural network to generate ideas for collaborations" data-i18n="selection.collaboration">Neural network to generate ideas for collaborations</option>
         </select>
     </div>
 </div>
@@ -30,30 +38,33 @@
     </div>
     <code id="responseContainer" class="special-div"></code>
     <div id="additionalPrompt">
-        <h2>Type your additional request to chatGPT below.</h2>
+        <h2 data-i18n="TYPE_ADDITIONAL_REQUEST">Type your additional request to chatGPT below.</h2>
         <div class="input-container">
-            <input type="text" id="userPrompt" placeholder="Type your request"></input>
+            <input type="text" id="userPrompt" ></input>
         </div>
         <div class="button-container">
-            <button id="processPromptButton">Send Request</button>
+            <button id="processPromptButton" data-i18n="SENDBUTTON">Send Request</button>
         </div>
     </div>
     <div class="button-container">
-        <button id="generateButton">Generate Text</button>
-        <button id="goBackButton">Go Back to Index</button>
+        <button id="generateButton" data-i18n="GENERATEBUTTON">Generate Text</button>
+        <button id="goBackButton" data-i18n="GOBACKBUTTON">Go Back to Index</button>
+    </div>
     </div>
     <div id="myStatusModal" class="modal">
         <div class="modal-content">
-            <h2>Processing Request... Waiting for an Answer...</h2>
+            <h2 data-i18n="processingRequest">Processing Request... Waiting for an Answer...</h2>
             <div class="progress-bar">
                 <div class="progress" id="progress"></div>
             </div>
-            <h4>I'm not chatGPT, but I did realize that Lili is one of the best persons in the world, and I kind of like her... Now the internet knows it as well!</h4>
-            <h4>I hope you are smiling now! Send me a picture!</h4>
+            <h4 data-i18n="notChatGpt">I'm not ChatGPT, but I did realize that Lili is one of the best persons in the world, and I kind of like her... Now the internet knows it as well!</h4>
+            <h4 data-i18n="sendPicture">I hope you are smiling now! Send me a picture!</h4>
         </div>
     </div>
     <div class="custom-tooltip" id="tooltip"><div id="tooltipText"></div><span class="close-button">&times;</span></div>
 </div>
 </body>
-<script src="page.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/page.js"></script>
+
 </html>

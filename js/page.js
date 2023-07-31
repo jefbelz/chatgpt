@@ -173,26 +173,27 @@ function fetchResponse(prompt) {
 
     document.getElementById("generateButton").style.display = "none";
     document.getElementById("goBackButton").style.display = "block";
-    const systemLabel = "<hr><h2>This is ChatGPT Answer to our question</h2>";
-    const userLabel = "<hr><h2>This is the prompt we will do for chatGPT: </h2>";
+    const systemLabel = "<hr><h2 data-i18n='SYSTEM_LABEL'>This is ChatGPT Answer to our question</h2>";
+    const userLabel = "<hr><h2 data-i18n='USER_LABEL'>This is the prompt we will do for chatGPT: </h2>";
     //we ignore first item as it's just preparation for chatgpt prompt
     var copyButtonLabel = "";
     for(var i=1; i< globalPrompt.length; i++) {
       item = globalPrompt[i];
       if(item.role == "system") {
-        copyButtonLabel = "Copy Answer";
+        copyButtonLabel = getTranslation("COPY_ANSWER");
         responseText = responseText + systemLabel;
       } else {
-        copyButtonLabel = "Copy Prompt";
+        copyButtonLabel = getTranslation("COPY_PROMPT");
         responseText = responseText + userLabel;
       }
       if(i == 1) {
-        responseText = responseText + "<div class='answer-container' id='answerDiv"+i+ "'>" + modalContent.replace(/\n/g, "<br>") + "<button class='copy-button' onclick='copyAnswer("+ i +")'>"+ copyButtonLabel +"</button> </div>";
+        responseText = responseText + "<div class='answer-container' id='answerDiv"+i+ "'>" + modalContent.replace(/\n/g, "<br>") + "<button class='copy-button'  onclick='copyAnswer("+ i +")'>"+ copyButtonLabel +"</button> </div>";
       } else {
         responseText = responseText + "<div class='answer-container' id='answerDiv"+i+ "'>" + item.content + "<button class='copy-button' onclick='copyAnswer("+ i +")'>"+ copyButtonLabel +"</button> </div>";
       }
       responseContainer.innerHTML = responseText;
     };
+    translateContent(translationData);
     scrollToBottom();
 }
 // MODAL SCREEN DETAILS - PROGRESS BAR
@@ -231,23 +232,9 @@ function showWaitingModal() {
 
    // Function to show tooltips based on the provided parameter name
 function showTooltip(parameterName) {
-      // Define an object with parameter names and their corresponding tooltip text
-      const tooltipTexts = {
-        'WHOYOUARE': 'Расскажите Chat GPT кто вы, какие у вас есть особенности и конкурентные преимущетсва, в какой нише вы работаете, в каком городе. Например, “Я фотограф беременности в Минске. Мой опыт работы больше 5 лет. Я точно знаю, как сделать так, чтобы будущая мама выглядела супер привлекательной.',
-        'YOURPOWERPOINTS': 'Расскажите, чем вы отличаетесь от других фотографов, в чем ваши сильные стороны, почему клиенты выбирают вас. Если вы затрудняетесь ответить. То попросите ChatGPT задать вам уточняющие вопросы. Это можно сделать в 2 шага. Первый шаг:',
-        'TARGETAUDIENCE': 'Опишите коротко портрет вашей целевой аудитории. Например, моя целевая аудитория - это будущие мамы возрастом 28-40 лет, которые хотят запечатлеть один из самых важных моментов в жизни  - период беременности и выглядеть красиво.',
-        'PAINPOINTS': 'Опишите болевые точки вашей целевой аудитории. Например, будущие мамы часто кажутся себя очень крупными, неповоротливыми. Если вы плохо знаете болевые точки вашей аудитории, то попросите Chat GPT вам помочь. Напишите запрос: “ Опиши pain points of target audience ” - подставьте свое значение',
-        'TARGETLANGUAGE': 'Напишите язык, на котором вы бы хотели получить ответ от Chat GPT',
-        'PROMPT': 'Напишите задачу, которую должен выполнить Chat GPT. Например, написать SEO текст для продвижения фотографа беременности в Минске',
-        'TOPIC': 'Напишите тему, над коротой должен работать Chat GPT. Например, фотосессия беременности в Минске',
-        'KEYWORDS': 'Поставьте ключевые слова. Это поисковые запросы, по которым вас могут искать потенциальные клиенты через поисковые системы (например, Google или Яндекс). Например, фотограф беременности Минск, фотограф Минск. Если вы не знаете ключевые слова, то попросите составить их ChatGPT. Например: Помоги мне составить семантическое ядро для продвижения моего сайта для. Напиши мне не менее 10 ключевых слов. Обратите внимание, что если вы уже описывали в данной ветке чата вашу целевую аудиторию, то Chat GPT поймет портрет вашей ЦА и вам не нужно повторно ее описывать.',
-        'NICHE': 'Pending to fill',
-        'CITY': 'PENDING TO FILL',
-        'PROFESSION':'pending to fill',
-      };
-
       // Get the corresponding tooltip text from the object and display it
-      const tooltipText = tooltipTexts[parameterName];
+      const tooltipText = getTranslation( parameterName);
+
       const tooltipDiv = document.getElementById('tooltip');
       const tooltipContent = document.getElementById('tooltipText');
       if (tooltipText) {
@@ -272,7 +259,7 @@ function showTooltip(parameterName) {
         formTemplate += `
           <tr>
             <td class="left-cell">
-              <label for="${item.name}" onmouseout="closeToolTip()" onmouseover="showTooltip('${item.name}')">${item.label}:</label><label onclick="showTooltip('${item.name}')"><b>?</b></label>
+              <label for="${item.name}" data-i18n="LABEL_${item.name}" onmouseout="closeToolTip()" onmouseover="showTooltip('${item.name}')">${item.label}:</label><label onclick="showTooltip('${item.name}')"><b>?</b></label>
             </td>
             <td class="right-cell">
               <input class="special-textbox" type="text" id="${item.name}">
@@ -280,7 +267,7 @@ function showTooltip(parameterName) {
           </tr>
         `;
       });
-      formTemplate += '<tr><td colspan="2"><h6>* Pass the mouse over the text for a tooltip</h6></td></tr>';
+      formTemplate += '<tr><td colspan="2"><h6 data-i18n="TOOLTIP_TEXT">* Pass the mouse over the text for a tooltip</h6></td></tr>';
       formTemplate += '</table>';
       formContainer.innerHTML = formTemplate;
     }
@@ -422,6 +409,7 @@ function showTooltip(parameterName) {
         // Add other cases for other selections
         goBack();
         prepareScreen();
+        translateContent(translationData);
     }
 
     function extractFormValues(item) {
@@ -446,6 +434,15 @@ function showTooltip(parameterName) {
     document.getElementById("goBackButton").addEventListener("click", goBack);
     document.getElementById("processPromptButton").addEventListener("click", processRequest);
     const closeButton = document.querySelector('.close-button');
+
+    // Add an event listener to the language selector dropdown
+    const languageSelect = document.getElementById('languageSelect');
+    languageSelect.addEventListener('change', async () => {
+      const selectedLanguage = languageSelect.value;
+      const translationData = await fetchTranslation(selectedLanguage);
+      translateContent(translationData);
+    });
+
 
     // Get the tooltip element
     const tooltip = document.getElementById('tooltip');
