@@ -351,17 +351,17 @@ function showTooltip(parameterName) {
     }
 
     const labels = {
-      TARGETLANGUAGE: 'Replace with your language',
-      PROMPT: 'Replace with the core of your message',
-      WHOYOUARE: 'Replace with who you are',
-      YOURPOWERPOINTS: 'Replace with your power points',
-      TARGETAUDIENCE: 'Replace with your target audience',
-      PAINPOINTS: 'Replace with pain points of your target audience',
-      TOPIC: 'Replace with the topic to work on',
-      KEYWORDS: 'Replace with keywords',
-      PROFESSION: 'Replace with your Profession',
-      CITY: 'Replace with the city from where you are',
-      NICHE: 'Replace with your Niche',
+      TARGETLANGUAGE: 'Language',
+      PROMPT: 'Core of your message',
+      WHOYOUARE: 'Who you are',
+      YOURPOWERPOINTS: 'Your power points',
+      TARGETAUDIENCE: 'Your target audience',
+      PAINPOINTS: 'Pain points of your target audience',
+      TOPIC: 'Topic to work on',
+      KEYWORDS: 'Keywords',
+      PROFESSION: 'Your Profession',
+      CITY: 'The city from where you are',
+      NICHE: 'Your Niche',
     };
 
     // Define the form items for each selection in an object
