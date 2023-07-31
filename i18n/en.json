@@ -12,12 +12,12 @@
   "PROFESSION": "pending to fill",
   "modalTitle": "ChatGPT prompts for Photographers by Liliya:",
   "selection": {
-    "SEO Text promotion": "SEO Text promotion",
-    "Instagram Stories": "Instagram Stories",
-    "Ideas for reels": "Ideas for reels",
-    "Create a content plan for Instagram posts for a week/month (2-steps Prompt)": "Create a content plan for Instagram posts for a week/month (2-steps Prompt)",
-    "A template for emailing clients about a photo day": "A template for emailing clients about a photo day",
-    "Neural network to generate ideas for collaborations": "Neural network to generate ideas for collaborations"
+    "SEO": "SEO Text promotion",
+    "Stories": "Instagram Stories",
+    "reels": "Ideas for reels",
+    "instagram_post": "Create a content plan for Instagram posts for a week/month (2-steps Prompt)",
+    "emailing": "A template for emailing clients about a photo day",
+    "collaboration": "Neural network to generate ideas for collaborations"
   },
   "processingRequest": "Processing Request... Waiting for an Answer...",
   "notChatGpt": "I'm not ChatGPT, but I did realize that Lili is one of the best persons in the world, and I kind of like her... Now the internet knows it as well!",
