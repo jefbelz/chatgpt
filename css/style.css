@@ -228,13 +228,37 @@ td.right-cell .special-textbox {
       padding: 5px;
       position: relative; /* Add this to make the button position relative to the div */
     }
+    .editable-textarea {
+      width: 99%; /* Make the textarea expand to fill the available width */
+      resize: none; /* Disable textarea resizing */
+      border: none; /* Remove the default textarea border */
+      overflow-y: hidden; /* Hide vertical scrollbar */
+      border-radius: 5px; /* Add rounded corners to the textarea */
+      padding: 5px; /* Add some padding for better appearance */
+      font-family: inherit; /* Use the same font as the surrounding elements */
+      font-size: inherit; /* Use the same font size as the surrounding elements */
+    }
+
+    /* Optional: Add a box-shadow when the textarea is focused */
+    .editable-textarea:focus {
+      outline: none;
+      box-shadow: 0 0 3px #007bff; /* You can change the color and size of the box-shadow */
+    }
 
     .copy-button {
       position: absolute;
-      top: -38px;
-      right: 5px;
+      width: 150px;
+      padding: 7px;
+      right: 0px;
+      bottom: 0px;
     }
-
+    .regenerate-button {
+        right: 150px;
+        width: 150px;
+        padding: 7px;
+        bottom: 0px;
+        position: absolute;
+    }
 /* SMALL screens*/
 
 
@@ -268,14 +292,14 @@ td.right-cell .special-textbox {
 
        /* Add padding to the top for the fixed header */
 
-padding-bottom: 50px;
-       /* Add padding to the bottom for better spacing */
+        padding-bottom: 50px;
+               /* Add padding to the bottom for better spacing */
 
-background-color: white;
+        background-color: white;
 
-width: 97%;
+        width: 97%;
 
-}
+        }
 
    /* Standard button styles */
    button {
@@ -294,7 +318,9 @@ width: 97%;
        display: block;
        /* Display the buttons as block elements */
    }
-
+ .editable-textarea {
+    width: 97%,
+ }
    /* Adjusted modal content styles */
    .modal-content {
        background-color: #f7e7c6;
@@ -421,7 +447,7 @@ width: 97%;
      td.right-cell .input-container {
        margin-top: 10px; /* Add spacing between the labels and input containers */
      }
-   }
+
 
    td.right-cell .special-textbox {
      width: 100%;
@@ -479,11 +505,9 @@ width: 97%;
        position: relative;
    }
 
+
    .copy-button {
        position: absolute;
-       top: -35px;
-       /* Adjust the position of the copy button for mobile devices */
-       right: 5px;
        width: 150px;
        padding: 7px;
    }

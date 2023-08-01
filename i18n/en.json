@@ -17,7 +17,8 @@
     "reels": "Ideas for reels",
     "instagram_post": "Create a content plan for Instagram posts for a week/month (2-steps Prompt)",
     "emailing": "A template for emailing clients about a photo day",
-    "collaboration": "Neural network to generate ideas for collaborations"
+    "collaboration": "Neural network to generate ideas for collaborations",
+    "cleanChat": "No Pre created prompt - Free chat"
   },
   "processingRequest": "Processing Request... Waiting for an Answer...",
   "notChatGpt": "I'm not ChatGPT, but I did realize that Lili is one of the best persons in the world, and I kind of like her... Now the internet knows it as well!",
@@ -34,6 +35,7 @@
   "LABEL_CITY": "The city from where you are",
   "LABEL_NICHE": "Your Niche",
   "SENDBUTTON": "Send Request",
+  "REGENERATEBUTTON": "Regenerate",
   "GENERATEBUTTON": "Generate Text",
   "GOBACKBUTTON": "Go Back to Index",
   "SELECT_LANGUAGE": "Select Language",
@@ -42,5 +44,5 @@
   "USER_LABEL": "This is the prompt we will do for chatGPT:",
   "COPY_PROMPT": "Copy Prompt",
   "COPY_ANSWER": "Copy Answer",
-  "TYPE_ADDITIONAL_REQUEST": "Type your additional request to ChatGPT below"
+  "TYPE_ADDITIONAL_REQUEST": "Type your request to ChatGPT below"
 }

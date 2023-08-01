@@ -5,7 +5,7 @@ function copyAnswer(divId) {
   // Get the div containing the answer
   const answerDiv = document.getElementById('answerDiv' + divId);
   // Get the answer content
-  const answerContent = answerDiv.innerHTML.replace(/<br>/g, '\n').replace(/<button.*<\/button>.*/, ''); ;
+  const answerContent = answerDiv.innerHTML.replace(/<button.*<\/button>.*/, ''); ;
   // Get the invisible textarea
   navigator.clipboard.writeText(answerContent)
         .then(() => {
@@ -19,7 +19,14 @@ function copyAnswer(divId) {
   window.getSelection().removeAllRanges();
 }
 
+function regenerateAnswer(answerId){
+    if(answerId > 0 && (answerId % 2) == 0 ){
+        answerId = answerId -1;
+    }
+    globalPrompt.splice(answerId);
+    fetchResponseAsStream(document.getElementById("answerDiv" + answerId).value)
 
+}
 
 function activateChat(value){
   if (value == true) {
@@ -58,48 +65,17 @@ function promptPrepareRequestStream(prompt, role){
    globalPrompt[globalPrompt.length-1].content = prompt;
 }
 
-
 function processRequest(){
   const newQuestion = document.getElementById('userPrompt').value;
   document.getElementById('userPrompt').value = "";
   fetchResponseAsStream(newQuestion);
 }
 function scrollToBottom() {
-  window.scrollTo(0, document.body.scrollHeight);
+  window.scrollTo(0, document.body.scrollHeight - 15);
 }
-function fetchResponse(prompt) {
-    const apiUrl = 'https://api.openai.com/v1/chat/completions'; // Replace this with the actual API endpoint
-    showWaitingModal(true);
-    promptPrepareRequest(prompt, "user");
-    fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + decrypt(atob("bGlsaXlh"), "6b73352b546b705b547f742b7d4c61695e6d7d576b576b4c2b5a747a735e524c6f2d50542d77295b61567d2f5929746d7c7e5a")
-            },
-            body: JSON.stringify({
-                "model": "gpt-3.5-turbo",
-                "messages": globalPrompt
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            const answerContent = data.choices[0].message.content.replace(/\n/g, "<br>");
-            promptPrepareRequest(answerContent, "system");
-            displayResponse();
-            activateChat(true)
-            closeWaitingModal();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            closeWaitingModal();
-        });
-        displayResponse();
-  }
-
     function fetchResponseAsStream(prompt) {
       const apiUrl = 'https://api.openai.com/v1/chat/completions'; // Replace this with the actual API endpoint
-       showWaitingModal(true);
+      showWaitingModal(true);
       promptPrepareRequest(prompt, "user");
       promptPrepareRequest("", "system");
       fetch(apiUrl, {
@@ -141,7 +117,7 @@ function fetchResponse(prompt) {
                   data = data.trim() + "}]}";
                   if (data.length > "10") {
                     var parsedContent = JSON.parse(data);
-                    const content = parsedContent.choices[0].delta.content.replace(/\n/g, "<br>");
+                    const content = parsedContent.choices[0].delta.content.replace("undefined","");
                     contentFinalResult += content;
                   }
               });
@@ -164,13 +140,26 @@ function fetchResponse(prompt) {
         closeWaitingModal();
         activateChat(true);
       });
+      displayResponse();
     }
+
+function autoResizeAllTextAreas(){
+    for(var i=1; i< globalPrompt.length;i++){
+        textarea = document.getElementById("answerDiv"+i);
+        if(textarea)
+            autoResize(textarea);
+     }
+}
+
+function autoResize(textarea) {
+  textarea.style.height = "auto"; // Reset the height to its default auto value
+  textarea.style.height = textarea.scrollHeight + "px"; // Set the height to match the content
+}
 
  function displayResponse() {
     document.getElementById("responseContainer").style.display = "block";
     const responseContainer = document.getElementById('responseContainer');
     let responseText = ""
-
     document.getElementById("generateButton").style.display = "none";
     document.getElementById("goBackButton").style.display = "block";
     const systemLabel = "<hr><h2 data-i18n='SYSTEM_LABEL'>This is ChatGPT Answer to our question</h2>";
@@ -186,22 +175,25 @@ function fetchResponse(prompt) {
         copyButtonLabel = getTranslation("COPY_PROMPT");
         responseText = responseText + userLabel;
       }
-      if(i == 1) {
-        responseText = responseText + "<div class='answer-container' id='answerDiv"+i+ "'>" + modalContent.replace(/\n/g, "<br>") + "<button class='copy-button'  onclick='copyAnswer("+ i +")'>"+ copyButtonLabel +"</button> </div>";
-      } else {
-        responseText = responseText + "<div class='answer-container' id='answerDiv"+i+ "'>" + item.content + "<button class='copy-button' onclick='copyAnswer("+ i +")'>"+ copyButtonLabel +"</button> </div>";
-      }
+      let buttons="";
+      buttons =  "<button class='regenerate-button' onclick='regenerateAnswer("+ i +")'>"+ getTranslation("REGENERATEBUTTON") +"</button>";
+      buttons += "<button class='copy-button' onclick='copyAnswer("+ i +")'>"+ copyButtonLabel +"</button>";
+      responseText = responseText + "<div class='answer-container'><textarea  class='editable-textarea' id='answerDiv"+i+ "' rows='4' oninput='autoResize(this)'>" + item.content + "</textarea><br><br><br>" + buttons + "</div>";
       responseContainer.innerHTML = responseText;
+      //once we add the textarea to screen we then make sure it autoresize to match the content it has on it.
+      autoResizeAllTextAreas();
+
     };
+    autoResizeAllTextAreas();
     translateContent(translationData);
     scrollToBottom();
 }
-// MODAL SCREEN DETAILS - PROGRESS BAR
-//need to move this to a javascript for the modal
-function showWaitingModal() {
-  document.getElementById("myStatusModal").style.display = "block";
-  simulateProgress(true);
-}
+    // MODAL SCREEN DETAILS - PROGRESS BAR
+    //need to move this to a javascript for the modal
+    function showWaitingModal() {
+      document.getElementById("myStatusModal").style.display = "block";
+      simulateProgress(true);
+    }
 
   function closeWaitingModal() {
     document.getElementById("myStatusModal").style.display = "none";
@@ -402,13 +394,15 @@ function showTooltip(parameterName) {
         globalPrompt = "";
         const selectedItems = formItems[selection];
         // Check if the selectedItems is defined and not empty before calling the createDynamicForm function
-        if (selectedItems && selectedItems.length > 0) {
+        if (selectedItems && selectedItems.length > 0 && selection != "cleanChat") {
           createDynamicForm(selectedItems);
-
+          prepareScreen();
+          goBack();
+        } else if(selection == "cleanChat"){
+            prepareScreen();
+            activateChat(true);
+            document.getElementById("generateButton").style.display = "none";
         }
-        // Add other cases for other selections
-        goBack();
-        prepareScreen();
         translateContent(translationData);
     }
 

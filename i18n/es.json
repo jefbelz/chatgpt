@@ -17,7 +17,8 @@
     "reels": "Ideas para reels",
     "instagram_post": "Crear un plan de contenido para publicaciones de Instagram por una semana/mes (Pregunta de 2 pasos)",
     "emailing": "Una plantilla para enviar correos electrónicos a clientes sobre un día de fotos",
-    "collaboration": "Red neuronal para generar ideas para colaboraciones"
+    "collaboration": "Red neuronal para generar ideas para colaboraciones",
+    "cleanChat": "Sin solicitud predefinida - Chat libre"
   },
   "processingRequest": "Procesando solicitud... Esperando una respuesta...",
   "notChatGpt": "No soy ChatGPT, pero me di cuenta de que Liliya es una de las mejores personas en el mundo, y realmente me gusta... ¡Ahora también lo sabe internet!",
@@ -35,6 +36,7 @@
   "LABEL_NICHE": "Tu Nicho",
   "SENDBUTTON": "Enviar Solicitud",
   "GENERATEBUTTON": "Generar Texto",
+  "REGENERATEBUTTON": "Regenerar",
   "GOBACKBUTTON": "Volver al Índice",
   "SELECT_LANGUAGE": "Seleccionar Idioma",
   "TOOLTIP_TEXT": "Pasa el ratón sobre el texto para ver un tooltip",
@@ -42,5 +44,5 @@
   "USER_LABEL": "Este es el mensaje que proporcionaremos a ChatGPT:",
   "COPY_PROMPT": "Copiar Mensaje",
   "COPY_ANSWER": "Copiar Respuesta",
-  "TYPE_ADDITIONAL_REQUEST": "Escribe tu solicitud adicional a ChatGPT a continuación"
+  "TYPE_ADDITIONAL_REQUEST": "Escribe tu solicitud a ChatGPT a continuación"
 }
