@@ -82,10 +82,10 @@ function scrollToBottom() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + decrypt(atob("bGlsaXlh"), "6b73352b546b705b547f742b7d4c61695e6d7d576b576b4c2b5a747a735e524c6f2d50542d77295b61567d2f5929746d7c7e5a")
+          'Authorization': 'Bearer ' + decrypt(atob("bGlsaXlh"), "6b7335712175487b74705c2971685d6f5c514c79505b734c2b5a747a735e5229497b574c2a7c5461294d4e5f6f4e7575415f20")
         },
         body: JSON.stringify({
-          "model": "gpt-3.5-turbo",
+          "model": "gpt-3.5-turbo-16k",
           "stream": true,
           "messages": globalPrompt
         })
