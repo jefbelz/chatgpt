@@ -10,7 +10,8 @@
   "NICHE": "Pendiente por completar",
   "CITY": "PENDIENTE POR COMPLETAR",
   "PROFESSION": "pendiente por completar",
-  "modalTitle": "ChatGPT sugerencias para Fotógrafos por Liliya:",
+  "modalTitle": "PROMPTS PARA CHAT GPT PARA FOTÓGRAFOS",
+  "welcomeMessage": "Estás en la base de datos de avisos (solicitudes) para Chat GPT, que fue desarrollado por la escuela de fotografía @lilia.by. Para su comodidad, la red neuronal ChatGPT ya está integrada. No necesita registrarse y usar una VPN. Solo necesita seleccionar la solicitud que le interesa de la lista desplegable, completar los campos y hacer clic en el botón \"generar\". Es recomendable que rellenes los campos de forma detallada y clara para que obtengas la respuesta que más se adapta a ti. No olvide que Chat GPT le permite realizar un diálogo, lo que significa que puede pedir en el diálogo que haga correcciones, reescriba o refine algo.\nSi recibe una respuesta en un idioma que no es el que esperaba, simplemente solicite a Chat GPT que le responda en el idioma deseado. El lo arreglará\uD83D\uDE0A",
   "selection": {
     "SEO": "Promoción de Texto SEO",
     "Stories": "Historias de Instagram",

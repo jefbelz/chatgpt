@@ -10,7 +10,8 @@
   "NICHE": "Pending to fill",
   "CITY": "PENDING TO FILL",
   "PROFESSION": "pending to fill",
-  "modalTitle": "ChatGPT prompts for Photographers by Liliya:",
+  "welcomeMessage": "You are in the database of prompts (requests) for Chat GPT, which was developed by @lilia.by photography school. For your convenience, the ChatGPT neural network is already built in. You do not need to register and use a VPN. You just need to select the request you are interested in from the drop-down list, fill in the fields and click on the \"generate\" button. It is recommended that you fill in the fields in detail and clearly so that you get the answer that is most adapted to you. Do not forget that Chat GPT allows you to conduct a dialogue, which means that you can ask in the dialogue to make corrections, rewrite or refine something.\nIf you receive a response in a language that is not what you expected, then simply ask Chat GPT to respond to you in the desired language. He will fix it\uD83D\uDE0A",
+  "modalTitle": "PROMPTS FOR CHAT GPT FOR PHOTOGRAPHER",
   "selection": {
     "SEO": "SEO Text promotion",
     "Stories": "Instagram Stories",
