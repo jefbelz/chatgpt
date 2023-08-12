@@ -20,17 +20,25 @@
             <!-- Add more language options as needed -->
         </select>
     </div>
-    <div class="content">
+    <div id="content" class="content">
         <h2 class="headerTitle" id="modalTitle" data-i18n="modalTitle">ChatGPT prompts for Photographers by Liliya:</h2>
-
+        <p class="contentDescription" id="contentDescription" data-i18n="welcomeMessage"></p>
         <select id="selection" class="select">
-            <option value="SEO Text promotion" data-i18n="selection.SEO">SEO Text promotion</option>
+            <option value="advantagesSteps" data-i18n="selection.advantagesSteps">Compose my advantages and strengths (2 steps)</option>
+            <option value="painDesires" data-i18n="selection.painDesires">Pain points and desires of my TA</option>
+            <option value="ideasStories" data-i18n="selection.ideasStories">Ideas for Instagram Stories (2 steps)</option>
+            <option value="storytellingStories" data-i18n="selection.storytellingStories">Storytelling for Instagram Stories</option>
+            <option value="ideasReels" data-i18n="selection.ideasReels">Ideas and scenarios for Instagram Reels</option>
+            <option value="contentPlanWeek" data-i18n="selection.contentPlanWeek">Content plan for Instagram for a week</option>
+            <option value="postInstagram" data-i18n="selection.postInstagram">Post for Instagram</option>
+            <option value="textClientNewsletter" data-i18n="selection.textClientNewsletter">Text for personal client newsletter about photo day</option>
+            <option value="generateCollabIdeas" data-i18n="selection.generateCollabIdeas">Generate ideas for collaborations</option>
+            <option value="letterBloggerCollab" data-i18n="selection.letterBloggerCollab">Letter for collaboration with a blogger</option>
+            <option value="profileHeader" data-i18n="selection.profileHeader">Instagram profile header</option>
+            <option value="gatherInstagramTags" data-i18n="selection.gatherInstagramTags">Gathering Instagram hashtags</option>
+            <option value="selectSEOKeywords" data-i18n="selection.selectSEOKeywords">Selection of keywords for website SEO</option>
+            <option value="seoTextWebsite" data-i18n="selection.seoTextWebsite">SEO text for the website</option>
             <option value="cleanChat" data-i18n="selection.cleanChat">No Pre created prompt - Free chat</option>
-            <option value="Instagram Stories" data-i18n="selection.Stories">Instagram Stories</option>
-            <option value="Ideas for reels" data-i18n="selection.reels">Ideas for reels</option>
-            <option value="Create a content plan for Instagram posts for a week/month (2-steps Prompt)" data-i18n="selection.instagram_post">Create a content plan for Instagram posts for a week/month (2-steps Prompt)</option>
-            <option value="A template for emailing clients about a photo day" data-i18n="selection.emailing">A template for emailing clients about a photo day</option>
-            <option value="Neural network to generate ideas for collaborations" data-i18n="selection.collaboration">Neural network to generate ideas for collaborations</option>
         </select>
     </div>
 </div>
@@ -59,13 +67,16 @@
             <div class="progress-bar">
                 <div class="progress" id="progress"></div>
             </div>
-            <h4 data-i18n="notChatGpt">I'm not ChatGPT, but I did realize that Lili is one of the best persons in the world, and I kind of like her... Now the internet knows it as well!</h4>
-            <h4 data-i18n="sendPicture">I hope you are smiling now! Send me a picture!</h4>
+<!--            <h4 data-i18n="notChatGpt">I'm not ChatGPT, but I did realize that Lili is one of the best persons in the world, and I kind of like her... Now the internet knows it as well!</h4>-->
+<!--            <h4 data-i18n="sendPicture">I hope you are smiling now! Send me a picture!</h4>-->
         </div>
     </div>
     <div class="custom-tooltip" id="tooltip"><div id="tooltipText"></div><span class="close-button">&times;</span></div>
 </div>
 </body>
 <script src="js/i18n.js"></script>
+<script src="js/progressbar.js"></script>
+<script src="js/chatgpt.js"></script>
 <script src="js/page.js"></script>
+
 </html>

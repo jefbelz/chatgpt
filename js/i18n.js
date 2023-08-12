@@ -45,7 +45,7 @@
       const translatedValue = getTranslationByKey(translationData, placeholder);
 
       if (translatedValue) {
-        element.textContent = translatedValue;
+        element.innerHTML= translatedValue;
       }
     });
   }

@@ -73,75 +73,6 @@ function processRequest(){
 function scrollToBottom() {
   window.scrollTo(0, document.body.scrollHeight - 15);
 }
-    function fetchResponseAsStream(prompt) {
-      const apiUrl = 'https://api.openai.com/v1/chat/completions'; // Replace this with the actual API endpoint
-      showWaitingModal(true);
-      promptPrepareRequest(prompt, "user");
-      promptPrepareRequest("", "system");
-      fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + decrypt(atob("bGlsaXlh"), "6b7335712175487b74705c2971685d6f5c514c79505b734c2b5a747a735e5229497b574c2a7c5461294d4e5f6f4e7575415f20")
-        },
-        body: JSON.stringify({
-          "model": "gpt-3.5-turbo-16k",
-          "stream": true,
-          "messages": globalPrompt
-        })
-      })
-      .then(response => {
-        // Check if the response is a readable stream
-        if (!response.body) {
-          throw new Error('Readable streams not supported in this browser.');
-        }
-        console.log(globalPrompt);
-        const reader = response.body.getReader();
-        let contentFinalResult = "";
-        function readStream() {
-          return reader.read().then(({ done, value }) => {
-            if (done) {
-              console.log('Stream is done.'); // End of the stream
-              promptPrepareRequestStream(contentFinalResult, "system");
-              displayResponse();
-              closeWaitingModal();
-              activateChat(true);
-              return;
-            }
-            try {
-              // Process data as it arrives
-              let jsonString = new TextDecoder().decode(value).replace(/data:\s*/g, '');
-              var dataAux = jsonString.split("}]}")
-
-              dataAux.forEach( data=> {
-                  data = data.trim() + "}]}";
-                  if (data.length > "10") {
-                    var parsedContent = JSON.parse(data);
-                    const content = parsedContent.choices[0].delta.content.replace("undefined","");
-                    contentFinalResult += content;
-                  }
-              });
-              promptPrepareRequestStream(contentFinalResult, "system");
-              displayResponse();
-              // Continue reading the stream
-            } catch(error){
-              console.log("");
-            }
-            return readStream();
-          });
-        }
-
-        return readStream();
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        promptPrepareRequestStream("we had a problem processing the request, please try again: " + error, "system");
-        displayResponse();
-        closeWaitingModal();
-        activateChat(true);
-      });
-      displayResponse();
-    }
 
 function autoResizeAllTextAreas(){
     for(var i=1; i< globalPrompt.length;i++){
@@ -157,6 +88,7 @@ function autoResize(textarea) {
 }
 
  function displayResponse() {
+    const selection = document.getElementById("selection").value;
     document.getElementById("responseContainer").style.display = "block";
     const responseContainer = document.getElementById('responseContainer');
     let responseText = ""
@@ -179,6 +111,7 @@ function autoResize(textarea) {
       buttons =  "<button class='regenerate-button' onclick='regenerateAnswer("+ i +")'>"+ getTranslation("REGENERATEBUTTON") +"</button>";
       buttons += "<button class='copy-button' onclick='copyAnswer("+ i +")'>"+ copyButtonLabel +"</button>";
       responseText = responseText + "<div class='answer-container'><textarea  class='editable-textarea' id='answerDiv"+i+ "' rows='4' oninput='autoResize(this)'>" + item.content + "</textarea><br><br><br>" + buttons + "</div>";
+      responseText += "<br>" + this.getAdditionalQuestionsTip(selection);
       responseContainer.innerHTML = responseText;
       //once we add the textarea to screen we then make sure it autoresize to match the content it has on it.
       autoResizeAllTextAreas();
@@ -188,37 +121,6 @@ function autoResize(textarea) {
     translateContent(translationData);
     scrollToBottom();
 }
-    // MODAL SCREEN DETAILS - PROGRESS BAR
-    //need to move this to a javascript for the modal
-    function showWaitingModal() {
-      document.getElementById("myStatusModal").style.display = "block";
-      simulateProgress(true);
-    }
-
-  function closeWaitingModal() {
-    document.getElementById("myStatusModal").style.display = "none";
-    simulateProgress(false);
-  }
- let width = 0;
-  function simulateProgress() {
-    const progressBar = document.getElementById("progress");
-    if (width >= 100) {
-         width = 0;
-    }
-    width += 2;
-    progressBar.style.width = width + "%";
-  }
-
-  // Start the progress interval
-  let progressInterval = setInterval(simulateProgress, 150);
-
-  // Function to stop the progress and reset the progress bar
-  function stopProgress() {
-    width = 100;
-    clearInterval(progressInterval);
-    width = 0;
-    progressBar.style.width = width + "%";
-  }
   //-----------------------------------------------------------------
   //JAVASCRIPT TO GENERATE THE FORM DYNAMICALLY HAVE TO MOVE IT TO another class
 
@@ -244,9 +146,11 @@ function showTooltip(parameterName) {
         tooltipDiv.style.display = 'none';
     }
 
-    function createDynamicForm(formItems) {
+    function createDynamicForm(formItems, selection) {
       const formContainer = document.getElementById("inputFields");
-      let formTemplate = '<table>';
+      let formTemplate = `<p class='formDescription' data-i18n="description.${selection}"></p> `
+
+      formTemplate += '<table>';
       formItems.forEach((item) => {
         formTemplate += `
           <tr>
@@ -260,69 +164,93 @@ function showTooltip(parameterName) {
         `;
       });
       formTemplate += '<tr><td colspan="2"><h6 data-i18n="TOOLTIP_TEXT">* Pass the mouse over the text for a tooltip</h6></td></tr>';
-      formTemplate += '</table>';
+      formTemplate += '</table></br>';
+      formTemplate += this.getAdditionalQuestionsTip(selection);
+
       formContainer.innerHTML = formTemplate;
     }
+    function getAdditionalQuestionsTip(selection){
+
+      if(getTranslation("additionalQuestions." +selection) === null) {
+         formTemplate = ""
+      } else {
+        formTemplate = '<b><label data-i18n="LABEL_additionalQuestions"></label></b><br>'
+        formTemplate += `<div data-i18n="additionalQuestions.${selection}"></div>`
+      }
+
+      return formTemplate;
+     }
+
    //-----------------------------------------------------------------------------------
 
     function generateText() {
         const selection = document.getElementById("selection").value;
         modalContent = "";
         const WHOYOUARE = extractFormValues("WHOYOUARE");
-        const YOURPOWERPOINTS = extractFormValues("YOURPOWERPOINTS");
         const TARGETAUDIENCE = extractFormValues("TARGETAUDIENCE");
         const TARGETLANGUAGE = extractFormValues("TARGETLANGUAGE");
+        const WHATDOYOUWANTTOSELL = extractFormValues("WHATDOYOUWANTTOSELL");
+        const WHATHAPPENEDTODAY = extractFormValues("WHATHAPPENEDTODAY");
+        const FOCUSTHEME = extractFormValues("FOCUSTHEME");
+        const SUBJECTPOST = extractFormValues("SUBJECTPOST");
+        const TONEOFVOICE = extractFormValues("TONEOFVOICE");
+        const PRODUCT = extractFormValues("PRODUCT");
+        const REGION = extractFormValues("REGION");
+        const YOURBENEFITS = extractFormValues("YOURBENEFITS");
+        const BLOGGERNAME = extractFormValues("BLOGGERNAME");
+        const SUBJECT = extractFormValues("SUBJECT");
+        const PAGETHEME = extractFormValues("PAGETHEME");
+        const PAINPOINTS = extractFormValues("PAINPOINTS");
+        const TASK = extractFormValues("TASK");
         const TOPIC = extractFormValues("TOPIC");
         const KEYWORDS = extractFormValues("KEYWORDS");
-        const PROMPT = extractFormValues("PROMPT");
+      if (selection === "advantagesSteps") {
+        modalContent = `Я ${WHOYOUARE}. Моя целевая аудитория ${TARGETAUDIENCE} Помоги мне описать, чем я отличаюсь от других фотографов, чтобы моя target audience выбрала меня среди сотни других фотографов. Задай мне несколько вопросов, чтобы мы вместе смогли донести ценность моих услуг для target audience. Ответь на мне на ${TARGETLANGUAGE} языке.`;
+      } else if (selection === "painDesires") {
+        modalContent = `Я ${WHOYOUARE}. Моя целевая аудитория ${TARGETAUDIENCE} Помоги мне описать, в чем заключаются боли и желания моей целевой аудитории. Ответь мне на  ${TARGETLANGUAGE} языке.`
+      } else if (selection === "ideasStories") {
+        modalContent = `Я — ${WHOYOUARE}. Вы — высококлассный SMM менеджер, который свободно говорит и пишет на ${TARGETLANGUAGE} языке . Придумай для меня  10 идей для и Instagram Stories на сегодня. Вы можете задать мне несколько конкретных вопросов, чтобы получился надлежащий ответ.`
+      } else if (selection === "storytellingStories") {
+        modalContent = `Я - ${WHOYOUARE}. Ты - опытный SMM-менеджер высокого класса, свободно владеющий ${TARGETLANGUAGE} языком. Напишите сторителлинг для Instagram Stories на основе событий моего дня. События этого дня я предоставлю далее. Используйте передовую практику и техники, чтобы удержать внимание аудитории, такие, которые обычно используются для создания интересных сюжетов в книгах и фильмах.
+                        Вот, что произошло со мной сегодня: ${WHATHAPPENEDTODAY}. Создайте на основе этих событий интересную и вовлекающую историю из 7-13 логически связанных блоков. Для каждого блока используйте номера. Каждый блок должен содержать заголовок и максимум 2-3 предложения, которые кратко объясняют суть события или мотивируют аудиторию предпринять действие: поставить реакцию (сердечко, огонь, emoji, лайк и т.д.), участвовать в опросе, выбрать один из вариантов ответа, оставить комментарий и так далее. Вы можете добавить рекомендации по выбору визуальных элементов для каждой истории.
+                        Первый пост обязательно должен начаться с интриги, вовлечения или кликбейтного заголовка, мотивирующего целевую аудиторию смотреть контент далее. Основная идея сегодняшней истории - ${WHATDOYOUWANTTOSELL}.
+                        Моя целевая аудитория - ${TARGETAUDIENCE}. Основная цель сторителлинга - привлечь внимание моей целевой аудитории и убедить их, что я хороший специалист и очень приятный человек, разделяющий жизненные и личные ценности с моей целевой аудиторией. Используй дружелюбный тон.
+                        Напиши ответ на ${TARGETLANGUAGE} языке.`
+      } else if (selection === "ideasReels") {
+        modalContent = `Действуй как искусный SMM менеджер и высококлассный копирайтер, свободно говорящий и пишущий на ${TARGETLANGUAGE} языке . Я - ${WHOYOUARE}, моя целевая аудитория - ${TARGETAUDIENCE}. Придумай 5 идей для Instagram Reels и напиши сценарий для каждой идеи. Каждый сценарий должен иметь вступление, основную часть и заключение. Длина сценария должна составлять от 15 до 45 секунд. Каждый сценарий должен начинаться с кликбейтного заголовка, связанного с болевой точкой или желанием моей целевой аудитории. Если есть подзаголовки, выдели их жирным шрифтом.
+                        Моя основная цель - устранить болевые точки  моих клиентов, чтобы мотивировать их сделать заказ. Добавь призывы к действию в конце сценария, такие как "оставьте комментарий", "поставьте лайк", "посмотрите мои последние истории, пока они не исчезли" и т.д. Просьба уточнить, если нужны дополнительные пояснения, перед тем как отвечать. Напишите ответ на ${TARGETLANGUAGE} языке.`
+      } else if (selection === "contentPlanWeek") {
+        modalContent = `Я - ${WHOYOUARE}. Я хотела бы, чтобы ты помог мне создать график публикаций для моего блога на следующие 5 дней, который наиболее вероятно поможет мне занять высокие позиции по ключевым словам . Я сообщу тебе моё основное целевое ключевое слово в подсказке ниже. Придумай кликбейтные заголовки  для этих постов, а затем напиши сами тексты постов согласно маркетинговой структуре, которую я обозначу далее.
+                        Моя целевая аудитория - ${TARGETAUDIENCE}. Посты должны быть разделены на абзацы и иметь длину от 400 до 1200 знаков. Используй emoji. Не используй общие фразы. Заверши каждый пост мощным призывом к действию.
+                        Пожалуйста, создай названия для каждого поста блога в виде таблицы. Над таблицей напиши "Календарь публикаций по ключевому слову" и замени "КЛЮЧЕВОЕ СЛОВО" на то,что указано в далее заглавными буквами.
+                        Ключевое слово, на которое я фокусируюсь: ${FOCUSTHEME}
+                        Пожалуйста, предоставьте все ответы на ${TARGETLANGUAGE} языке.`
+      } else if (selection === "postInstagram") {
+        modalContent = `Напиши пост в Instagram согласно определенной маркетинговой структуре, которая мне понадобится (например, внимание-интерес-желание-действие или боль-решение и так далее). Я - ${WHOYOUARE}. Я хочу, чтобы ты написал пост на тему ${SUBJECTPOST}. Моя целевая аудитория - ${TARGETAUDIENCE}. Пост должен быть разбит на абзацы и не превышать 1500 знаков. Используй emoji. Стиль должен быть ${TONEOFVOICE}. Заголовок обязательно должен начаться с интриги, вовлечения, кликбейтного заголовка или чего-то, что покажет преимущества для целевой аудитории, чтобы они продолжили читать контент. Не используй общие фразы. Заверши призывом к действию. Напиши ответ на ${TARGETLANGUAGE} языке.`
+      } else if (selection === "textClientNewsletter") {
+        modalContent = `Я - ${WHOYOUARE}. Ты действуешь как опытный маркетолог и высококлассного копирайтер, свободно говорящий и пишущий на ${TARGETLANGUAGE} языке. Создай шаблон для рассылки клиентам о ${PRODUCT} в соответствии со следующей структурой:
+                        1.	Цепляющий заголовок с преимуществами для потенциального клиента,
+                        2.	Вежливое приветствие
+                        3.	Предложение с некоторыми преимуществами
+                        4.	Призыв к действию
+                        Опиши суть предложения и в конце добавь призыв к действию, например: "отправьте любое слово, если хотите узнать подробности". Спроси меня, если нужны уточнения, перед тем как отвечать. Используй продающие техники, чтобы убедить потенциальных клиентов совершить действие. Письмо не должно превышать 1500 знаков. Постарайся быть конкретным, кратким и вежливым. Пожалуйста, предоставь все ответы на ${TARGETLANGUAGE} языке.`
+      } else if (selection === "generateCollabIdeas") {
+        modalContent = `Ты действуешь, как опытный бизнес-менеджер и высококлассный копирайтер, свободно говорящий и пишущий на ${TARGETLANGUAGE} языке . Я - ${WHOYOUARE}, из ${REGION}, и в основном использую Instagram для продвижения. Моя целевая аудитория - ${TARGETAUDIENCE}. Предложи идеи для сотрудничества. Как найти и что именно написать эксперту, с которым я хочу взаимодействовать, чтобы он/она согласились на сотрудничество для обмена аудиторией. Пожалуйста, предоставь все ответы на ${TARGETLANGUAGE} языке.`
+      } else if (selection === "letterBloggerCollab") {
+        modalContent = `Я - ${WHOYOUARE}. Мои сильные стороны - ${YOURBENEFITS}. Ты выступаешь как высококлассный копирайтер, свободно говорящий и пишущий на ${TARGETLANGUAGE} языке.  Создай шаблон для обращения к блогерам о проведении совместной фотосессии, чтобы они согласились на сотрудничество для   обмена аудиториями.
+                        Шаблон должен иметь следующую структуру: вежливое и приятное приветствие  ${BLOGGERNAME}, очень краткая информация обо мне и моих сильных сторонах, предложение, что я ожидаю от блогера, возможная дата будущей фотосессии, ссылки на возможные фотосессии (приложенные фотографии к сообщению), хороший призыв к действию. Пожалуйста, предоставь все ответы на ${TARGETLANGUAGE} языке. Постарайся быть кратким и конкретным.`
+      } else if (selection === "profileHeader") {
+        modalContent = `Ты выступаешь в роли высококлассного SMM менеджера, свободно говорящего и пишущего на ${TARGETLANGUAGE} языке . Я - ${WHOYOUARE} из ${REGION}. Мои сильные стороны - ${YOURBENEFITS}. Я главным образом использую Instagram как социальную платформу для привлечения клиентов. Помоги мне составить био для моего профиля в Instagram, не более 150 символов. Предоставь как минимум 5 лучших идей для био.
+                        В био полезно упомянуть мои сильные стороны, преимущества для клиентов, лид- магнит для привлечения подписчиков. Добавь ссылку на мой веб-сайт в конце, чтобы привлечь новых потенциальных клиентов. Пожалуйста, предоставь все ответы на ${TARGETLANGUAGE} языке.`
+      } else if (selection === "gatherInstagramTags") {
+        modalContent = `Ты выступаешь в роли опытного SMM менеджера и высококлассного копирайтера, свободно говорящего и пишущего на  ${TARGETLANGUAGE} языке. Напиши для меня как минимум 30 хэштегов для публикаций, связанных с темой ${SUBJECT}. Используй высокочастотные и низкочастотные хэштеги, локализацию. Моё местоположение - ${REGION}. Пожалуйста, предоставьте все ответы на ${TARGETLANGUAGE} языке.`
+      } else if (selection === "selectSEOKeywords") {
+        modalContent = `Я ${WHOYOUARE}.  Моя целевая аудитория ${ TARGETAUDIENCE }.  Помоги мне составить семантическое ядро для продвижения моего сайта по теме ${PAGETHEME} для целевой аудитории. Напиши мне не менее 10 ключевых слов. Включая высокочастотные, среднечастотные и низкочастотные запросы. Я работаю в следующих городах ${REGION}
+                        Напишите ответ на ${TARGETLANGUAGE} языке.`
+      } else if (selection === "seoTextWebsite") {
+        modalContent = ``
+      }
 
-        const PROFESSION = extractFormValues("PROFESSION");
-        const CITY = extractFormValues("CITY");
-        const NICHE = extractFormValues("NICHE");
-
-        if (selection === "SEO Text promotion") {
-            modalContent = `I am ${WHOYOUARE} I want you help me attract potential clients to my website.
-            I want you to act as a professional SEO and high-end copywriter who speaks and writes fluently ${TARGETLANGUAGE} . Let me introduce yourself ${YOURPOWERPOINTS} My target audience ${TARGETAUDIENCE}  Take into consideration the interests of my target audience  ${PAINPOINTS}
-
-            I want you to pretend that you can write content so well in  ${PROMPT} that it can outrank other websites to attract potential clients.
-            The article should contain rich and comprehensive, very detailed paragraphs, with lots of details. Do not echo my prompt. Do not remind me what I asked you for. Do not apologize. Do not self-reference. Do now use generic filler phrases. Do use useful subheadings with keyword-rich titles. Get to the point precisely and accurately. Do not explain what and why, just give me your best possible article. Must write a minimum 2000+ words article in active voice as like as human-like style, simple ${TARGETLANGUAGE}, using contractions, idioms, transitional phrases, interjections, dangling modifiers, and colloquialisms and avoiding repetitive phrases and unnatural grammatically correct sentence structure. Avoid all grammatical mistakes.
-
-            You will need to research a given  ${TOPIC}, formulate a thesis statement, and create a persuasive piece of work that is informative and engaging, with proofreading. Optimize for voice search and include the latest data and information on the keyword of ${KEYWORDS}
-
-            Place «underscore" at the end of the paragraphs and in the middle of sentences.**Heading:** Write an SEO-friendly, eye-catching, and engageable Heading Following ${TOPIC} and keywords. Make headings bold. Put in heading a hook which attract the target audience, show them the advantage to choose me.
-
-            Write more than 5 long tail keywords related to the topic ${TOPIC}. Follow human search intention for writing better long tail. Write an SEO-friendly meta description following the above written keywords. Write meta description under 155 to 160 character. Write this introduction more than 200 words. That is important to write H2, H3, H4 headings with  ${KEYWORDS} . Add  And write a long details SEO friendly description for each headings. Write with relative semantic keywords. Write every paraphrase with a minimum of 2% of keyword density. Match each keyword with the people's search intent. Make sub headings bold. Don't stop here, continue write. Write details description about above written headings, keywords and sub headings. Don’t copy from others, you must write plagiarism-free unique details with 2%-3.5% keywords density. You have to deep research about, written keywords and ${TOPIC}.
-
-            You must follow the copywriting formula which called the "AIDA formula". Don't stop here let’s continue writing. Ask more than 5 searchable questions with the keyword. Write human search intention and follow  ${PROMPT}  and above written.
-
-            After that write SEO friendly short answer every questions using keywords and related semantic words. Don't stop here lets continue writing and finish the task.**Conclusion:** Write an SEO-friendly conclusion using mentioned the heading, keywords and summaries above written. Finish the piece with an excellent engageable ending of ${TOPIC}. Don't stop writing until finishing the article. Continue. Remember, heading, sub heading and question answer must be bold. Finish with a  nice call to action. Write the answer in ${TARGETLANGUAGE}
-            `;
-        } else if (selection === "Instagram Stories") {
-            modalContent = `I want you to act as a high-end copywriter who speaks and writes fluently ${TARGETLANGUAGE}. Write linked storytelling for Instagram stories from unstructured events of the day. With short headlines for each story. In the template, I will have to fill in who I am a Photographer, what I want to sell (some product features). The post should be broken into paragraphs and no more than 200 characters. It will be important to specify what style it will be written in, maybe for the tone of voice, you will need to leave the option to be in that prompt too. The first post should definitely start with intrigue, engagement, or somehow motivate to watch the content further. There should be elements of engagement in storytelling. You can add guidelines for selecting visuals for each story. Do you understand? Here is what happened to me today: ${PROMPT}"`;
-        } else if (selection === "Ideas for reels") {
-            modalContent = `Ideas for reels will require the following parameters to be populated by user:
-            I want you to act as a very proficient social media manager and high-end copywriter that speaks and writes fluently ${TARGETLANGUAGE}. I’m a ${PROFESSION}, working in ${CITY}, my target audience is ${TARGETAUDIENCE} provide me content for Instagram Script for ${TOPIC}. There must be Intro, body, and conclusion parts. The body must contain 3 segments. Script length must be 30 seconds. If there is a subheading than change them into bold characters. You can make a call-to-action to like or leave a comment if it’s appropriate to the subject. My main objective is to erase pain points from my clients so they can order. You need to make Call-to-actions like “leave a comment”, “leave a like”,  “take a look at my recent stories before they go out”.  Ask me for clarifications before answering.
-             Make sure the language of your answer is: ${TARGETLANGUAGE}`;
-        } else if (selection === "Create a content plan for Instagram posts for a week/month (2-steps Prompt)") {
-            modalContent = `Create a content plan for Instagram posts for a week/month (2-steps Prompt)
-            You act as a very proficient social media manager and high-end copywriter that speaks and writes fluently ${TARGETLANGUAGE}. Create a content plan for posts on Instagram for a week/month. You need to make Call-to-actions like “leave a comment”, “leave a like”,  “take a look at my recent stories before they go out”. Ask me for clarifications before answering.
-             Make sure the language of your answer is: ${TARGETLANGUAGE}
-
-            (Answer each point like this 1.xx
-            2.xx
-            3.xx and so on)`;
-        } else if (selection === "A template for emailing clients about a photo day") {
-            modalContent = `Neural network to generate ideas for collaborations
-            You act as a very proficient social media manager and high-end copywriter that speaks and writes fluently ${TARGETLANGUAGE}. Create a template for mailing clients about a ${NICHE} photoshoot that starts with a catchy headline, benefits, and benefits to the client. Describe the essence of the offer, at the end  with a call to action, for example: "send any word if you want to know more details" Ask me for clarifications before answering.
-            Make sure the language of your answer is: ${TARGETLANGUAGE}
-
-            (Answer each point like this 1.xx
-            2.xx
-            3.xx and so on)`;
-        } else if (selection === "Neural network to generate ideas for collaborations") {
-            // JavaScript code for handling the "Neural network to generate ideas for collaborations" selection goes here
-            // ...
-        }
         // Hide the selection content and show the generated content
         document.getElementById("inputFields").style.display = "none";
         document.getElementById("generateButton").style.display = "none";
@@ -330,53 +258,112 @@ function showTooltip(parameterName) {
     }
 
     const labels = {
-      TARGETLANGUAGE: 'Language',
-      PROMPT: 'Core of your message',
-      WHOYOUARE: 'Who you are',
-      YOURPOWERPOINTS: 'Your power points',
-      TARGETAUDIENCE: 'Your target audience',
-      PAINPOINTS: 'Pain points of your target audience',
-      TOPIC: 'Topic to work on',
+      WHOYOUARE: 'Your Identity',
+      TARGETAUDIENCE: 'Target Audience',
+      TARGETLANGUAGE: 'Target Language',
+      WHATDOYOUWANTTOSELL: 'What You Want to Sell',
+      WHATHAPPENEDTODAY: 'What Happened Today',
+      FOCUSTHEME: 'Focus Theme',
+      SUBJECTPOST: 'Subject of Post',
+      TONEOFVOICE: 'Tone of Voice',
+      PRODUCT: 'Product',
+      REGION: 'Region',
+      YOURBENEFITS: 'Your Benefits',
+      BLOGGERNAME: 'Blogger Name',
+      SUBJECT: 'Subject',
+      PAGETHEME: 'Page Theme',
+      PAINPOINTS: 'Pain Points',
+      TASK: 'Task',
       KEYWORDS: 'Keywords',
-      PROFESSION: 'Your Profession',
-      CITY: 'The city from where you are',
-      NICHE: 'Your Niche',
     };
-
     // Define the form items for each selection in an object
     const formItems = {
-      "SEO Text promotion": [
+      'advantagesSteps': [
         { name: 'WHOYOUARE', label: labels.WHOYOUARE },
-        { name: 'YOURPOWERPOINTS', label: labels.YOURPOWERPOINTS },
         { name: 'TARGETAUDIENCE', label: labels.TARGETAUDIENCE },
-        { name: 'PAINPOINTS', label: labels.PAINPOINTS },
-        { name: 'TARGETLANGUAGE', label: labels.TARGETLANGUAGE },
-        { name: 'PROMPT', label: labels.PROMPT },
-        { name: 'TOPIC', label: labels.TOPIC },
-        { name: 'KEYWORDS', label: labels.KEYWORDS },
-        // Add other items for "SEO Text promotion"
+        { name: 'TARGETLANGUAGE', label: labels.TARGETLANGUAGE }
       ],
-      "Instagram Stories": [
-        { name: 'TARGETLANGUAGE', label: labels.TARGETLANGUAGE },
-        { name: 'PROMPT', label: labels.PROMPT },
-         { name: 'TOPIC', label: labels.TOPIC },
-        // Add other items for "Instagram Stories"
+      'painDesires': [
+        { name: 'WHOYOUARE', label: labels.WHOYOUARE },
+        { name: 'TARGETAUDIENCE', label: labels.TARGETAUDIENCE },
+        { name: 'TARGETLANGUAGE', label: labels.TARGETLANGUAGE }
       ],
-      "Ideas for reels": [
-        { name: 'PROFESSION', label: labels.PROFESSION },
-        { name: 'CITY', label: labels.CITY },
+      'ideasStories': [
+        { name: 'WHOYOUARE', label: labels.WHOYOUARE },
         { name: 'TARGETLANGUAGE', label: labels.TARGETLANGUAGE },
-        // Add other items for "Ideas for reels"
       ],
-      "Create a content plan for Instagram posts for a week/month (2-steps Prompt)": [
+      'storytellingStories': [
         { name: 'TARGETLANGUAGE', label: labels.TARGETLANGUAGE },
-        // Add other items for "Create a content plan for Instagram posts for a week/month (2-steps Prompt)"
+        { name: 'WHOYOUARE', label: labels.WHOYOUARE },
+        { name: 'WHATDOYOUWANTTOSELL', label: labels.WHATDOYOUWANTTOSELL },
+        { name: 'WHATHAPPENEDTODAY', label: labels.WHATHAPPENEDTODAY },
+        { name: 'TARGETAUDIENCE', label: labels.TARGETAUDIENCE },
       ],
-      "A template for emailing clients about a photo day": [
+      'ideasReels': [
+        { name: 'TARGETAUDIENCE', label: labels.TARGETAUDIENCE },
+        { name: 'WHOYOUARE', label: labels.WHOYOUARE },
         { name: 'TARGETLANGUAGE', label: labels.TARGETLANGUAGE },
-        { name: 'NICHE', label: labels.NICHE },
-        // Add other items for "A template for emailing clients about a photo day"
+        // Add other items for "ideasReels"
       ],
+      'contentPlanWeek': [
+        { name: 'TARGETLANGUAGE', label: labels.TARGETLANGUAGE },
+        { name: 'WHOYOUARE', label: labels.WHOYOUARE },
+        { name: 'TARGETAUDIENCE', label: labels.TARGETAUDIENCE },
+        { name: 'FOCUSTHEME', label: labels.FOCUSTHEME },
+      ],
+      'postInstagram': [
+        { name: 'TARGETLANGUAGE', label: labels.TARGETLANGUAGE },
+        { name: 'WHOYOUARE', label: labels.WHOYOUARE },
+        { name: 'TARGETAUDIENCE', label: labels.TARGETAUDIENCE },
+        { name: 'SUBJECTPOST', label: labels.SUBJECTPOST },
+        { name: 'TONEOFVOICE', label: labels.TONEOFVOICE },
+      ],
+      'textClientNewsletter': [
+        { name: 'TARGETLANGUAGE', label: labels.TARGETLANGUAGE },
+        { name: 'WHOYOUARE', label: labels.WHOYOUARE },
+        { name: 'PRODUCT', label: labels.PRODUCT },
+      ],
+      'generateCollabIdeas': [
+          { name: 'TARGETLANGUAGE', label: labels.TARGETLANGUAGE },
+          { name: 'WHOYOUARE', label: labels.WHOYOUARE },
+          { name: 'REGION', label: labels.REGION },
+          { name: 'TARGETAUDIENCE', label: labels.TARGETAUDIENCE },
+        ],
+      'letterBloggerCollab': [
+          { name: 'TARGETLANGUAGE', label: labels.TARGETLANGUAGE },
+          { name: 'WHOYOUARE', label: labels.WHOYOUARE },
+          { name: 'YOURBENEFITS', label: labels.YOURBENEFITS },
+          { name: 'BLOGGERNAME', label: labels.BLOGGERNAME },
+        ],
+        'profileHeader': [
+          { name: 'TARGETLANGUAGE', label: labels.TARGETLANGUAGE },
+          { name: 'WHOYOUARE', label: labels.WHOYOUARE },
+          { name: 'REGION', label: labels.REGION },
+          { name: 'YOURBENEFITS', label: labels.YOURBENEFITS },
+        ],
+      'gatherInstagramTags': [
+          { name: 'TARGETLANGUAGE', label: labels.TARGETLANGUAGE },
+          { name: 'SUBJECT', label: labels.SUBJECT },
+          { name: 'REGION', label: labels.REGION },
+        ],
+      'selectSEOKeywords': [
+       { name: 'TARGETLANGUAGE', label: labels.TARGETLANGUAGE },
+          { name: 'PAGETHEME', label: labels.PAGETHEME },
+          { name: 'WHOYOUARE', label: labels.WHOYOUARE },
+          { name: 'TARGETAUDIENCE', label: labels.TARGETAUDIENCE },
+          { name: 'REGION', label: labels.REGION },
+        ],
+      'seoTextWebsite': [
+          { name: 'WHOYOUARE', label: labels.WHOYOUARE },
+          { name: 'YOURBENEFITS', label: labels.YOURBENEFITS },
+          { name: 'TARGETAUDIENCE', label: labels.TARGETAUDIENCE },
+          { name: 'PAINPOINTS', label: labels.PAINPOINTS },
+          { name: 'TARGETLANGUAGE', label: labels.TARGETLANGUAGE },
+          { name: 'TASK', label: labels.TASK },
+          { name: 'PAGETHEME', label: labels.PAGETHEME },
+          { name: 'KEYWORDS', label: labels.KEYWORDS },
+
+        ],
     };
 
     // Get the selected form items based on the selection
@@ -384,7 +371,7 @@ function showTooltip(parameterName) {
 
     // Check if the selectedItems is defined and not empty before calling the createDynamicForm function
     if (selectedItems && selectedItems.length > 0) {
-      createDynamicForm(selectedItems);
+      createDynamicForm(selectedItems, selection);
     }
 
     function handleSelectionChange() {
@@ -395,7 +382,7 @@ function showTooltip(parameterName) {
         const selectedItems = formItems[selection];
         // Check if the selectedItems is defined and not empty before calling the createDynamicForm function
         if (selectedItems && selectedItems.length > 0 && selection != "cleanChat") {
-          createDynamicForm(selectedItems);
+          createDynamicForm(selectedItems, selection);
           prepareScreen();
           goBack();
         } else if(selection == "cleanChat"){
@@ -444,3 +431,10 @@ function showTooltip(parameterName) {
     // Trigger the selection change event initially to set up the input fields based on the default
     handleSelectionChange();
     prepareScreen();
+    // Get the header element
+    window.addEventListener("load", function() {
+       document.documentElement.style.setProperty('--header-height', document.getElementById("header").getBoundingClientRect().height + 'px');
+
+    });
+
+
