@@ -111,12 +111,15 @@ function autoResize(textarea) {
       buttons =  "<button class='regenerate-button' onclick='regenerateAnswer("+ i +")'>"+ getTranslation("REGENERATEBUTTON") +"</button>";
       buttons += "<button class='copy-button' onclick='copyAnswer("+ i +")'>"+ copyButtonLabel +"</button>";
       responseText = responseText + "<div class='answer-container'><textarea  class='editable-textarea' id='answerDiv"+i+ "' rows='4' oninput='autoResize(this)'>" + item.content + "</textarea><br><br><br>" + buttons + "</div>";
-      responseText += "<br>" + this.getAdditionalQuestionsTip(selection);
+
+      if (i == (globalPrompt.length -1))
+        responseText = responseText + "<br>" + this.getAdditionalQuestionsTip(selection);
       responseContainer.innerHTML = responseText;
       //once we add the textarea to screen we then make sure it autoresize to match the content it has on it.
       autoResizeAllTextAreas();
 
     };
+
     autoResizeAllTextAreas();
     translateContent(translationData);
     scrollToBottom();
@@ -155,7 +158,7 @@ function showTooltip(parameterName) {
         formTemplate += `
           <tr>
             <td class="left-cell">
-              <label for="${item.name}" data-i18n="LABEL_${item.name}" onmouseout="closeToolTip()" onmouseover="showTooltip('${item.name}')">${item.label}:</label><label onclick="showTooltip('${item.name}')"><b>?</b></label>
+              <label for="${item.name}" data-i18n="LABEL_${item.name}" onmouseout="closeToolTip()" onmouseover="showTooltip('${item.name}')">${item.label}:</label><label style="font-size:X-large"onclick="showTooltip('${item.name}')">&#x1F6C8;</label>
             </td>
             <td class="right-cell">
               <input class="special-textbox" type="text" id="${item.name}">
@@ -182,34 +185,62 @@ function showTooltip(parameterName) {
      }
 
    //-----------------------------------------------------------------------------------
-
+    function replacePlaceholders(text, labels) {
+        for (const key in labels) {
+            const placeholder = new RegExp(`\\$\\{${key}\\}`, 'g');
+            const label = labels[key];
+            text = text.replace(placeholder, label);
+        }
+        return text;
+    }
     function generateText() {
         const selection = document.getElementById("selection").value;
         modalContent = "";
-        const WHOYOUARE = extractFormValues("WHOYOUARE");
-        const TARGETAUDIENCE = extractFormValues("TARGETAUDIENCE");
-        const TARGETLANGUAGE = extractFormValues("TARGETLANGUAGE");
-        const WHATDOYOUWANTTOSELL = extractFormValues("WHATDOYOUWANTTOSELL");
-        const WHATHAPPENEDTODAY = extractFormValues("WHATHAPPENEDTODAY");
-        const FOCUSTHEME = extractFormValues("FOCUSTHEME");
-        const SUBJECTPOST = extractFormValues("SUBJECTPOST");
-        const TONEOFVOICE = extractFormValues("TONEOFVOICE");
-        const PRODUCT = extractFormValues("PRODUCT");
-        const REGION = extractFormValues("REGION");
-        const YOURBENEFITS = extractFormValues("YOURBENEFITS");
-        const BLOGGERNAME = extractFormValues("BLOGGERNAME");
-        const SUBJECT = extractFormValues("SUBJECT");
-        const PAGETHEME = extractFormValues("PAGETHEME");
-        const PAINPOINTS = extractFormValues("PAINPOINTS");
-        const TASK = extractFormValues("TASK");
-        const TOPIC = extractFormValues("TOPIC");
-        const KEYWORDS = extractFormValues("KEYWORDS");
+        WHOYOUARE=extractFormValues("WHOYOUARE");
+                            TARGETAUDIENCE=extractFormValues("TARGETAUDIENCE");
+                            TARGETLANGUAGE= extractFormValues("TARGETLANGUAGE");
+                            WHATDOYOUWANTTOSELL= extractFormValues("WHATDOYOUWANTTOSELL");
+                            WHATHAPPENEDTODAY= extractFormValues("WHATHAPPENEDTODAY");
+                            FOCUSTHEME= extractFormValues("FOCUSTHEME");
+                            SUBJECTPOST= extractFormValues("SUBJECTPOST");
+                            TONEOFVOICE= extractFormValues("TONEOFVOICE");
+                            PRODUCT= extractFormValues("PRODUCT");
+                            REGION= extractFormValues("REGION");
+                            YOURBENEFITS= extractFormValues("YOURBENEFITS");
+                            BLOGGERNAME= extractFormValues("BLOGGERNAME");
+                            SUBJECT= extractFormValues("SUBJECT");
+                            PAGETHEME= extractFormValues("PAGETHEME");
+                            PAINPOINT= extractFormValues("PAINPOINTS");
+                            TASK= extractFormValues("TASK");
+                            TOPIC= extractFormValues("TOPIC");
+                            KEYWORDS= extractFormValues("KEYWORDS");
+        const formValues = {
+            WHOYOUARE: extractFormValues("WHOYOUARE"),
+            TARGETAUDIENCE: extractFormValues("TARGETAUDIENCE"),
+            TARGETLANGUAGE: extractFormValues("TARGETLANGUAGE"),
+            WHATDOYOUWANTTOSELL: extractFormValues("WHATDOYOUWANTTOSELL"),
+            WHATHAPPENEDTODAY: extractFormValues("WHATHAPPENEDTODAY"),
+            FOCUSTHEME: extractFormValues("FOCUSTHEME"),
+            SUBJECTPOST: extractFormValues("SUBJECTPOST"),
+            TONEOFVOICE: extractFormValues("TONEOFVOICE"),
+            PRODUCT: extractFormValues("PRODUCT"),
+            REGION: extractFormValues("REGION"),
+            YOURBENEFITS: extractFormValues("YOURBENEFITS"),
+            BLOGGERNAME: extractFormValues("BLOGGERNAME"),
+            SUBJECT: extractFormValues("SUBJECT"),
+            PAGETHEME: extractFormValues("PAGETHEME"),
+            PAINPOINTS: extractFormValues("PAINPOINTS"),
+            TASK: extractFormValues("TASK"),
+            TOPIC: extractFormValues("TOPIC"),
+            KEYWORDS: extractFormValues("KEYWORDS"),
+        };
+
       if (selection === "advantagesSteps") {
         modalContent = `Я ${WHOYOUARE}. Моя целевая аудитория ${TARGETAUDIENCE} Помоги мне описать, чем я отличаюсь от других фотографов, чтобы моя target audience выбрала меня среди сотни других фотографов. Задай мне несколько вопросов, чтобы мы вместе смогли донести ценность моих услуг для target audience. Ответь на мне на ${TARGETLANGUAGE} языке.`;
       } else if (selection === "painDesires") {
         modalContent = `Я ${WHOYOUARE}. Моя целевая аудитория ${TARGETAUDIENCE} Помоги мне описать, в чем заключаются боли и желания моей целевой аудитории. Ответь мне на  ${TARGETLANGUAGE} языке.`
       } else if (selection === "ideasStories") {
-        modalContent = `Я — ${WHOYOUARE}. Вы — высококлассный SMM менеджер, который свободно говорит и пишет на ${TARGETLANGUAGE} языке . Придумай для меня  10 идей для и Instagram Stories на сегодня. Вы можете задать мне несколько конкретных вопросов, чтобы получился надлежащий ответ.`
+        modalContent = replacePlaceholders(getTranslation("ideasStories"), formValues)
       } else if (selection === "storytellingStories") {
         modalContent = `Я - ${WHOYOUARE}. Ты - опытный SMM-менеджер высокого класса, свободно владеющий ${TARGETLANGUAGE} языком. Напишите сторителлинг для Instagram Stories на основе событий моего дня. События этого дня я предоставлю далее. Используйте передовую практику и техники, чтобы удержать внимание аудитории, такие, которые обычно используются для создания интересных сюжетов в книгах и фильмах.
                         Вот, что произошло со мной сегодня: ${WHATHAPPENEDTODAY}. Создайте на основе этих событий интересную и вовлекающую историю из 7-13 логически связанных блоков. Для каждого блока используйте номера. Каждый блок должен содержать заголовок и максимум 2-3 предложения, которые кратко объясняют суть события или мотивируют аудиторию предпринять действие: поставить реакцию (сердечко, огонь, emoji, лайк и т.д.), участвовать в опросе, выбрать один из вариантов ответа, оставить комментарий и так далее. Вы можете добавить рекомендации по выбору визуальных элементов для каждой истории.
@@ -245,10 +276,17 @@ function showTooltip(parameterName) {
       } else if (selection === "gatherInstagramTags") {
         modalContent = `Ты выступаешь в роли опытного SMM менеджера и высококлассного копирайтера, свободно говорящего и пишущего на  ${TARGETLANGUAGE} языке. Напиши для меня как минимум 30 хэштегов для публикаций, связанных с темой ${SUBJECT}. Используй высокочастотные и низкочастотные хэштеги, локализацию. Моё местоположение - ${REGION}. Пожалуйста, предоставьте все ответы на ${TARGETLANGUAGE} языке.`
       } else if (selection === "selectSEOKeywords") {
-        modalContent = `Я ${WHOYOUARE}.  Моя целевая аудитория ${ TARGETAUDIENCE }.  Помоги мне составить семантическое ядро для продвижения моего сайта по теме ${PAGETHEME} для целевой аудитории. Напиши мне не менее 10 ключевых слов. Включая высокочастотные, среднечастотные и низкочастотные запросы. Я работаю в следующих городах ${REGION}
+        modalContent = `Я ${WHOYOUARE}.  Моя целевая аудитория ${TARGETAUDIENCE}.  Помоги мне составить семантическое ядро для продвижения моего сайта по теме ${PAGETHEME} для целевой аудитории. Напиши мне не менее 10 ключевых слов. Включая высокочастотные, среднечастотные и низкочастотные запросы. Я работаю в следующих городах ${REGION}
                         Напишите ответ на ${TARGETLANGUAGE} языке.`
       } else if (selection === "seoTextWebsite") {
-        modalContent = ``
+        modalContent = `Я — ${WHOYOUARE}. Мне нужна ваша помощь, чтобы привлечь потенциальных клиентов на мой веб-сайт. Я хочу, чтобы вы выступили в роли профессионального SEO-специалиста и высококлассного копирайтера, свободно говорящего и пишущего на языке ${TARGETLANGUAGE}. Давайте я расскажу о своих преимуществах ${YOURBENEFITS}. Моя целевая аудитория ${TARGETAUDIENCE}. Учтите интересы моей целевой аудитории ${PAINPOINTS}.
+                        Прошу вас представить, что вы можете настолько  хорошо умеете писать контент на тему ${PAGETHEME}, что ваш материал будет превосходить другие веб-сайты и привлекать потенциальных клиентов. Статья должна содержать  очень детальные параграфы с множеством подробностей. Пожалуйста, не повторяйте мои указания, не напоминайте мне о том, о чем я вас просил, не извиняйтесь. Не употребляйте фраз клише. Пользуйтесь полезными подзаголовками с ключевыми словами. Пишите по существу. Не объясняйте, что и почему, просто напишите мне вашу лучшую статью. Необходимо написать статью минимум 2000 слов на простом ${TARGETLANGUAGE}, с использованием сокращений, идиом, переходных фраз, междометий,разговорных оборотов, избегая повторяющихся фраз. Избегайте грамматических ошибок.
+                        Вам нужно будет исследовать данную тему ${PAGETHEME}. Оптимизируйте текст для голосового поиска и включите последние данные и информацию по ключевым словам ${KEYWORDS}.
+                        Разместите «нижнее подчеркивание» в конце абзацев и в середине предложений.
+                        Заголовок: Напишите SEO-дружественный, привлекательный и увлекательный заголовок, следуя теме ${PAGETHEME} и ключевым словам. Сделайте заголовки жирными. Впишите в заголовок хук, который привлечет целевую аудиторию и продемонстрирует им преимущества выбора меня.
+                        Сформулируйте более 5 высокочастотных ключевых слов, связанных с темой ${PAGETHEME}. Следуйте за человеческим поиском, чтобы написать более качественные высокочастотные ключевые слова. Напишите SEO-дружественное мета-описание с использованием вышеуказанных ключевых слов. Обязательно сделайте мета-описание от 155 до 160 символов. Это введение должно быть не менее 200 слов. Важно написать H2, H3 и H4 заголовки с использованием ${KEYWORDS}. Добавьте и напишите длинное описание для каждого заголовка. Включайте ключевые слова в описание. Каждый парапафраз должен иметь ключевую плотность не менее 2%. Сопоставьте каждое ключевое слово с намерением поиска пользователей. Сделайте подзаголовки жирными. Не останавливайтесь, продолжайте писать. Напишите детальное описание вышеуказанных заголовков, ключевых слов и подзаголовков. Не копируйте чужие тексты, вы должны написать уникальное описание с плотностью ключевых слов 2%-3.5%. Вы должны провести глубокое исследование ключевых слов и ${PAGETHEME}.
+                        Вы должны следовать копирайтинговой формуле, называемой «формула AIDA». Не останавливайтесь здесь, продолжайте писать. Задайте более 5 поисковых вопросов с использованием ключевого слова. Пишите, следуя ${TASK} и вышеуказанным указаниям.
+                        После этого напишите SEO-дружественные короткие ответы на каждый вопрос, используя ключевые слова и семантически связанные слова. Не останавливайтесь здесь, продолжайте писать и закончите задание. Заключение: Напишите SEO-дружественное заключение, используя упомянутые заголовки, ключевые слова и резюме, как указано выше. Закончите статью великолепным и увлекательным завершением ${PAGETHEME}. Не останавливайтесь в написании до тех пор, пока статья не будет закончена. Продолжайте. Помните, что заголовок, подзаголовок и вопрос-ответ должны быть жирными. Закончите призывом к действию. Напишите ответ на ${TARGETLANGUAGE} языке.`
       }
 
         // Hide the selection content and show the generated content
@@ -431,31 +469,3 @@ function showTooltip(parameterName) {
     // Trigger the selection change event initially to set up the input fields based on the default
     handleSelectionChange();
     prepareScreen();
-
-
-// Select the element you want to observe for changes
-const targetElement = document.getElementById("header");
-
-// Define the function you want to run when changes occur
-function handleChange(mutationsList, observer) {
-    for (const mutation of mutationsList) {
-        if (mutation.type === "childList" || mutation.type === "attributes") {
-           document.documentElement.style.setProperty('--header-height', (document.getElementById("contentDescription").getBoundingClientRect().height + 84) + 'px');
-           document.documentElement.style.setProperty('--select-position', (document.getElementById("contentDescription").getBoundingClientRect().height + 47 ) + 'px');
-        }
-    }
-}
-
-// Create a MutationObserver instance
-const observer = new MutationObserver(handleChange);
-
-// Configure the observer to watch for specific types of mutations
-const config = {
-    attributes: true,          // Watch for attribute changes
-    childList: true,           // Watch for changes in child elements
-    subtree: true,             // Watch all descendants of the target
-    attributeOldValue: false,  // Don't record attribute old values
-};
-
-// Start observing the target element
-observer.observe(targetElement, config);

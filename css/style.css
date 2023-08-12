@@ -1,21 +1,26 @@
 :root {
-  --header-height: 100px; /* Set your default header height here */
+  --header-height: 85px; /* Set your default header height here */
   --select-position: 100px; /* Set your default header height here */
+}
+.body {
+    font-family: Arial
 }
 /* CSS for the header div */
 #header {
-  position: fixed;
-  top: 0;
-  left: 100px;
-  right: 100px;
-  width: 100%;
-  height: var(--header-height);
-  background-color: white; /* Set the background color of the header */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add a box shadow for a subtle effect */
-  z-index: 8888; /* Set a high z-index to ensure the header appears on top of other elements */
-  max-width: calc(100% - 200px); /* This ensures at least 100px spacing on each side */
-
-
+   position: fixed;
+    top: 0;
+    left: 10px;
+    right: 100px;
+    width: 100%;
+    height: var(--header-height);
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 8888;
+    max-width: calc(100% - 110px);
+    font-family: Roboto,sans-serif;
+    font-weight: 700;
+    line-height: 1.23;
+    padding-bottom: 7px;
 }
 
 /* CSS to include the base64 logo on the left side of the header */
@@ -38,25 +43,28 @@
 }
 
 .contentDescription {
-  text-align: center;
   margin: 0;
   padding: 10px;
+  text-indent: 20px;
 }
 
 #languageSelectContainer {
   position: absolute;
   top: 10px; /* Adjust the top value as needed to position the container vertically */
   right: 10px; /* Adjust the right value as needed to position the container horizontally */
+
 }
 
 .formDescription {
-  text-align: center;
-  padding: 5px
+   margin: 0;
+   padding: 10px;
+   text-indent: 20px;
 }
 
 /* Style for the language select and label */
 #languageSelect, #languageLabel {
   display: block; /* To ensure the label and select appear on separate lines */
+  width: 100%;
 }
 #header .content {
    width: 100%;
@@ -64,18 +72,17 @@
 
 /* CSS for the main content div */
 #main-content {
-  padding-top: var(--header-height); /* Add padding to the top to create space for the fixed header */
-  position: relative;
-  top: 10px;
-  left: 92px;
-  right: 100px;
-  width: 100%;
-  background-color: white; /* Set the background color of the header */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add a box shadow for a subtle effect */
-  max-width: calc(100% - 185px); /* This ensures at least 100px spacing on each side */
-
-  background-color: white; /* Set the background color of the header */
-
+    padding-top: var(--header-height);
+    position: relative;
+    top: 10px;
+    left: 3px;
+    right: 100px;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    max-width: calc(100% - 96px);
+    background-color: white;
+    font-family: 'Open Sans',sans-serif,sans,arial;
 
 }
 /* Standard button styles */
@@ -88,6 +95,7 @@ button {
   border-radius: 20px; /* Slightly rounded edges */
   cursor: pointer;
   margin-left: 10px; /* Add some spacing between the buttons */
+  font-family: 'Open Sans',sans-serif,sans,arial;
 }
 
 /* Button hover styles */
@@ -112,6 +120,7 @@ button:hover {
   width: 100%;
   height: 100%;
   overflow: auto;
+  font-family: 'Open Sans',sans-serif,sans,arial;
 }
 
 /* Adjusted modal content styles */
@@ -161,6 +170,7 @@ button:hover {
   padding-right: 10px; /* Add some space between the input and the button */
   box-sizing: border-box;
   display: flex; /* Use flexbox for layout */
+  font-family: 'Open Sans',sans-serif,sans,arial;
 }
 
 #userPrompt {
@@ -179,7 +189,6 @@ button:hover {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  position: absolute;
 }
 
 .button-container {
@@ -241,7 +250,8 @@ td.right-cell .special-textbox {
     padding: 5px;
     display: none;
     border-color: #f7e7c6;
-    border: 4px solid #f2f2f2
+    border: 4px solid #f2f2f2;
+    font-family: 'Open Sans',sans-serif,sans,arial;
   }
   .close-button {
     position: absolute;
@@ -304,10 +314,12 @@ td.right-cell .special-textbox {
        z-index: 8888; /* Set a high z-index to ensure the header appears on top of other elements */
        max-width: calc(99%); /* This ensures at least 100px spacing on each side */
    }
-   .headerTitle {width: calc(100% );position: relative;left: 0px;font-size: large;}
-
- .select {
-   top: var(--select-position);
+   .headerTitle {
+       width: calc(100% );
+       position: relative;
+       left: 0px;
+       font-size: large;
+       top: 2px;
    }
    /* CSS to include the base64 logo on the left side of the header */
    #header .logo {
@@ -320,19 +332,17 @@ td.right-cell .special-textbox {
        background-position: center center;
    }
    .contentDescription {
-     text-align: center; /* Center the text horizontally */
      margin: 0;
      position: relative;
-     top: -39px;
-     font-size: smaller;
+     top: -17px;
    }
 
    /* CSS for the main content div */
    #main-content {
-        background-color: white;
-        left:0px;
-        max-width: 99%; /* This ensures at least 100px spacing on each side */
-        top: -20px;
+      background-color: white;
+      left:0px;
+      max-width: 100%;
+      top: 30px;
     }
     #languageSelectContainer {
       top: 0px; /* Adjust the top value as needed to position the container vertically */
