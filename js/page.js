@@ -431,10 +431,31 @@ function showTooltip(parameterName) {
     // Trigger the selection change event initially to set up the input fields based on the default
     handleSelectionChange();
     prepareScreen();
-    // Get the header element
-    window.addEventListener("load", function() {
-       document.documentElement.style.setProperty('--header-height', document.getElementById("header").getBoundingClientRect().height + 'px');
-
-    });
 
 
+// Select the element you want to observe for changes
+const targetElement = document.getElementById("header");
+
+// Define the function you want to run when changes occur
+function handleChange(mutationsList, observer) {
+    for (const mutation of mutationsList) {
+        if (mutation.type === "childList" || mutation.type === "attributes") {
+           document.documentElement.style.setProperty('--header-height', (document.getElementById("contentDescription").getBoundingClientRect().height + 84) + 'px');
+           document.documentElement.style.setProperty('--select-position', (document.getElementById("contentDescription").getBoundingClientRect().height + 47 ) + 'px');
+        }
+    }
+}
+
+// Create a MutationObserver instance
+const observer = new MutationObserver(handleChange);
+
+// Configure the observer to watch for specific types of mutations
+const config = {
+    attributes: true,          // Watch for attribute changes
+    childList: true,           // Watch for changes in child elements
+    subtree: true,             // Watch all descendants of the target
+    attributeOldValue: false,  // Don't record attribute old values
+};
+
+// Start observing the target element
+observer.observe(targetElement, config);
