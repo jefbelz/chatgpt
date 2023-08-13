@@ -166,7 +166,6 @@ function showTooltip(parameterName) {
           </tr>
         `;
       });
-      formTemplate += '<tr><td colspan="2"><h6 data-i18n="TOOLTIP_TEXT">* Pass the mouse over the text for a tooltip</h6></td></tr>';
       formTemplate += '</table></br>';
       formTemplate += this.getAdditionalQuestionsTip(selection);
 

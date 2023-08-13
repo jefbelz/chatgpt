@@ -21,7 +21,7 @@
     font-weight: 700;
     line-height: 1.23;
     padding-bottom: 7px;
-    color: darkgrey;
+    color: #424242;
 }
 
 /* CSS to include the base64 logo on the left side of the header */
@@ -84,7 +84,7 @@
     max-width: calc(100% - 96px);
     background-color: white;
     font-family: 'Open Sans',sans-serif,sans,arial;
-    color: darkgrey;
+    color: #424242;
 
 }
 /* Standard button styles */
@@ -93,7 +93,7 @@ button {
   padding: 8px;
   color: white;
   background-color: #f3c317; /* Background color */
-  border: 1px solid darkgrey;
+  border: 1px solid #424242;
   border-radius: 20px; /* Slightly rounded edges */
   cursor: pointer;
   margin-left: 10px; /* Add some spacing between the buttons */
@@ -130,7 +130,7 @@ button:hover {
   height: 100%;
   overflow: auto;
   font-family: 'Open Sans',sans-serif,sans,arial;
-  color: darkgrey;
+  color: #424242;
 }
 
 /* Adjusted modal content styles */
@@ -138,7 +138,7 @@ button:hover {
   background-color: #f3c317; /* Adjusted background color to match the website's color pattern */
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid darkgrey; /* Use a darker border color for contrast */
+  border: 1px solid #424242; /* Use a darker border color for contrast */
   border-radius: 20px; /* Slightly rounded edges for a polished look */
   max-width: 500px;
   color: white;
@@ -155,7 +155,7 @@ button:hover {
 
 /* Adjusted progress styles */
 .progress {
-  background-color: darkgrey;
+  background-color: #424242;
   height: 100%;
   width: 0;
 }
@@ -217,9 +217,9 @@ button:hover {
 table {
   width: calc(100%); /* Set the table width to screen width minus 150px */
   margin: 0 auto; /* Center the table horizontally */
-  color: darkgrey;
+  color: #424242;
   /* background-color: #f7e7c6; */ /* Background color */
-  border: 1px solid darkgrey;
+  border: 1px solid #424242;
 }
 
 /* Left cell styles */
@@ -242,9 +242,9 @@ td.right-cell .special-textbox {
 }
 /* Special div class */
 .special-div {
-  color: darkgrey;
+  color: #424242;
   /* background-color: #f7e7c6; */ /* Background color */
-  border: 1px solid darkgrey;
+  border: 1px solid #424242;
   border-radius: 10px;
   padding: 10px;
 }
@@ -292,7 +292,7 @@ td.right-cell .special-textbox {
       padding: 5px; /* Add some padding for better appearance */
       font-family: inherit; /* Use the same font as the surrounding elements */
       font-size: inherit; /* Use the same font size as the surrounding elements */
-      color: darkgrey;
+      color: #424242;
     }
 
     /* Optional: Add a box-shadow when the textarea is focused */
@@ -370,9 +370,9 @@ td.right-cell .special-textbox {
        width: 250px;
        /* Make the buttons half the width of the parent container */
        padding: 15px;
-       /* color: darkgrey; */
+       /* color: #424242; */
        /* background-color: #f7e7c6; */
-       border: 1px solid darkgrey;
+       border: 1px solid #424242;
        border-radius: 20px;
        cursor: pointer;
        margin: 0 auto;
@@ -390,7 +390,7 @@ td.right-cell .special-textbox {
        /* margin: 10% auto; */
        /* Adjust the margin for better centering on mobile */
        padding: 10px;
-       border: 1px solid darkgrey;
+       border: 1px solid #424242;
        border-radius: 20px;
        max-width: 85%;
        /* Adjust the maximum width for mobile devices */
@@ -475,9 +475,9 @@ td.right-cell .special-textbox {
    /* Set the table width to 100% for mobile devices */
    table {
      /* width: 99%; */
-     /* color: darkgrey; */
+     /* color: #424242; */
      /* background-color: #f7e7c6; */
-     border: 1px solid darkgrey;
+     border: 1px solid #424242;
    }
 
    /* Center-align the table cells on mobile */
@@ -524,9 +524,9 @@ td.right-cell .special-textbox {
 
    /* Special div class */
    .special-div {
-       /* color: darkgrey; */
+       /* color: #424242; */
        /* background-color: #f7e7c6; */
-       border: 1px solid darkgrey;
+       border: 1px solid #424242;
        border-radius: 10px;
        padding: 15px;
    }
