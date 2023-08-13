@@ -158,7 +158,7 @@ function showTooltip(parameterName) {
         formTemplate += `
           <tr>
             <td class="left-cell">
-              <label for="${item.name}" data-i18n="LABEL_${item.name}" onmouseout="closeToolTip()" onmouseover="showTooltip('${item.name}')"></label><label style="font-size:X-large"onclick="showTooltip('${item.name}')"><img src="../images/info.png" alt="Information" class="infoButton"></label>
+              <label for="${item.name}" data-i18n="LABEL_${item.name}" onmouseout="closeToolTip()" onmouseover="showTooltip('${item.name}')"></label><label style="font-size:X-large"onclick="showTooltip('${item.name}')"><img src="images/info.png" alt="Information" class="infoButton"></label>
             </td>
             <td class="right-cell">
               <input class="special-textbox" type="text" id="${item.name}">
