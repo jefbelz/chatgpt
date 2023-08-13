@@ -225,10 +225,7 @@ table {
 /* Left cell styles */
 td.left-cell {
   white-space: nowrap; /* Prevent text wrapping in the left cell */
-}
-
-/* Right cell styles */
-td.right-cell {
+  white-space: unset;
   width: 100%; /* Set the right cell width to take remaining space */
 }
 
@@ -318,6 +315,10 @@ td.right-cell .special-textbox {
 /* SMALL screens*/
 
 @media screen and (max-width: 883px) {
+:root {
+  --header-height: 90px; /* Set your default header height here */
+  --select-position: 100px; /* Set your default header height here */
+}
   #header {
        top: 0;
        left: 0;

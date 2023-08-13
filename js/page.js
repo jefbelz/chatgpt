@@ -141,7 +141,7 @@ function showTooltip(parameterName) {
         const tooltipIcon = event.currentTarget;
         const iconRect = tooltipIcon.getBoundingClientRect();
         tooltipDiv.style.top = `${iconRect.top}px`;
-        tooltipDiv.style.left = `${iconRect.right + 10}px`;
+        tooltipDiv.style.left = `${iconRect.right / 2}px`;
       }
     }
     function closeToolTip() {
