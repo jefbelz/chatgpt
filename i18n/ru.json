@@ -94,7 +94,7 @@
   "SENDBUTTON": "Отправить запрос",
   "GENERATEBUTTON": "Сгенерировать текст",
   "GOBACKBUTTON": "Вернуться на главную страницу",
-  "REGENERATEBUTTON": "Воспроизвести",
+  "REGENERATEBUTTON": "перегенерировать",
   "SELECT_LANGUAGE": "Выберите язык",
   "TOOLTIP_TEXT": "Наведите курсор на текст для тултипа",
   "SYSTEM_LABEL": "Это ответ Chat GPT на наш вопрос:",
