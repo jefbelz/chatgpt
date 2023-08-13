@@ -105,6 +105,13 @@ button:hover {
   border-color: white; /* Border color on hover */
 }
 
+.infoButton {
+    max-width: 40px;
+    max-height: 40px;
+    position: relative;
+    top: 4px;
+}
+
 /* Modal styles */
 .modal {
 
