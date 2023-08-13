@@ -252,7 +252,7 @@ td.right-cell .special-textbox {
 /* Styling for <hr> inside the special div */
 .special-div hr {
   border-color: #f7e7c6;
-  border: 4px solid darkgrey
+  border: 4px solid #f3c317;
 }
 
  .custom-tooltip {
@@ -533,8 +533,8 @@ td.right-cell .special-textbox {
 
    /* Styling for <hr> inside the special div */
    .special-div hr {
-       border-color: #f7e7c6;
-       border: 4px solid #f3c317;
+       /* border-color: #f7e7c6; */
+       /* border: 4px solid #f3c317; */
    }
 
    .custom-tooltip {
