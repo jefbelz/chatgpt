@@ -1,5 +1,5 @@
 :root {
-  --header-height: 85px; /* Set your default header height here */
+  --header-height: 70px; /* Set your default header height here */
   --select-position: 100px; /* Set your default header height here */
 }
 .body {
@@ -21,12 +21,13 @@
     font-weight: 700;
     line-height: 1.23;
     padding-bottom: 7px;
+    color: darkgrey;
 }
 
 /* CSS to include the base64 logo on the left side of the header */
 #header .logo {
-    width: 213px;
-    height: 86px;
+    width: 190px;
+    height: 70px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: left center;
@@ -83,15 +84,16 @@
     max-width: calc(100% - 96px);
     background-color: white;
     font-family: 'Open Sans',sans-serif,sans,arial;
+    color: darkgrey;
 
 }
 /* Standard button styles */
 button {
   width: 150px;
   padding: 8px;
-  color: #555555;
-  background-color: #f7e7c6; /* Background color */
-  border: 1px solid #555555;
+  color: white;
+  background-color: #f3c317; /* Background color */
+  border: 1px solid darkgrey;
   border-radius: 20px; /* Slightly rounded edges */
   cursor: pointer;
   margin-left: 10px; /* Add some spacing between the buttons */
@@ -128,16 +130,18 @@ button:hover {
   height: 100%;
   overflow: auto;
   font-family: 'Open Sans',sans-serif,sans,arial;
+  color: darkgrey;
 }
 
 /* Adjusted modal content styles */
 .modal-content {
-  background-color: #f7e7c6; /* Adjusted background color to match the website's color pattern */
+  background-color: #f3c317; /* Adjusted background color to match the website's color pattern */
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #555555; /* Use a darker border color for contrast */
+  border: 1px solid darkgrey; /* Use a darker border color for contrast */
   border-radius: 20px; /* Slightly rounded edges for a polished look */
   max-width: 500px;
+  color: white;
 }
 
 /* Adjusted progress bar styles */
@@ -151,7 +155,7 @@ button:hover {
 
 /* Adjusted progress styles */
 .progress {
-  background-color: #f0c0b5;
+  background-color: darkgrey;
   height: 100%;
   width: 0;
 }
@@ -196,6 +200,8 @@ button:hover {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
+       background-color: #f3c317;
+       color: white;
 }
 
 .button-container {
@@ -211,9 +217,9 @@ button:hover {
 table {
   width: calc(100%); /* Set the table width to screen width minus 150px */
   margin: 0 auto; /* Center the table horizontally */
-   color: #555555;
-  background-color: #f7e7c6; /* Background color */
-  border: 1px solid #555555;
+  color: darkgrey;
+  /* background-color: #f7e7c6; */ /* Background color */
+  border: 1px solid darkgrey;
 }
 
 /* Left cell styles */
@@ -236,9 +242,9 @@ td.right-cell .special-textbox {
 }
 /* Special div class */
 .special-div {
-  color: #555555;
-  background-color: #f7e7c6; /* Background color */
-  border: 1px solid #555555;
+  color: darkgrey;
+  /* background-color: #f7e7c6; */ /* Background color */
+  border: 1px solid darkgrey;
   border-radius: 10px;
   padding: 10px;
 }
@@ -246,7 +252,7 @@ td.right-cell .special-textbox {
 /* Styling for <hr> inside the special div */
 .special-div hr {
   border-color: #f7e7c6;
-  border: 4px solid #555555
+  border: 4px solid darkgrey
 }
 
  .custom-tooltip {
@@ -286,6 +292,7 @@ td.right-cell .special-textbox {
       padding: 5px; /* Add some padding for better appearance */
       font-family: inherit; /* Use the same font as the surrounding elements */
       font-size: inherit; /* Use the same font size as the surrounding elements */
+      color: darkgrey;
     }
 
     /* Optional: Add a box-shadow when the textarea is focused */
@@ -326,7 +333,7 @@ td.right-cell .special-textbox {
        position: relative;
        left: 0px;
        font-size: large;
-       top: 2px;
+       top: -4px;
    }
    /* CSS to include the base64 logo on the left side of the header */
    #header .logo {
@@ -354,6 +361,7 @@ td.right-cell .special-textbox {
     #languageSelectContainer {
       top: 0px; /* Adjust the top value as needed to position the container vertically */
       right: 10px; /* Adjust the right value as needed to position the container horizontally */
+      background-colour:#f3c317
     }
 
 
@@ -362,10 +370,9 @@ td.right-cell .special-textbox {
        width: 250px;
        /* Make the buttons half the width of the parent container */
        padding: 15px;
-
-       color: #555555;
-       background-color: #f7e7c6;
-       border: 1px solid #555555;
+       /* color: darkgrey; */
+       /* background-color: #f7e7c6; */
+       border: 1px solid darkgrey;
        border-radius: 20px;
        cursor: pointer;
        margin: 0 auto;
@@ -379,11 +386,11 @@ td.right-cell .special-textbox {
  }
    /* Adjusted modal content styles */
    .modal-content {
-       background-color: #f7e7c6;
+       /* background-color: #f3c317; */
        /* margin: 10% auto; */
        /* Adjust the margin for better centering on mobile */
        padding: 10px;
-       border: 1px solid #555555;
+       border: 1px solid darkgrey;
        border-radius: 20px;
        max-width: 85%;
        /* Adjust the maximum width for mobile devices */
@@ -448,6 +455,7 @@ td.right-cell .special-textbox {
        border: 1px solid #ccc;
        border-radius: 5px;
        left: 2px;
+
    }
 
    .button-container {
@@ -467,9 +475,9 @@ td.right-cell .special-textbox {
    /* Set the table width to 100% for mobile devices */
    table {
      /* width: 99%; */
-     color: #555555;
-     background-color: #f7e7c6;
-     border: 1px solid #555555;
+     /* color: darkgrey; */
+     /* background-color: #f7e7c6; */
+     border: 1px solid darkgrey;
    }
 
    /* Center-align the table cells on mobile */
@@ -516,9 +524,9 @@ td.right-cell .special-textbox {
 
    /* Special div class */
    .special-div {
-       color: #555555;
-       background-color: #f7e7c6;
-       border: 1px solid #555555;
+       /* color: darkgrey; */
+       /* background-color: #f7e7c6; */
+       border: 1px solid darkgrey;
        border-radius: 10px;
        padding: 15px;
    }
@@ -526,7 +534,7 @@ td.right-cell .special-textbox {
    /* Styling for <hr> inside the special div */
    .special-div hr {
        border-color: #f7e7c6;
-       border: 4px solid #555555;
+       border: 4px solid #f3c317;
    }
 
    .custom-tooltip {

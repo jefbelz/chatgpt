@@ -85,6 +85,7 @@
   "LABEL_TASK": "Tarea específica para Chat GPT.",
   "LABEL_KEYWORDS": "Proporciona palabras clave del cliente.",
   "LABEL_BLOGGERNAME": "Nombre del Blogger",
+  "LABEL_selection" : "Seleccionar prompt:",
   "SENDBUTTON": "Enviar Solicitud",
   "GENERATEBUTTON": "Generar Texto",
   "REGENERATEBUTTON": "Regenerar",

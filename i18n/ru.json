@@ -91,6 +91,7 @@
   "LABEL_TASK": "Конкретная задача для Chat GPT.",
   "LABEL_KEYWORDS": "Предоставьте ключевые слова клиента.",
   "LABEL_BLOGGERNAME": "Имя блогера",
+  "LABEL_selection" : "Выберите prompt:",
   "SENDBUTTON": "Отправить запрос",
   "GENERATEBUTTON": "Сгенерировать текст",
   "GOBACKBUTTON": "Вернуться на главную страницу",
