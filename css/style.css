@@ -201,7 +201,7 @@ button:hover {
   border: 1px solid #ccc;
   border-radius: 5px;
        background-color: #f3c317;
-       color: white;
+       color: #424242;
 }
 
 .button-container {
@@ -332,8 +332,8 @@ td.right-cell .special-textbox {
        width: calc(100% );
        position: relative;
        left: 0px;
-       font-size: large;
-       top: -4px;
+       font-size: medium;
+       top: 0px;
    }
    /* CSS to include the base64 logo on the left side of the header */
    #header .logo {
