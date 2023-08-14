@@ -446,6 +446,7 @@ function showTooltip(parameterName) {
         document.getElementById("goBackButton").style.display = "none";
         document.getElementById("generateButton").style.display = "block";
         activateChat(false)
+
     }
     document.getElementById("generateButton").addEventListener("click", generateText);
     document.getElementById("selection").addEventListener("change", handleSelectionChange);

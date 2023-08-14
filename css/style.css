@@ -225,8 +225,10 @@ table {
 /* Left cell styles */
 td.left-cell {
   white-space: nowrap; /* Prevent text wrapping in the left cell */
-  white-space: unset;
-  width: 100%; /* Set the right cell width to take remaining space */
+
+}
+td.right-cell {
+width: 100%;
 }
 
 /* Special text box inside the right cell */
@@ -473,47 +475,39 @@ td.right-cell .special-textbox {
      margin-top: 10px;
    }
 
-   /* Set the table width to 100% for mobile devices */
+   /* Base styles for the table */
    table {
-     /* width: 99%; */
-     /* color: #424242; */
-     /* background-color: #f7e7c6; */
+     width: 100%;
      border: 1px solid #424242;
    }
 
-   /* Center-align the table cells on mobile */
+   /* Common styles for both left and right cells */
    td.left-cell,
    td.right-cell {
      text-align: center;
+     display: block; /* Use block layout for better mobile responsiveness */
    }
 
-   /* Adjust spacing for mobile */
+   /* Styles for the left cell */
    td.left-cell {
-     text-align: left; /* Align the label to the left for better alignment with the input on mobile */
-     padding-right: 10px; /* Add some spacing between the label and the input on mobile */
-     margin-bottom: 10px; /* Add some spacing between the cells on mobile */
+     text-align: left; /* Align the label to the left for better alignment with input on mobile */
+     padding-right: 10px; /* Add spacing between label and input on mobile */
+     margin-bottom: 10px; /* Add spacing between cells on mobile */
+          white-space: unset;
    }
 
+   /* Styles for the right cell */
    td.right-cell {
-     /* width: 70%; */
      text-align: center; /* Center-align the input on mobile */
    }
 
+   /* Container for input elements in the right cell */
    td.right-cell .input-container {
-     display: block; /* Adjust the input container to block layout for mobile */
+     display: block;
+     margin-top: 10px; /* Add spacing between labels and input containers */
    }
 
-     td.left-cell,
-     td.right-cell {
-       display: block;
-       /* width: 70%; */
-     }
-
-     td.right-cell .input-container {
-       margin-top: 10px; /* Add spacing between the labels and input containers */
-     }
-
-
+   /* Special textbox styles */
    td.right-cell .special-textbox {
      width: 100%;
      box-sizing: border-box;
@@ -521,6 +515,15 @@ td.right-cell .special-textbox {
 
      border: 1px solid #ccc;
      border-radius: 5px;
+
+     /* Allow text to wrap within the textbox */
+     white-space: unset;
+   }
+
+   /* Limit the maximum width of labels */
+   td.left-cell .label {
+     max-width: calc(100% - 20px); /* Adjust as needed, considering padding and spacing */
+     display: inline-block;
    }
 
    /* Special div class */
