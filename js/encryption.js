@@ -10,41 +10,36 @@ const decrypt = (salt, encoded) => {
 };
 
 
-
-function getKey() {
+async function getKey() {
     const apiUrl = "aHR0cHM6Ly9iY3BtM3NsbWEybmZlNHBlZmZkamRla3FteTBpYnVxdy5sYW1iZGEtdXJsLmV1LWNlbnRyYWwtMS5vbi5hd3Mv";
-    console.log("here")
-    // Make the API call using the fetch function
-    fetch(atob(apiUrl))
-     .then(response => {
-           return response.body;
-      })
-        .then(stream => {
-          const reader = stream.getReader();
-          let responseText = '';
-          // Read the stream using asynchronous iteration
-          const readStream = async () => {
+
+    try {
+        const response = await fetch(atob(apiUrl));
+        const stream = response.body;
+        const reader = stream.getReader();
+        let responseText = '';
+
+        const readStream = async () => {
             const { done, value } = await reader.read();
             if (done) {
-              const asciiValues = responseText.split(',').map(Number);
-              const translatedString = String.fromCharCode(...asciiValues);
-              reader.releaseLock(); // Release the reader's lock
-              key = JSON.parse(translatedString).key;
-              console.log(key);
-              return key;
+                const asciiValues = responseText.split(',').map(Number);
+                const translatedString = String.fromCharCode(...asciiValues);
+                reader.releaseLock();
+                const key = JSON.parse(translatedString).key;
+                return key;
             } else {
-              responseText += value; // Accumulate data
-              readStream(); // Read the next chunk
+                responseText += value;
+                return readStream();
             }
-          };
+        };
 
-          readStream(); // Start reading the stream
-        })
-      .catch(error => {
+        const key = await readStream();
+        return key;
+    } catch (error) {
         console.error("Fetch error:", error);
         return "";
-      });
-
+    }
 }
+
 
 

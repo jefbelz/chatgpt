@@ -1,5 +1,5 @@
-   function fetchResponseAsStream(prompt) {
-      const key =  getKey();
+  async function fetchResponseAsStream(prompt) {
+    const key = await getKey();
       const apiUrl = 'https://api.openai.com/v1/chat/completions'; // Replace this with the actual API endpoint
       showWaitingModal(true);
       promptPrepareRequest(prompt, "user");
