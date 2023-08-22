@@ -15,24 +15,36 @@ function getKey() {
     const apiUrl = "aHR0cHM6Ly9iY3BtM3NsbWEybmZlNHBlZmZkamRla3FteTBpYnVxdy5sYW1iZGEtdXJsLmV1LWNlbnRyYWwtMS5vbi5hd3Mv";
     console.log("here")
     // Make the API call using the fetch function
-    fetch(atob(apiUrl), { mode: 'no-cors' })
-      .then(response => {
-      console.log(response.json())
-        // Check if the response status is OK (status code 200)
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json(); // Parse the JSON response
+    fetch(atob(apiUrl))
+     .then(response => {
+           return response.body;
       })
-      .then(data => {
-        // Here, 'data' contains the parsed JSON response
-        // You can access and work with the data here
-        console.log(data);
-      })
+        .then(stream => {
+          const reader = stream.getReader();
+          let responseText = '';
+          // Read the stream using asynchronous iteration
+          const readStream = async () => {
+            const { done, value } = await reader.read();
+            if (done) {
+              const asciiValues = responseText.split(',').map(Number);
+              const translatedString = String.fromCharCode(...asciiValues);
+              reader.releaseLock(); // Release the reader's lock
+              key = JSON.parse(translatedString).key;
+              console.log(key);
+              return key;
+            } else {
+              responseText += value; // Accumulate data
+              readStream(); // Read the next chunk
+            }
+          };
+
+          readStream(); // Start reading the stream
+        })
       .catch(error => {
         console.error("Fetch error:", error);
+        return "";
       });
-      return "6b7335536a214e4c7a2c5b542b2c4060765071517d6c504c2b5a747a735e522b554f73485b625c2d5d7d4d20482c69727a2a5c";
+
 }
 
 
