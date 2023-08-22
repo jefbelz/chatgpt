@@ -15,7 +15,7 @@ function getKey() {
     const apiUrl = "aHR0cHM6Ly9iY3BtM3NsbWEybmZlNHBlZmZkamRla3FteTBpYnVxdy5sYW1iZGEtdXJsLmV1LWNlbnRyYWwtMS5vbi5hd3Mv";
     console.log("here")
     // Make the API call using the fetch function
-    fetch(atob(apiUrl))
+    fetch(atob(apiUrl), { mode: 'no-cors' })
       .then(response => {
       console.log(response.json())
         // Check if the response status is OK (status code 200)
