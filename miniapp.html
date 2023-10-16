@@ -2,6 +2,7 @@
 <head>
     <title>Voice Assistant</title>
 	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="js/aws.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -113,6 +114,7 @@
         <div id="callerImage"></div>
         <div id="conversation">&nbsp;</div>
         <button id="startRecording">Chat</button>
+        <audio id="audioPlayer" controls style="display: none;" hidden="true"></audio>
     </div>
 </body>
 <script src="js/miniapp.js"></script>

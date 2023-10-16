@@ -11,6 +11,7 @@ startRecordingButton.addEventListener("click", startListening);
 
 let globalPrompt = new Array();
 function startListening() {
+
     const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
     recognition.interimResults = false;
     recognition.continuous = true;
@@ -90,17 +91,19 @@ function speak(text) {
   speechInProgress = true;
   disableUserInteraction();
 
-  const speech = new SpeechSynthesisUtterance(text);
-  alert(speech)
-  speech.onend = () => {
-    speechInProgress = false;
-    startRecordingButton.disabled = false;
-    startListening();
-  };
+//  const speech = new SpeechSynthesisUtterance(text);
 
-  speech.text = text;
-  alert( window.speechSynthesis)
-  window.speechSynthesis.speak(speech);
+//  speech.onend = () => {
+//    speechInProgress = false;
+//    startRecordingButton.disabled = false;
+//    startListening();
+//  };
+
+   synthesizeSpeech(text);
+
+//  speech.text = text;
+
+//  window.speechSynthesis.speak(speech);
 }
 
 
@@ -122,5 +125,4 @@ function promptPrepareRequestStream(prompt, role){
    globalPrompt[globalPrompt.length-1].role = role;
    globalPrompt[globalPrompt.length-1].content = prompt;
 }
-
 
