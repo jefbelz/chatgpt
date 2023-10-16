@@ -103,6 +103,7 @@ async function miniAppFetchResponse(prompt) {
               speak(contentFinalResult);
               console.log('Stream is done.'); // End of the stream
               updateConversation("</br>")
+              promptPrepareRequestStream(contentFinalResult, "system");
               return contentFinalResult;
             }
             try {
@@ -120,6 +121,7 @@ async function miniAppFetchResponse(prompt) {
 
                   }
               });
+              promptPrepareRequestStream(contentFinalResult, "system");
               // Continue reading the stream
             } catch(error){
               console.log("");
