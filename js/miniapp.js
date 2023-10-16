@@ -5,7 +5,6 @@ const conversation = document.getElementById("conversation");
 const startRecordingButton = document.getElementById("startRecording");
 const userInput = document.getElementById("userInput");
 
-let speech = new SpeechSynthesisUtterance();
 startRecordingButton.addEventListener("click", startListening);
 
 let globalPrompt = new Array();
