@@ -17,7 +17,6 @@ function startListening() {
     startRecordingButton.disabled = true;
     startRecordingButton.textContent = "listening"
 	console.log("start listening");
-	updateConversation("start listening");
     recognition.onresult = (event) => {
 
         const lastResult = event.results[event.results.length - 1];
@@ -26,7 +25,6 @@ function startListening() {
         if (lastResult.isFinal) {
             startRecordingButton.textContent = "processing"
 //            updateConversation("User: "  + message + "</br>")
-            updateConversation("</br>");
             processMessage(message);
         }
 	};
@@ -63,16 +61,6 @@ function disableUserInteraction() {
 
 
 function speak(text) {
-  updateConversation("speak 1");
-  updateConversation("</br>");
-  if (speechInProgress) {
-    return; // Prevent multiple speech requests
-  }
-  updateConversation("speak 2");
-  updateConversation("</br>");
-  speechInProgress = true;
-//  disableUserInteraction();
-  updateConversation("disable 1");
   synthesizeSpeech(text);
 }
 

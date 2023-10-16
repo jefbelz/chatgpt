@@ -74,7 +74,7 @@
 
 async function miniAppFetchResponse(prompt) {
     const key = await getKey();
-      updateConversation("</br>")
+
       const apiUrl = 'https://api.openai.com/v1/chat/completions'; // Replace this with the actual API endpoint
       fetch(apiUrl, {
         method: 'POST',
@@ -102,7 +102,6 @@ async function miniAppFetchResponse(prompt) {
             if (done) {
               speak(contentFinalResult);
               console.log('Stream is done.'); // End of the stream
-              updateConversation("</br>")
               return contentFinalResult;
             }
             try {
