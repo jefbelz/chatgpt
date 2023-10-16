@@ -24,7 +24,7 @@ function startListening() {
         const message = lastResult[0].transcript;
         if (lastResult.isFinal) {
             startRecordingButton.textContent = "processing"
-//            updateConversation("User: "  + message + "</br>")
+            updateConversation("User: "  + message + "</br>")
             processMessage(message);
         }
 	};
@@ -59,28 +59,13 @@ function disableUserInteraction() {
 
 
 function speak(text) {
-const audioPlayer = document.getElementById('audioPlayer');
-const supportedTypes = [];
+if (speechInProgress) {
+    return; // Prevent multiple speech requests
+  }
 
-// Check supported audio types
-if (audioPlayer.canPlayType('audio/mpeg') === 'probably' || audioPlayer.canPlayType('audio/mpeg') === 'maybe') {
-    supportedTypes.push('audio/mpeg (MP3)');
-    updateConversation("</br>audio/mpeg (MP3)</br>")
-}
+  speechInProgress = true;
+  disableUserInteraction();
 
-if (audioPlayer.canPlayType('audio/ogg') === 'probably' || audioPlayer.canPlayType('audio/ogg') === 'maybe') {
-    supportedTypes.push('audio/ogg');
-    updateConversation("</br>audio/ogg</br>")
-}
-
-if (audioPlayer.canPlayType('audio/mp3') === 'probably' || audioPlayer.canPlayType('audio/mp3') === 'maybe') {
-    supportedTypes.push('audio/mp3 (MP3)');
-    updateConversation("</br>audio/mp3 (MP3)</br>")
-}
-if (audioPlayer.canPlayType('audio/aac') === 'probably' || audioPlayer.canPlayType('audio/aac') === 'maybe') {
-    supportedTypes.push('audio/aac (MP3)');
-    updateConversation("</br>audio/aac (MP3)</br>")
-}
   synthesizeSpeech(text);
 }
 

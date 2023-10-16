@@ -29,6 +29,7 @@ function synthesizeSpeech(text) {
             startListening();
         });
         audioPlayer.addEventListener('error', function(e) {
+            audioPlayer.stop();
             const error = e.target.error;
             switch (error.code) {
                 case MediaError.MEDIA_ERR_ABORTED:
