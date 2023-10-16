@@ -60,8 +60,6 @@
             bottom: 10px; /* Position at the bottom of the call screen with 10px space */
             left: 50%; /* Center the button horizontally */
             transform: translateX(-50%); /* Center the button horizontally */
-            background-color: #4CAF50;
-            color: white;
             border: none;
             border-radius: 4px;
             padding: 10px 20px;
@@ -79,6 +77,35 @@
         #responseAudio {
             display: none;
         }
+        /* Standard button styles */
+       button {
+           width: 250px;
+           /* Make the buttons half the width of the parent container */
+           padding: 15px;
+           /* color: #424242; */
+           background-color: #e7a936;
+           border: 1px solid #000000;
+           border-radius: 20px;
+           cursor: pointer;
+           margin: 0 auto;
+           /* Center the buttons horizontally */
+           align-content: center;
+           display: block;
+           /* Display the buttons as block elements */
+       }
+
+   /* Button hover styles */
+   button:hover {
+     background-color: #f9edab; /* Button background color on hover */
+     color: #000000; /* Text color on hover */
+     border-color: #000000; /* Border color on hover */
+   }
+   /* Button hover styles */
+   button:disabled {
+     background-color: grey; /* Button background color on hover */
+     color: white; /* Text color on hover */
+     border-color: #00000; /* Border color on hover */
+   }
     </style>
 </head>
 <body>

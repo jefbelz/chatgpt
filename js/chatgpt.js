@@ -73,7 +73,7 @@
 
 
 async function miniAppFetchResponse(prompt) {
-     const key = await getKey();
+    const key = await getKey();
       updateConversation("</br>")
       const apiUrl = 'https://api.openai.com/v1/chat/completions'; // Replace this with the actual API endpoint
       fetch(apiUrl, {
@@ -100,7 +100,9 @@ async function miniAppFetchResponse(prompt) {
         function readStream() {
           return reader.read().then(({ done, value }) => {
             if (done) {
+              speak(contentFinalResult);
               console.log('Stream is done.'); // End of the stream
+              updateConversation("</br>")
               return contentFinalResult;
             }
             try {
@@ -114,7 +116,8 @@ async function miniAppFetchResponse(prompt) {
                     var parsedContent = JSON.parse(data);
                     const content = parsedContent.choices[0].delta.content.replace("undefined","");
                     contentFinalResult += content;
-                    updateConversation(content)
+                    updateConversation(content.replace("\n", "</br>"))
+
                   }
               });
               // Continue reading the stream

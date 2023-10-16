@@ -13,14 +13,18 @@ let globalPrompt = new Array();
 function startListening() {
     const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
     recognition.interimResults = false;
+    recognition.continuous = true;
+    startRecordingButton.disabled = true;
     startRecordingButton.textContent = "listening"
 	console.log("start listening");
     recognition.onresult = (event) => {
+
         const lastResult = event.results[event.results.length - 1];
+                console.log(lastResult);
         const message = lastResult[0].transcript;
         if (lastResult.isFinal) {
             startRecordingButton.textContent = "processing"
-            updateConversation(message)
+            updateConversation("User: "  + message + "</br>")
             processMessage(message);
         }
 	};
@@ -54,10 +58,10 @@ function getMicPermission() {
 
 function processMessage(message) {
     promptPrepareRequest( message,"user")
-         miniAppFetchResponse(globalPrompt).then(() => {
-        startListening();
-     })
-     .catch(error => {
+    miniAppFetchResponse(globalPrompt)
+    .then(result => {
+        startRecordingButton.textContent = "message received"
+      }).catch(error => {
          console.error(error);
          startRecordingButton.textContent = "error"
      });
@@ -68,11 +72,35 @@ function updateConversation(userInput) {
 	const convDiv = document.getElementById("conversation");
     convDiv.scrollTop = convDiv.scrollHeight;
 }
+let speechInProgress = false;
+
+function disableUserInteraction() {
+  if (startRecordingButton) {
+    startRecordingButton.textContent = "answering..."
+    startRecordingButton.disabled = true;
+  }
+}
+
 
 function speak(text) {
-     speech.text = text;
-     window.speechSynthesis.speak(speech);
+  if (speechInProgress) {
+    return; // Prevent multiple speech requests
+  }
+
+  speechInProgress = true;
+  disableUserInteraction();
+
+  const speech = new SpeechSynthesisUtterance(text);
+  speech.onend = () => {
+    speechInProgress = false;
+    startRecordingButton.disabled = false;
+    startListening();
+  };
+
+  speech.text = text;
+  window.speechSynthesis.speak(speech);
 }
+
 
 function initializeGlobalPrompt(){
   globalPrompt.length = 0;
