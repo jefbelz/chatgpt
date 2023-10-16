@@ -1,5 +1,4 @@
 function synthesizeSpeech(text) {
-    updateConversation("syn 1");
     fetch('https://4zrpvylsou2jnnvpodhop5nkq40ftnhw.lambda-url.eu-central-1.on.aws', {
         method: 'POST',
         body: text,
@@ -16,12 +15,12 @@ function synthesizeSpeech(text) {
         const audioPlayer = document.getElementById('audioPlayer');
         const audioUrl = URL.createObjectURL(blob);
         audioPlayer.src = audioUrl;
-        audioPlayer.type = "audio/wav"
+        audioPlayer.type = "audio/mp3"
         // Add an event listener to play the audio after 2 seconds
         audioPlayer.addEventListener('loadeddata', function() {
             setTimeout(function() {
                 audioPlayer.play();
-            }, 5000); // 2000 milliseconds = 2 seconds
+            }, 1000); // 2000 milliseconds = 2 seconds
         });
          audioPlayer.addEventListener('ended', function() {
             speechInProgress = false;
@@ -29,7 +28,6 @@ function synthesizeSpeech(text) {
             startListening();
         });
         audioPlayer.addEventListener('error', function(e) {
-            audioPlayer.stop();
             const error = e.target.error;
             switch (error.code) {
                 case MediaError.MEDIA_ERR_ABORTED:

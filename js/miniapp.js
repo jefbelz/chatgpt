@@ -10,7 +10,8 @@ startRecordingButton.addEventListener("click", startListening);
 let globalPrompt = new Array();
 function startListening() {
     const audioPlayer = document.getElementById('audioPlayer');
-//    audioPlayer.play()
+    audioPlayer.play()
+    audioPlayer.pause()
     const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
     recognition.interimResults = false;
     recognition.continuous = true;
@@ -26,6 +27,7 @@ function startListening() {
             startRecordingButton.textContent = "processing"
             updateConversation("User: "  + message + "</br>")
             processMessage(message);
+//speak(message);
         }
 	};
 
