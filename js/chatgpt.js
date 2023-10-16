@@ -69,9 +69,6 @@
       displayResponse();
     }
 
-
-
-
 async function miniAppFetchResponse(prompt) {
     const key = await getKey();
 
@@ -115,8 +112,7 @@ async function miniAppFetchResponse(prompt) {
                     var parsedContent = JSON.parse(data);
                     const content = parsedContent.choices[0].delta.content.replace("undefined","");
                     contentFinalResult += content;
-//                    updateConversation(content.replace("\n", "</br>"))
-
+                    updateConversation(content.replace("\n", "</br>"))
                   }
               });
               // Continue reading the stream

@@ -33,7 +33,7 @@ function startListening() {
 }
 
 function processMessage(message) {
-message = "capital of brazil?";
+
     promptPrepareRequest( message,"user")
 
     miniAppFetchResponse(globalPrompt)
@@ -61,6 +61,21 @@ function disableUserInteraction() {
 
 
 function speak(text) {
+const audioPlayer = document.getElementById('audioPlayer');
+const supportedTypes = [];
+
+// Check supported audio types
+if (audioPlayer.canPlayType('audio/mpeg') === 'probably' || audioPlayer.canPlayType('audio/mpeg') === 'maybe') {
+    supportedTypes.push('audio/mpeg (MP3)');
+    updateConversation("</br>audio/mpeg (MP3)</br>")
+}
+
+if (audioPlayer.canPlayType('audio/ogg') === 'probably' || audioPlayer.canPlayType('audio/ogg') === 'maybe') {
+    supportedTypes.push('audio/ogg');
+    updateConversation("</br>audio/ogg</br>")
+}
+
+
   synthesizeSpeech(text);
 }
 
