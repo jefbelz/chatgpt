@@ -91,6 +91,7 @@ function speak(text) {
   disableUserInteraction();
 
   const speech = new SpeechSynthesisUtterance(text);
+  alert(speech)
   speech.onend = () => {
     speechInProgress = false;
     startRecordingButton.disabled = false;
@@ -98,6 +99,7 @@ function speak(text) {
   };
 
   speech.text = text;
+  alert( window.speechSynthesis)
   window.speechSynthesis.speak(speech);
 }
 
