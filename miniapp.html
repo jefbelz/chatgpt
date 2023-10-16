@@ -17,13 +17,17 @@
         }
 
         #callContainer {
+            position: fixed; /* Set a fixed position */
+            top: 0; /* Position at the top of the screen */
+            width: 80%; /* Take the full width of the viewport */
+            height: 400px; /* Set a fixed height for the call screen */
             background-color: #000;
             border: 2px solid #555;
-            border-radius: 10px;
+            border-radius: 0; /* Remove border-radius */
             padding: 20px;
             text-align: center;
+
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-            width: 200px; /* Set a fixed width */
         }
 
         #callerImage {
@@ -38,10 +42,13 @@
         #conversation {
             font-size: 18px;
             margin: 10px 0;
-            max-height: 4em; /* Set a maximum height of 4 rows (adjust as needed) */
+            max-height: 10em; /* Set a maximum height of 4 rows (adjust as needed) */
             overflow: auto; /* Allow scrolling when content exceeds the height */
             scrollbar-width: thin; /* Adjust the width of the scrollbar (FF) */
             scrollbar-color: #555 #333; /* Adjust the color of the scrollbar (FF) */
+            background-color: #f0f0f0; /* Lighter background color for the conversation div */
+            height: 10em;
+            color: black;
         }
 
         #conversation::-webkit-scrollbar {
@@ -49,6 +56,10 @@
         }
 
         #startRecording {
+           position: absolute; /* Set a position relative to the #callContainer */
+            bottom: 10px; /* Position at the bottom of the call screen with 10px space */
+            left: 50%; /* Center the button horizontally */
+            transform: translateX(-50%); /* Center the button horizontally */
             background-color: #4CAF50;
             color: white;
             border: none;
@@ -58,7 +69,6 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            margin: 10px 2px;
             cursor: pointer;
         }
 
@@ -74,62 +84,12 @@
 <body>
     <div id="callContainer">
         <div id="callerImage"></div>
-        <div id="conversation"></div>
+        <div id="conversation">&nbsp;</div>
         <button id="startRecording">Chat</button>
-        <audio id="responseAudio" controls></audio>
     </div>
 </body>
-<script>
-    // JavaScript code goes here
-</script>
+<script src="js/miniapp.js"></script>
+<script src="js/encryption.js"></script>
+<script src="js/chatgpt.js"></script>
 </html>
-<script>
-const conversation = document.getElementById("conversation");
-const startRecordingButton = document.getElementById("startRecording");
-const userInput = document.getElementById("userInput");
-const responseAudio = document.getElementById("responseAudio");
-
-startRecordingButton.addEventListener("click", startListening);
-
-function startListening() {
-    const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
-    recognition.interimResults = true;
-	console.log("start listening");
-    recognition.onresult = (event) => {
-        const lastResult = event.results[event.results.length - 1];
-        const message = lastResult[0].transcript;
-        if (lastResult.isFinal) {
-            processMessage(message);
-        } else {
-            conversation.textContent = message;
-        }
-	};
-
-    recognition.start();
-}
-
-function processMessage(message) {
-    const response = generateResponse(message);
-    conversation.textContent = message;
-	const convDiv = document.getElementById("conversation");
-    convDiv.scrollTop = convDiv.scrollHeight;
-    speak(response);
-}
-
-function generateResponse(userInput) {
-    // Replace this with your response generation logic.
-    // You can use AI/ML models, predefined responses, or other methods.
-    return "You said: " + userInput;
-}
-
-function speak(text) {
-    const synth = window.speechSynthesis;
-    const utterance = new SpeechSynthesisUtterance(text);
-    synth.speak(utterance);
-}
-
-
-
-
-</script>
 </html>
