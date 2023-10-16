@@ -103,7 +103,6 @@ async function miniAppFetchResponse(prompt) {
               speak(contentFinalResult);
               console.log('Stream is done.'); // End of the stream
               updateConversation("</br>")
-              promptPrepareRequestStream(contentFinalResult, "system");
               return contentFinalResult;
             }
             try {
@@ -117,11 +116,10 @@ async function miniAppFetchResponse(prompt) {
                     var parsedContent = JSON.parse(data);
                     const content = parsedContent.choices[0].delta.content.replace("undefined","");
                     contentFinalResult += content;
-                    updateConversation(content.replace("\n", "</br>"))
+//                    updateConversation(content.replace("\n", "</br>"))
 
                   }
               });
-              promptPrepareRequestStream(contentFinalResult, "system");
               // Continue reading the stream
             } catch(error){
               console.log("");

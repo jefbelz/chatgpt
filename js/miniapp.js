@@ -17,7 +17,7 @@ function startListening() {
     startRecordingButton.disabled = true;
     startRecordingButton.textContent = "listening"
 	console.log("start listening");
-	processMessage("start listening");
+	updateConversation("start listening");
     recognition.onresult = (event) => {
 
         const lastResult = event.results[event.results.length - 1];
@@ -25,8 +25,9 @@ function startListening() {
         const message = lastResult[0].transcript;
         if (lastResult.isFinal) {
             startRecordingButton.textContent = "processing"
-            updateConversation("User: "  + message + "</br>")
-//            processMessage(message);
+//            updateConversation("User: "  + message + "</br>")
+            updateConversation("</br>");
+            processMessage(message);
         }
 	};
 
@@ -34,7 +35,9 @@ function startListening() {
 }
 
 function processMessage(message) {
+message = "capital of brazil?";
     promptPrepareRequest( message,"user")
+
     miniAppFetchResponse(globalPrompt)
     .then(result => {
         startRecordingButton.textContent = "message received"
@@ -60,14 +63,16 @@ function disableUserInteraction() {
 
 
 function speak(text) {
-  processMessage("speak 1");
+  updateConversation("speak 1");
+  updateConversation("</br>");
   if (speechInProgress) {
     return; // Prevent multiple speech requests
   }
-  processMessage("speak 2");
+  updateConversation("speak 2");
+  updateConversation("</br>");
   speechInProgress = true;
 //  disableUserInteraction();
-  processMessage("disable 1");
+  updateConversation("disable 1");
   synthesizeSpeech(text);
 }
 

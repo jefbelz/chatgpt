@@ -9,7 +9,6 @@ const decrypt = (salt, encoded) => {
     .join("");
 };
 
-
 async function getKey() {
     const apiUrl = "aHR0cHM6Ly9iY3BtM3NsbWEybmZlNHBlZmZkamRla3FteTBpYnVxdy5sYW1iZGEtdXJsLmV1LWNlbnRyYWwtMS5vbi5hd3Mv";
 
