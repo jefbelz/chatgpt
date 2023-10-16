@@ -10,7 +10,7 @@ startRecordingButton.addEventListener("click", startListening);
 let globalPrompt = new Array();
 function startListening() {
     const audioPlayer = document.getElementById('audioPlayer');
-    audioPlayer.play()
+//    audioPlayer.play()
     const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
     recognition.interimResults = false;
     recognition.continuous = true;
@@ -33,9 +33,7 @@ function startListening() {
 }
 
 function processMessage(message) {
-
     promptPrepareRequest( message,"user")
-
     miniAppFetchResponse(globalPrompt)
     .then(result => {
         startRecordingButton.textContent = "message received"
@@ -75,7 +73,14 @@ if (audioPlayer.canPlayType('audio/ogg') === 'probably' || audioPlayer.canPlayTy
     updateConversation("</br>audio/ogg</br>")
 }
 
-
+if (audioPlayer.canPlayType('audio/mp3') === 'probably' || audioPlayer.canPlayType('audio/mp3') === 'maybe') {
+    supportedTypes.push('audio/mp3 (MP3)');
+    updateConversation("</br>audio/mp3 (MP3)</br>")
+}
+if (audioPlayer.canPlayType('audio/aac') === 'probably' || audioPlayer.canPlayType('audio/aac') === 'maybe') {
+    supportedTypes.push('audio/aac (MP3)');
+    updateConversation("</br>audio/aac (MP3)</br>")
+}
   synthesizeSpeech(text);
 }
 
