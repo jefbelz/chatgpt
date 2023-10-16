@@ -15,6 +15,7 @@ function synthesizeSpeech(text) {
         const audioPlayer = document.getElementById('audioPlayer');
         const audioUrl = URL.createObjectURL(blob);
         audioPlayer.src = audioUrl;
+        audioPlayer.type = "audio/wav"
         // Add an event listener to play the audio after 2 seconds
         audioPlayer.addEventListener('loadeddata', function() {
             setTimeout(function() {

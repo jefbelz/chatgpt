@@ -6,7 +6,6 @@ const startRecordingButton = document.getElementById("startRecording");
 const userInput = document.getElementById("userInput");
 
 let speech = new SpeechSynthesisUtterance();
-startRecordingButton.addEventListener("click", getMicPermission);
 startRecordingButton.addEventListener("click", startListening);
 
 let globalPrompt = new Array();
@@ -32,30 +31,6 @@ function startListening() {
 
     recognition.start();
 }
-
-// Function to request microphone access
-async function requestMicrophonePermission() {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        // Store the permission status in localStorage
-        localStorage.setItem('microphonePermission', 'granted');
-    } catch (error) {
-        console.error('Microphone access denied or failed:', error);
-        localStorage.setItem('microphonePermission', 'denied');
-    }
-}
-
-// Event listener for chat button click
-function getMicPermission() {
-    if (storedPermissionStatus === 'granted') {
-        // Microphone access has been granted, proceed with the chat
-    } else if (storedPermissionStatus === 'denied') {
-        // Microphone access has been denied, display a message to the user
-    } else {
-        // Microphone access hasn't been requested yet, so request it
-        requestMicrophonePermission();
-    }
-};
 
 function processMessage(message) {
     promptPrepareRequest( message,"user")
