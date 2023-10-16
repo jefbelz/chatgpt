@@ -9,13 +9,15 @@ startRecordingButton.addEventListener("click", startListening);
 
 let globalPrompt = new Array();
 function startListening() {
-
+    const audioPlayer = document.getElementById('audioPlayer');
+    audioPlayer.play()
     const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
     recognition.interimResults = false;
     recognition.continuous = true;
     startRecordingButton.disabled = true;
     startRecordingButton.textContent = "listening"
 	console.log("start listening");
+	processMessage("start listening");
     recognition.onresult = (event) => {
 
         const lastResult = event.results[event.results.length - 1];
@@ -24,7 +26,7 @@ function startListening() {
         if (lastResult.isFinal) {
             startRecordingButton.textContent = "processing"
             updateConversation("User: "  + message + "</br>")
-            processMessage(message);
+//            processMessage(message);
         }
 	};
 
@@ -58,26 +60,15 @@ function disableUserInteraction() {
 
 
 function speak(text) {
+  processMessage("speak 1");
   if (speechInProgress) {
     return; // Prevent multiple speech requests
   }
-
+  processMessage("speak 2");
   speechInProgress = true;
-  disableUserInteraction();
-
-//  const speech = new SpeechSynthesisUtterance(text);
-
-//  speech.onend = () => {
-//    speechInProgress = false;
-//    startRecordingButton.disabled = false;
-//    startListening();
-//  };
-
-   synthesizeSpeech(text);
-
-//  speech.text = text;
-
-//  window.speechSynthesis.speak(speech);
+//  disableUserInteraction();
+  processMessage("disable 1");
+  synthesizeSpeech(text);
 }
 
 
