@@ -4,14 +4,15 @@ const storedPermissionStatus = localStorage.getItem('microphonePermission');
 const conversation = document.getElementById("conversation");
 const startRecordingButton = document.getElementById("startRecording");
 const userInput = document.getElementById("userInput");
-const synth = window.speechSynthesis;
+
+let speech = new SpeechSynthesisUtterance();
 startRecordingButton.addEventListener("click", getMicPermission);
 startRecordingButton.addEventListener("click", startListening);
 
 let globalPrompt = new Array();
 function startListening() {
     const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
-    recognition.interimResults = true;
+    recognition.interimResults = false;
     startRecordingButton.textContent = "listening"
 	console.log("start listening");
     recognition.onresult = (event) => {
@@ -29,7 +30,7 @@ function startListening() {
 
 // Function to request microphone access
 async function requestMicrophonePermission() {
-    try {
+      try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         // Store the permission status in localStorage
         localStorage.setItem('microphonePermission', 'granted');
@@ -69,8 +70,8 @@ function updateConversation(userInput) {
 }
 
 function speak(text) {
-    const utterance = new SpeechSynthesisUtterance(text);
-    synth.speak(utterance);
+     speech.text = text;
+     window.speechSynthesis.speak(speech);
 }
 
 function initializeGlobalPrompt(){
