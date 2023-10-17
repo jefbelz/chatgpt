@@ -10,28 +10,29 @@ startRecordingButton.addEventListener("click", startListening);
 let globalPrompt = new Array();
 function startListening() {
     const audioPlayer = document.getElementById('audioPlayer');
-    audioPlayer.play()
-    audioPlayer.pause()
-    const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
-    recognition.interimResults = false;
-    recognition.continuous = true;
-    startRecordingButton.disabled = true;
-    startRecordingButton.textContent = "listening"
-	console.log("start listening");
-    recognition.onresult = (event) => {
-
-        const lastResult = event.results[event.results.length - 1];
-                console.log(lastResult);
-        const message = lastResult[0].transcript;
-        if (lastResult.isFinal) {
-            startRecordingButton.textContent = "processing"
-            updateConversation("User: "  + message + "</br>")
-            processMessage(message);
-//speak(message);
-        }
-	};
-
-    recognition.start();
+//    audioPlayer.play()
+//    audioPlayer.pause()
+//    const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+//    recognition.interimResults = false;
+//    recognition.continuous = true;
+//    startRecordingButton.disabled = true;
+//    startRecordingButton.textContent = "listening"
+//	console.log("start listening");
+//    recognition.onresult = (event) => {
+//
+//        const lastResult = event.results[event.results.length - 1];
+//                console.log(lastResult);
+//        const message = lastResult[0].transcript;
+//        if (lastResult.isFinal) {
+//            startRecordingButton.textContent = "processing"
+//            updateConversation("User: "  + message + "</br>")
+//            processMessage(message);
+////speak(message);
+//        }
+//	};
+//
+//    recognition.start();
+    play();
 }
 
 function processMessage(message) {
@@ -90,4 +91,13 @@ function promptPrepareRequestStream(prompt, role){
    globalPrompt[globalPrompt.length-1].role = role;
    globalPrompt[globalPrompt.length-1].content = prompt;
 }
+
+function play(){
+let speech = new SpeechSynthesisUtterance();
+speech.lang = "en";
+speech.text = "this is a test of pre built voice";
+window.speechSynthesis.speak(speech);
+}
+play()
+
 
