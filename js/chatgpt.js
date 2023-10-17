@@ -120,7 +120,6 @@ async function miniAppFetchResponse(prompt) {
               // Continue reading the stream
             } catch(error){
               console.log("");
-              updateConversation("Error ")
             }
             return readStream();
           });
