@@ -1,6 +1,6 @@
 // Check the stored permission status
 const storedPermissionStatus = localStorage.getItem('microphonePermission');
-const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+const recognition = new SpeechRecognition()|| new webkitSpeechRecognition() ;
 userLanguage = navigator.language;
 const conversation = document.getElementById("conversation");
 const startRecordingButton = document.getElementById("startRecording");
@@ -34,9 +34,9 @@ function startListening() {
 
 function setupRecognition(){
     recognition.lang = getBCP47LanguageCode(userLanguage);
-    recognition.interimResults = false;
+    recognition.interimResults = true;
     recognition.continuous = true;
-     recognition.onresult = (event) => {
+    recognition.onresult = (event) => {
        const lastResult = event.results[event.results.length - 1];
        console.log(lastResult);
        const message = lastResult[0].transcript;
