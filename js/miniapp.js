@@ -21,13 +21,12 @@ fetchTranslation(userLanguage).then(result =>{
 let globalPrompt = new Array();
 let welcomeMsgSpoke = false
 function startListening() {
-    const audioPlayer = document.getElementById('audioPlayer');
-    audioPlayer.pause()
     if(welcomeMsgSpoke == false){
         welcomeMsgSpoke = true;
         speak(welcomeMsg)
     }
-
+    const audioPlayer = document.getElementById('audioPlayer');
+    audioPlayer.pause()
     const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
     recognition.lang = getBCP47LanguageCode(userLanguage);
     recognition.interimResults = false;
@@ -75,6 +74,7 @@ function disableUserInteraction() {
 }
 
 function enableUserInteraction(){
+
     speechInProgress = false;
     startRecordingButton.disabled = false;
     startListening();
@@ -118,6 +118,3 @@ function promptPrepareRequestStream(prompt, role){
    globalPrompt[globalPrompt.length-1].role = role;
    globalPrompt[globalPrompt.length-1].content = prompt;
 }
-
-
-
