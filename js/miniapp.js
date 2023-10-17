@@ -43,7 +43,7 @@ function setupRecognition(){
        if (lastResult.isFinal) {
          startRecordingButton.textContent = "processing"
          updateConversation("User: "  + message + "</br>")
-         processMessage(message + " always answer to me in this i18n language: " + userLanguage);
+         processMessage(message + " ,always answer to me in this i18n language: " + userLanguage + "you don't need to tell me you get this command to answer me.");
        }
      };
 }
