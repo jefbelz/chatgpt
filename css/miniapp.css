@@ -1,104 +1,125 @@
-  body {
-            font-family: Arial, sans-serif;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-size: x-large;
-        }
+/* Original CSS for screens larger than 768px */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    margin: 0;
+    font-size: x-large;
+}
 
-        #callContainer {
-            position: fixed; /* Set a fixed position */
-            top: 0; /* Position at the top of the screen */
-            width: 80%; /* Take the full width of the viewport */
-            height: 80%; /* Set a fixed height for the call screen */
-            min-height: 600px;
-            background-color: #000;
-            border: 2px solid #555;
-            border-radius: 0; /* Remove border-radius */
-            padding: 20px;
-            text-align: center;
+#callContainer {
+    position: fixed;
+    top: 0;
+    width: 80%;
+    min-height: 600px;
+    background-color: #000;
+    border: 2px solid #555;
+    border-radius: 0;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
 
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-        }
+#callerImage {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    background: url("../images/answerMeLogo.jfif");
+    background-size: cover;
+}
 
-        #callerImage {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            background: url("../images/answerMeLogo.jfif");
-            background-size: cover;
-        }
+#conversation {
+    margin: 10px 0;
+    max-height: 12em;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #555 #333;
+    background-color: #f0f0f0;
+    height: 12em;
+    color: black;
+}
 
-        #conversation {
-            margin: 10px 0;
-            max-height: 15em; /* Set a maximum height of 4 rows (adjust as needed) */
-            overflow: auto; /* Allow scrolling when content exceeds the height */
-            scrollbar-width: thin; /* Adjust the width of the scrollbar (FF) */
-            scrollbar-color: #555 #333; /* Adjust the color of the scrollbar (FF) */
-            background-color: #f0f0f0; /* Lighter background color for the conversation div */
-            height: 15em;
-            color: black;
-        }
+#conversation::-webkit-scrollbar {
+    width: 5px;
+}
 
-        #conversation::-webkit-scrollbar {
-            width: 5px; /* Adjust the width of the scrollbar (Chrome, Safari) */
-        }
+#startRecording {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: large;
+    cursor: pointer;
+}
 
-        #startRecording {
-           position: absolute; /* Set a position relative to the #callContainer */
-            bottom: 10px; /* Position at the bottom of the call screen with 10px space */
-            left: 50%; /* Center the button horizontally */
-            transform: translateX(-50%); /* Center the button horizontally */
-            border: none;
-            border-radius: 4px;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: large;
-            cursor: pointer;
-        }
+#responseAudio {
+    display: none;
+}
 
-        #responseAudio {
-            display: none;
-        }
+button {
+    width: 250px;
+    padding: 15px;
+    background-color: #e7a936;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 0 auto;
+    align-content: center;
+    display: block;
+}
 
-        #responseAudio {
-            display: none;
-        }
-        /* Standard button styles */
-       button {
-           width: 250px;
-           /* Make the buttons half the width of the parent container */
-           padding: 15px;
-           /* color: #424242; */
-           background-color: #e7a936;
-           border: 1px solid #000000;
-           border-radius: 20px;
-           cursor: pointer;
-           margin: 0 auto;
-           /* Center the buttons horizontally */
-           align-content: center;
-           display: block;
-           /* Display the buttons as block elements */
-       }
+button:hover {
+    background-color: #f9edab;
+    color: #000000;
+    border-color: #ffffff;
+}
 
-   /* Button hover styles */
-   button:hover {
-     background-color: #f9edab; /* Button background color on hover */
-     color: #000000; /* Text color on hover */
-     border-color: #ffffff; /* Border color on hover */
-   }
-   /* Button hover styles */
-   button:disabled {
-     background-color: grey; /* Button background color on hover */
-     color: white; /* Text color on hover */
-     border-color: #ffffff; /* Border color on hover */
-   }
+button:disabled {
+    background-color: grey;
+    color: white;
+    border-color: #ffffff;
+}
+
+
+/* Media query for screens smaller than 768px */
+@media screen and (max-height: 768px)  {
+    body {
+        font-size: 16px; /* Adjust font size for smaller screens */
+    }
+
+    #callContainer {
+        width: 100%; /* Take full width of the viewport on smaller screens */
+        min-height: 400px; /* Remove minimum height */
+    }
+
+    #callerImage {
+        width: 100px; /* Make the image responsive to the screen width */
+        height: 100px; /* Let the image scale proportionally */
+        max-width: 200px; /* Limit the maximum width to 200px */
+    }
+
+    #conversation {
+        max-height: 12em; /* Adjust the max height for smaller screens */
+        width: 90%; /* Let the content determine the height */
+        margin-left: 5%;
+    }
+
+    #startRecording {
+        font-size: 14px; /* Adjust button font size for smaller screens */
+    }
+
+    /* You can further adjust styles as needed for smaller screens */
+}

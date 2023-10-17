@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14c075ca-2605-443f-9308-b12443a1c639" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/css/miniapp.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/answerMeLogo.jfif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18n/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18n/es.json" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/es.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18n/ru.json" beforeDir="false" afterPath="$PROJECT_DIR$/i18n/ru.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/aws.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/aws.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/i18n.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/i18n.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/miniapp.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/miniapp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniapp.html" beforeDir="false" afterPath="$PROJECT_DIR$/miniapp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/miniapp.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/miniapp.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
