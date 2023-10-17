@@ -1,7 +1,7 @@
 /* Original CSS for screens larger than 768px */
 body {
     font-family: Arial, sans-serif;
-    background-color: #333;
+    background-color: #000000;
     color: #fff;
     text-align: center;
     display: flex;
@@ -10,14 +10,14 @@ body {
     align-items: center;
     height: 80vh;
     margin: 0;
-    font-size: x-large;
+    font-size: xx-large;
 }
 
 #callContainer {
     position: fixed;
     top: 0;
     width: 80%;
-    min-height: 600px;
+    min-height: 700px;
     background-color: #000;
     border: 2px solid #555;
     border-radius: 0;
@@ -36,13 +36,13 @@ body {
 }
 
 #conversation {
-    margin: 10px 0;
-    max-height: 12em;
+    margin: 2% 0;
+    max-height: 11em;
     overflow: auto;
     scrollbar-width: thin;
     scrollbar-color: #555 #333;
     background-color: #f0f0f0;
-    height: 12em;
+    height: 11em;
     color: black;
 }
 
@@ -61,7 +61,7 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: large;
+    font-size: xx-large;
     cursor: pointer;
 }
 
@@ -123,3 +123,4 @@ button:disabled {
 
     /* You can further adjust styles as needed for smaller screens */
 }
+g
