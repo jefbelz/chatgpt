@@ -10,8 +10,8 @@ startRecordingButton.addEventListener("click", startListening);
 let globalPrompt = new Array();
 function startListening() {
     const audioPlayer = document.getElementById('audioPlayer');
-    audioPlayer.play()
     audioPlayer.pause()
+    speak("welcome onboard of our new conversation mode")
     const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
     recognition.interimResults = false;
     recognition.continuous = true;
@@ -73,7 +73,7 @@ if (speechInProgress) {
    try {
         let speech = new SpeechSynthesisUtterance();
         speech.language = userLanguage;
-        speech.text = "this is a test of pre built voice";
+        speech.text = text;
         window.speechSynthesis.speak(speech);
      } catch(error){
        synthesizeSpeech(text);
