@@ -23,9 +23,7 @@ function synthesizeSpeech(text) {
             }, 1000); // 2000 milliseconds = 2 seconds
         });
          audioPlayer.addEventListener('ended', function() {
-            speechInProgress = false;
-            startRecordingButton.disabled = false;
-            startListening();
+            enableUserInteraction();
         });
         audioPlayer.addEventListener('error', function(e) {
             const error = e.target.error;
@@ -40,7 +38,7 @@ function synthesizeSpeech(text) {
                     break;
                 case MediaError.MEDIA_ERR_DECODE:
                     console.error('An error occurred while decoding the audio.');
-                             updateConversation("An error occurred while decoding the audio.</br>");
+                    updateConversation("An error occurred while decoding the audio.</br>");
                     break;
                 case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
                     console.error('The audio source is not supported.');
