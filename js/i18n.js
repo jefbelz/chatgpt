@@ -12,7 +12,9 @@
       return translationData;
     } catch (error) {
       console.error('Error fetching translation:', error);
-      return {};
+      const response = await fetch(`i18n/ru.json`);
+      translationData = await response.json();
+      return translationData;
     }
   }
 
@@ -37,6 +39,24 @@
     return value;
   }
 
+  function getBCP47LanguageCode(languageCode) {
+    const regionCodeMap = {
+      'es': 'es-ES',
+      'en': 'en-US',
+      'ru': 'ru-RU',
+      // Add more language codes and region codes as needed
+    };
+
+    const bcp47Code = regionCodeMap[languageCode.toLowerCase()];
+
+    if (bcp47Code) {
+      return bcp47Code;
+    } else {
+      return 'ru-RU'; // Default to the provided language code if not found
+    }
+  }
+
+
   function translateContent(translationData) {
     const elementsToTranslate = document.querySelectorAll('[data-i18n]');
 
@@ -51,7 +71,11 @@
   }
 
   (async function () {
-    const userLanguage = getLanguage();
-    const translationData = await fetchTranslation(userLanguage);
-    translateContent(translationData);
+    try {
+        const userLanguage = getLanguage();
+        const translationData = await fetchTranslation(userLanguage);
+        translateContent(translationData);
+    } catch (error) {
+        console.log("not from website");
+    }
   })();

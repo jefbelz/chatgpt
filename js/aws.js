@@ -49,6 +49,7 @@ function synthesizeSpeech(text) {
                      updateConversation("An unknown error occurred.</br>");
                     break;
             }
+            speechInProgress = false;
         });
     })
     .catch(error => console.error('Error:', error));

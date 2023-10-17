@@ -96,5 +96,8 @@
   "USER_LABEL": "Este es el mensaje que proporcionaremos a ChatGPT:",
   "COPY_PROMPT": "Copiar Mensaje",
   "COPY_ANSWER": "Copiar Respuesta",
-  "TYPE_ADDITIONAL_REQUEST": "Escribe tu solicitud a ChatGPT a continuación"
+  "TYPE_ADDITIONAL_REQUEST": "Escribe tu solicitud a ChatGPT a continuación",
+  "webapp" : {
+    "welcome" : "Bienvenido a el modo de conversacion."
+  }
 }

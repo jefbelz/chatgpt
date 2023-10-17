@@ -6,13 +6,30 @@ const startRecordingButton = document.getElementById("startRecording");
 const userInput = document.getElementById("userInput");
 let speechInProgress = false;
 startRecordingButton.addEventListener("click", startListening);
+translationData = "";
+welcomeMsg = "";
+fetchTranslation(userLanguage).then(result =>{
+    translationData = result;
+    translateContent(translationData);
+    welcomeMsg = getTranslation("webapp.welcome")
+    welcomeDiv = document.getElementById("welcomediv");
+    welcomeDiv.innerHTML = welcomeMsg;
+});
+
+
 
 let globalPrompt = new Array();
+let welcomeMsgSpoke = false
 function startListening() {
     const audioPlayer = document.getElementById('audioPlayer');
     audioPlayer.pause()
-    speak("welcome onboard of our new conversation mode")
+    if(welcomeMsgSpoke == false){
+        welcomeMsgSpoke = true;
+        speak(welcomeMsg)
+    }
+
     const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+    recognition.lang = getBCP47LanguageCode(userLanguage);
     recognition.interimResults = false;
     recognition.continuous = true;
     startRecordingButton.disabled = true;
@@ -64,7 +81,7 @@ function enableUserInteraction(){
 }
 
 function speak(text) {
-if (speechInProgress) {
+  if (speechInProgress) {
     return; // Prevent multiple speech requests
   }
 
@@ -72,9 +89,10 @@ if (speechInProgress) {
   disableUserInteraction();
    try {
         let speech = new SpeechSynthesisUtterance();
-        speech.language = userLanguage;
+        speech.lang = getBCP47LanguageCode(userLanguage);
         speech.text = text;
         window.speechSynthesis.speak(speech);
+        speechInProgress = false;
      } catch(error){
        synthesizeSpeech(text);
      }

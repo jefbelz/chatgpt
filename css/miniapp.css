@@ -1,0 +1,104 @@
+  body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-size: x-large;
+        }
+
+        #callContainer {
+            position: fixed; /* Set a fixed position */
+            top: 0; /* Position at the top of the screen */
+            width: 80%; /* Take the full width of the viewport */
+            height: 80%; /* Set a fixed height for the call screen */
+            min-height: 600px;
+            background-color: #000;
+            border: 2px solid #555;
+            border-radius: 0; /* Remove border-radius */
+            padding: 20px;
+            text-align: center;
+
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        #callerImage {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: url("../images/answerMeLogo.jfif");
+            background-size: cover;
+        }
+
+        #conversation {
+            margin: 10px 0;
+            max-height: 15em; /* Set a maximum height of 4 rows (adjust as needed) */
+            overflow: auto; /* Allow scrolling when content exceeds the height */
+            scrollbar-width: thin; /* Adjust the width of the scrollbar (FF) */
+            scrollbar-color: #555 #333; /* Adjust the color of the scrollbar (FF) */
+            background-color: #f0f0f0; /* Lighter background color for the conversation div */
+            height: 15em;
+            color: black;
+        }
+
+        #conversation::-webkit-scrollbar {
+            width: 5px; /* Adjust the width of the scrollbar (Chrome, Safari) */
+        }
+
+        #startRecording {
+           position: absolute; /* Set a position relative to the #callContainer */
+            bottom: 10px; /* Position at the bottom of the call screen with 10px space */
+            left: 50%; /* Center the button horizontally */
+            transform: translateX(-50%); /* Center the button horizontally */
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: large;
+            cursor: pointer;
+        }
+
+        #responseAudio {
+            display: none;
+        }
+
+        #responseAudio {
+            display: none;
+        }
+        /* Standard button styles */
+       button {
+           width: 250px;
+           /* Make the buttons half the width of the parent container */
+           padding: 15px;
+           /* color: #424242; */
+           background-color: #e7a936;
+           border: 1px solid #000000;
+           border-radius: 20px;
+           cursor: pointer;
+           margin: 0 auto;
+           /* Center the buttons horizontally */
+           align-content: center;
+           display: block;
+           /* Display the buttons as block elements */
+       }
+
+   /* Button hover styles */
+   button:hover {
+     background-color: #f9edab; /* Button background color on hover */
+     color: #000000; /* Text color on hover */
+     border-color: #ffffff; /* Border color on hover */
+   }
+   /* Button hover styles */
+   button:disabled {
+     background-color: grey; /* Button background color on hover */
+     color: white; /* Text color on hover */
+     border-color: #ffffff; /* Border color on hover */
+   }

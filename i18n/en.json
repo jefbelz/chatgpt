@@ -97,5 +97,8 @@
   "COPY_PROMPT": "Copy Prompt",
   "COPY_ANSWER": "Copy Answer",
   "TYPE_ADDITIONAL_REQUEST": "Type your request to ChatGPT below",
-  "ideasStories"  : "I am ${WHOYOUARE}. You are a top-notch SMM manager who is fluent in both spoken and written ${TARGETLANGUAGE} language. Come up with 10 ideas for me for Instagram Stories for today. Feel free to ask me a few specific questions to get the right response."
+  "ideasStories"  : "I am ${WHOYOUARE}. You are a top-notch SMM manager who is fluent in both spoken and written ${TARGETLANGUAGE} language. Come up with 10 ideas for me for Instagram Stories for today. Feel free to ask me a few specific questions to get the right response.",
+   "webapp" : {
+    "welcome" : "Welcome to conversation mode."
+  }
 }
