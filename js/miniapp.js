@@ -95,8 +95,17 @@ function speak(text) {
         speechInProgress = false;
      } catch(error){
        const audioPlayer = document.getElementById('audioPlayer');
-       audioPlayer.start
-       audioPlayer.pause
+       try {
+          audioPlayer.start()
+       } catch (error) {
+          console.log("start of audio failed")
+       }
+      try {
+         audioPlayer.pause()
+      } catch (error) {
+         console.log("stop of audio failed")
+      }
+
        synthesizeSpeech(text, getBCP47LanguageCode(userLanguage));
      }
 
