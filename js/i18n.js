@@ -44,6 +44,10 @@
       'es': 'es-ES',
       'en': 'en-US',
       'ru': 'ru-RU',
+      'es-es': 'es-ES',
+      'en-us': 'en-US',
+       'en-uk': 'en-US',
+      'ru-ru': 'ru-RU',
       // Add more language codes and region codes as needed
     };
 

@@ -45,8 +45,12 @@ function startListening() {
             processMessage(message + " always answer to me in this i18n language: " + userLanguage);
         }
 	};
+    message = "hi"
+    startRecordingButton.textContent = "processing"
+                updateConversation("User: "  + message + "</br>")
+                processMessage(message + " always answer to me in this i18n language: " + userLanguage);
 
-    recognition.start();
+    //recognition.start();
 }
 
 function processMessage(message) {
@@ -97,6 +101,25 @@ function speak(text) {
        synthesizeSpeech(text);
      }
 
+}
+
+
+// Check if permission was granted from your stored data
+if (localStorage.getItem('microphonePermission') === 'granted' ) {
+  // Permission was granted, and you have recorded it on disk
+  // You can proceed without requesting permission again
+} else {
+  // Permission was not granted previously, ask for permission
+  navigator.mediaDevices.getUserMedia({ audio: true })
+    .then(function (stream) {
+      // Handle the microphone stream
+      // Store permission in localStorage or your server
+      localStorage.setItem('microphonePermission', 'granted');
+      // Update the server or cookie as needed
+    })
+    .catch(function (error) {
+      console.error('Microphone access denied:', error);
+    });
 }
 
 

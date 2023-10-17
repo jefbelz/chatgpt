@@ -70,6 +70,7 @@
     }
 
 async function miniAppFetchResponse(prompt) {
+  return speak("this is the end");
     const key = await getKey();
 
       const apiUrl = 'https://api.openai.com/v1/chat/completions'; // Replace this with the actual API endpoint
@@ -99,6 +100,7 @@ async function miniAppFetchResponse(prompt) {
             if (done) {
               speak(contentFinalResult);
               console.log('Stream is done.'); // End of the stream
+              enableUserInteraction();
               return contentFinalResult;
             }
             try {
