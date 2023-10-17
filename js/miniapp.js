@@ -95,8 +95,8 @@ function speak(text) {
         speechInProgress = false;
      } catch(error){
        const audioPlayer = document.getElementById('audioPlayer');
-       audioPlayer.start()
-       audioPlayer.pause()
+       audioPlayer.start
+       audioPlayer.pause
        synthesizeSpeech(text, getBCP47LanguageCode(userLanguage));
      }
 
@@ -140,4 +140,15 @@ function promptPrepareRequestStream(prompt, role){
    globalPrompt[globalPrompt.length-1].role = role;
    globalPrompt[globalPrompt.length-1].content = prompt;
 }
+  function playBeep() {
+    var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    var oscillator = audioContext.createOscillator();
+    oscillator.type = "sine"; // Sine wave for a simple tone
+    oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // Frequency in Hz (A4)
+    oscillator.connect(audioContext.destination);
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + 0.2); // Stop the tone after 0.2 seconds
+  }
+
+
 setupRecognition()
