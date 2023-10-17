@@ -45,12 +45,8 @@ function startListening() {
             processMessage(message + " always answer to me in this i18n language: " + userLanguage);
         }
 	};
-    message = "hi"
-    startRecordingButton.textContent = "processing"
-                updateConversation("User: "  + message + "</br>")
-                processMessage(message + " always answer to me in this i18n language: " + userLanguage);
 
-    //recognition.start();
+    recognition.start();
 }
 
 function processMessage(message) {
