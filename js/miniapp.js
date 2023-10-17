@@ -1,5 +1,6 @@
 // Check the stored permission status
 const storedPermissionStatus = localStorage.getItem('microphonePermission');
+const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
 userLanguage = navigator.language;
 const conversation = document.getElementById("conversation");
 const startRecordingButton = document.getElementById("startRecording");
@@ -25,28 +26,26 @@ function startListening() {
         welcomeMsgSpoke = true;
         speak(welcomeMsg)
     }
-    const audioPlayer = document.getElementById('audioPlayer');
-    audioPlayer.pause()
-    const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+    console.log("start listening");
+    startRecordingButton.disabled = true;
+    startRecordingButton.textContent = "listening"
+    recognition.start();
+}
+
+function setupRecognition(){
     recognition.lang = getBCP47LanguageCode(userLanguage);
     recognition.interimResults = false;
     recognition.continuous = true;
-    startRecordingButton.disabled = true;
-    startRecordingButton.textContent = "listening"
-	console.log("start listening");
-    recognition.onresult = (event) => {
-
-        const lastResult = event.results[event.results.length - 1];
-        console.log(lastResult);
-        const message = lastResult[0].transcript;
-        if (lastResult.isFinal) {
-            startRecordingButton.textContent = "processing"
-            updateConversation("User: "  + message + "</br>")
-            processMessage(message + " always answer to me in this i18n language: " + userLanguage);
-        }
-	};
-
-    recognition.start();
+     recognition.onresult = (event) => {
+       const lastResult = event.results[event.results.length - 1];
+       console.log(lastResult);
+       const message = lastResult[0].transcript;
+       if (lastResult.isFinal) {
+         startRecordingButton.textContent = "processing"
+         updateConversation("User: "  + message + "</br>")
+         processMessage(message + " always answer to me in this i18n language: " + userLanguage);
+       }
+     };
 }
 
 function processMessage(message) {
@@ -88,12 +87,16 @@ function speak(text) {
   speechInProgress = true;
   disableUserInteraction();
    try {
+
         let speech = new SpeechSynthesisUtterance();
         speech.lang = getBCP47LanguageCode(userLanguage);
         speech.text = text;
         window.speechSynthesis.speak(speech);
         speechInProgress = false;
      } catch(error){
+       const audioPlayer = document.getElementById('audioPlayer');
+       audioPlayer.start()
+       audioPlayer.pause()
        synthesizeSpeech(text, getBCP47LanguageCode(userLanguage));
      }
 
@@ -137,3 +140,4 @@ function promptPrepareRequestStream(prompt, role){
    globalPrompt[globalPrompt.length-1].role = role;
    globalPrompt[globalPrompt.length-1].content = prompt;
 }
+setupRecognition()
