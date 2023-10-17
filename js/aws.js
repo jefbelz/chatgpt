@@ -1,7 +1,9 @@
-function synthesizeSpeech(text) {
+function synthesizeSpeech(text, language) {
+    const requestBody = JSON.stringify({ body: text, language: language });  // Include the "language" parameter
+
     fetch('https://4zrpvylsou2jnnvpodhop5nkq40ftnhw.lambda-url.eu-central-1.on.aws', {
         method: 'POST',
-        body: text,
+        body: requestBody,
     })
     .then(response => {
         if (!response.ok) {
@@ -22,7 +24,7 @@ function synthesizeSpeech(text) {
                 audioPlayer.play();
             }, 1000); // 2000 milliseconds = 2 seconds
         });
-         audioPlayer.addEventListener('ended', function() {
+        audioPlayer.addEventListener('ended', function() {
             enableUserInteraction();
         });
         audioPlayer.addEventListener('error', function(e) {
@@ -34,7 +36,7 @@ function synthesizeSpeech(text) {
                     break;
                 case MediaError.MEDIA_ERR_NETWORK:
                     console.error('A network error caused the audio download to fail.');
-                updateConversation("A network error caused the audio download to fail.</br>");
+                    updateConversation("A network error caused the audio download to fail.</br>");
                     break;
                 case MediaError.MEDIA_ERR_DECODE:
                     console.error('An error occurred while decoding the audio.');
@@ -42,11 +44,11 @@ function synthesizeSpeech(text) {
                     break;
                 case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
                     console.error('The audio source is not supported.');
-                     updateConversation("The audio source is not supported.</br>");
+                    updateConversation("The audio source is not supported.</br>");
                     break;
                 default:
                     console.error('An unknown error occurred.');
-                     updateConversation("An unknown error occurred.</br>");
+                    updateConversation("An unknown error occurred.</br>");
                     break;
             }
             speechInProgress = false;
@@ -54,7 +56,3 @@ function synthesizeSpeech(text) {
     })
     .catch(error => console.error('Error:', error));
 }
-
-
-
-

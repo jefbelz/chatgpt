@@ -8,7 +8,7 @@ let speechInProgress = false;
 startRecordingButton.addEventListener("click", startListening);
 translationData = "";
 welcomeMsg = "";
-fetchTranslation(userLanguage).then(result =>{
+fetchTranslation(getI18nCode(userLanguage)).then(result =>{
     translationData = result;
     translateContent(translationData);
     welcomeMsg = getTranslation("webapp.welcome")
@@ -94,7 +94,7 @@ function speak(text) {
         window.speechSynthesis.speak(speech);
         speechInProgress = false;
      } catch(error){
-       synthesizeSpeech(text);
+       synthesizeSpeech(text, getBCP47LanguageCode(userLanguage));
      }
 
 }

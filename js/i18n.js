@@ -50,13 +50,31 @@
       'ru-ru': 'ru-RU',
       // Add more language codes and region codes as needed
     };
+    const i18nCode = regionCodeMap[languageCode.toLowerCase()];
 
-    const bcp47Code = regionCodeMap[languageCode.toLowerCase()];
-
-    if (bcp47Code) {
-      return bcp47Code;
+    if (i18nCode) {
+      return i18nCode;
     } else {
-      return 'ru-RU'; // Default to the provided language code if not found
+      return 'ru'; // Default to the provided language code if not found
+    }
+  }
+
+  function getI18nCode(languageCode) {
+    const regionCodeMap = {
+      'es-es': 'es',
+      'en-us' : 'en',
+      'ru-ru': 'ru' ,
+      'es' : 'es',
+      'en' : 'en',
+      'ru' : 'ru'
+      // Add more language codes and region codes as needed
+    };
+    const i18nCode = regionCodeMap[languageCode.toLowerCase()];
+
+    if (i18nCode) {
+      return i18nCode;
+    } else {
+      return 'ru'; // Default to the provided language code if not found
     }
   }
 
