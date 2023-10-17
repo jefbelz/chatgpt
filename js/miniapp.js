@@ -1,6 +1,11 @@
 // Check the stored permission status
 const storedPermissionStatus = localStorage.getItem('microphonePermission');
-const recognition = new SpeechRecognition()|| new webkitSpeechRecognition() ;
+recognition = "";
+try {
+     recognition = new SpeechRecognition();
+}catch(error) {
+    recognition = new webkitSpeechRecognition() ;
+}
 userLanguage = navigator.language;
 const conversation = document.getElementById("conversation");
 const startRecordingButton = document.getElementById("startRecording");
@@ -24,23 +29,28 @@ let welcomeMsgSpoke = false
 function startListening() {
     if(welcomeMsgSpoke == false){
         welcomeMsgSpoke = true;
-        speak(welcomeMsg)
+        speak(welcomeMsg);
+    } else {
+        console.log("start listening");
+        startRecordingButton.disabled = true;
+        startRecordingButton.textContent = "listening"
+        try{
+            recognition.start();
+            playBeep()
+        } catch(error){}
     }
-    console.log("start listening");
-    startRecordingButton.disabled = true;
-    startRecordingButton.textContent = "listening"
-    recognition.start();
 }
 
 function setupRecognition(){
     recognition.lang = getBCP47LanguageCode(userLanguage);
-    recognition.interimResults = true;
+    recognition.interimResults = false;
     recognition.continuous = true;
     recognition.onresult = (event) => {
        const lastResult = event.results[event.results.length - 1];
        console.log(lastResult);
        const message = lastResult[0].transcript;
        if (lastResult.isFinal) {
+         recognition.stop();
          startRecordingButton.textContent = "processing"
          updateConversation("User: "  + message + "</br>")
          processMessage(message + " ,always answer to me in this i18n language: " + userLanguage + "you don't need to tell me you get this command to answer me.");
@@ -73,9 +83,8 @@ function disableUserInteraction() {
 }
 
 function enableUserInteraction(){
-
     speechInProgress = false;
-    startRecordingButton.disabled = false;
+    speechInProgress = false;
     startListening();
 }
 
@@ -91,6 +100,11 @@ function speak(text) {
         let speech = new SpeechSynthesisUtterance();
         speech.lang = getBCP47LanguageCode(userLanguage);
         speech.text = text;
+        speech.addEventListener('end', function(event) {
+            console.log("Speech has finished speaking.");
+            enableUserInteraction()
+        });
+
         window.speechSynthesis.speak(speech);
         speechInProgress = false;
      } catch(error){
@@ -149,15 +163,13 @@ function promptPrepareRequestStream(prompt, role){
    globalPrompt[globalPrompt.length-1].role = role;
    globalPrompt[globalPrompt.length-1].content = prompt;
 }
-  function playBeep() {
-    var audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    var oscillator = audioContext.createOscillator();
-    oscillator.type = "sine"; // Sine wave for a simple tone
-    oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // Frequency in Hz (A4)
-    oscillator.connect(audioContext.destination);
+const audioContext = new (window.AudioContext || window.webkitAudioContext)(); // Create an audio context
+function playBeep() {
+    const oscillator = audioContext.createOscillator(); // Create an oscillator
+    oscillator.type = 'sine'; // Set the oscillator type to sine wave (simple tone)
+    oscillator.frequency.setValueAtTime(500, audioContext.currentTime); // Set the frequency in Hz
+    oscillator.connect(audioContext.destination); // Connect the oscillator to the audio output
     oscillator.start();
-    oscillator.stop(audioContext.currentTime + 0.2); // Stop the tone after 0.2 seconds
-  }
-
-
+    oscillator.stop(audioContext.currentTime + 0.1); // Stop the oscillator after 0.5 seconds
+}
 setupRecognition()
