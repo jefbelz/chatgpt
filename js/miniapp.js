@@ -165,11 +165,15 @@ function promptPrepareRequestStream(prompt, role){
 }
 const audioContext = new (window.AudioContext || window.webkitAudioContext)(); // Create an audio context
 function playBeep() {
-    const oscillator = audioContext.createOscillator(); // Create an oscillator
-    oscillator.type = 'sine'; // Set the oscillator type to sine wave (simple tone)
-    oscillator.frequency.setValueAtTime(500, audioContext.currentTime); // Set the frequency in Hz
-    oscillator.connect(audioContext.destination); // Connect the oscillator to the audio output
-    oscillator.start();
-    oscillator.stop(audioContext.currentTime + 0.1); // Stop the oscillator after 0.5 seconds
+    try{
+        const oscillator = audioContext.createOscillator(); // Create an oscillator
+        oscillator.type = 'sine'; // Set the oscillator type to sine wave (simple tone)
+        oscillator.frequency.setValueAtTime(500, audioContext.currentTime); // Set the frequency in Hz
+        oscillator.connect(audioContext.destination); // Connect the oscillator to the audio output
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 0.1); // Stop the oscillator after 0.5 seconds
+    } catch(error) {
+        console.log("cant play bip");
+    }
 }
 setupRecognition()
