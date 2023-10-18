@@ -171,3 +171,13 @@ function playBeep() {
     }
 }
 setupRecognition()
+
+document.addEventListener("DOMContentLoaded", function () {
+    const musicDiv = document.getElementById("musicTest");
+    const playButton = document.getElementById("startRecording");
+    const audioPlayer = document.getElementById("audioPlayer");
+
+    playButton.addEventListener("click", function () {
+        audioPlayer.play();
+    });
+});

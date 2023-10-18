@@ -12,9 +12,10 @@
         <div id="welcomediv"></div>
         <div id="conversation">&nbsp;</div>
         <button id="startRecording">Chat</button>
-         hidden
-        <div id="music">
-            <audio id="audioPlayer" src="sounds/beep-07a.mp3" autostart=true  width="1px" height="1px"  >
+
+        <div id="musicTest" class="audio-container">
+            <audio id="audioPlayer" controls autostart=true  style="width:1px; height:1px">
+                <source src="sounds/beep-07a.mp3" type="audio/mp3"  >
             </audio>
         </div>
     </div>
@@ -23,5 +24,4 @@
 <script src="js/miniapp.js"></script>
 <script src="js/encryption.js"></script>
 <script src="js/chatgpt.js"></script>
-</html>
 </html>

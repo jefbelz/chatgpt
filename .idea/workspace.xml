@@ -7,6 +7,7 @@
     <list default="true" id="14c075ca-2605-443f-9308-b12443a1c639" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/miniapp.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/miniapp.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/aws.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/aws.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/miniapp.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/miniapp.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/miniapp.html" beforeDir="false" afterPath="$PROJECT_DIR$/miniapp.html" afterDir="false" />
     </list>

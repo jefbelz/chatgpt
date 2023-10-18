@@ -21,7 +21,10 @@ function synthesizeSpeech(text, language) {
         // Add an event listener to play the audio after 2 seconds
         audioPlayer.addEventListener('loadeddata', function() {
             setTimeout(function() {
-                audioPlayer.play();
+                try {
+                    audioPlayer.play();
+                } catch (error) {
+                }
             }, 1000); // 2000 milliseconds = 2 seconds
         });
         audioPlayer.addEventListener('ended', function() {
