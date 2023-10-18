@@ -34,6 +34,8 @@ function startListening() {
         console.log("start listening");
         startRecordingButton.disabled = true;
         startRecordingButton.textContent = "listening"
+        recognition.start();
+        playBeep()
     }
 }
 
@@ -81,7 +83,6 @@ function disableUserInteraction() {
 
 function enableUserInteraction(){
     speechInProgress = false;
-    speechInProgress = false;
     startListening();
 }
 
@@ -90,22 +91,15 @@ function speak(text) {
     return; // Prevent multiple speech requests
   }
 
-
-
   speechInProgress = true;
   disableUserInteraction();
    try {
-
         let speech = new SpeechSynthesisUtterance();
         speech.lang = getBCP47LanguageCode(userLanguage);
         speech.text = text;
         speech.addEventListener('end', function(event) {
             console.log("Speech has finished speaking.");
             enableUserInteraction()
-            try{
-                recognition.start();
-                playBeep()
-            } catch(error){}
         });
 
         window.speechSynthesis.speak(speech);
@@ -128,25 +122,17 @@ function speak(text) {
 
 }
 
-
-// Check if permission was granted from your stored data
 if (localStorage.getItem('microphonePermission') === 'granted' ) {
-  // Permission was granted, and you have recorded it on disk
-  // You can proceed without requesting permission again
 } else {
   // Permission was not granted previously, ask for permission
   navigator.mediaDevices.getUserMedia({ audio: true })
     .then(function (stream) {
-      // Handle the microphone stream
-      // Store permission in localStorage or your server
-      localStorage.setItem('microphonePermission', 'granted');
-      // Update the server or cookie as needed
+       localStorage.setItem('microphonePermission', 'granted');
     })
     .catch(function (error) {
       console.error('Microphone access denied:', error);
     });
 }
-
 
 function initializeGlobalPrompt(){
   globalPrompt.length = 0;

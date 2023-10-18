@@ -10,14 +10,14 @@ body {
     align-items: center;
     height: 80vh;
     margin: 0;
-    font-size: xx-large;
+    font-size: xxx-large;
 }
 
 #callContainer {
     position: fixed;
     top: 0;
-    width: 80%;
-    min-height: 700px;
+    width: 90%;
+    min-height: 800px;
     background-color: #000;
     border: 2px solid #555;
     border-radius: 0;
@@ -37,12 +37,12 @@ body {
 
 #conversation {
     margin: 2% 0;
-    max-height: 11em;
+    max-height: 9em;
     overflow: auto;
     scrollbar-width: thin;
     scrollbar-color: #555 #333;
     background-color: #f0f0f0;
-    height: 11em;
+    height: 9em;
     color: black;
 }
 
@@ -61,7 +61,7 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: xx-large;
+    font-size: xxx-large;
     cursor: pointer;
 }
 
@@ -70,7 +70,7 @@ body {
 }
 
 button {
-    width: 250px;
+    width: 450px;
     padding: 15px;
     background-color: #e7a936;
     border: 1px solid #000000;

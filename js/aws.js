@@ -1,6 +1,6 @@
 function synthesizeSpeech(text, language) {
     const requestBody = JSON.stringify({ body: text, language: language });  // Include the "language" parameter
-
+    console.log(text)
     fetch('https://4zrpvylsou2jnnvpodhop5nkq40ftnhw.lambda-url.eu-central-1.on.aws', {
         method: 'POST',
         body: requestBody,
@@ -26,10 +26,6 @@ function synthesizeSpeech(text, language) {
         });
         audioPlayer.addEventListener('ended', function() {
             enableUserInteraction();
-            try{
-                recognition.start();
-                playBeep()
-            } catch(error){}
         });
         audioPlayer.addEventListener('error', function(e) {
             const error = e.target.error;
@@ -55,7 +51,6 @@ function synthesizeSpeech(text, language) {
                     updateConversation("An unknown error occurred.</br>");
                     break;
             }
-            speechInProgress = false;
             enableUserInteraction();
 
         });
