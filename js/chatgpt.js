@@ -72,7 +72,6 @@
 async function miniAppFetchResponse(prompt) {
   const key = await getKey();
   updateConversation("AnswerMeAi: ")
-  promptPrepareRequest(prompt, "user");
   promptPrepareRequest("", "system");
   const apiUrl = 'https://api.openai.com/v1/chat/completions'; // Replace this with the actual API endpoint
   fetch(apiUrl, {
