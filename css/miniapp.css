@@ -95,9 +95,9 @@ button:disabled {
 
 
 /* Media query for screens smaller than 768px */
-@media screen and (max-height: 768px)  {
+@media screen and (max-height: 768px) {
     body {
-        font-size: 16px; /* Adjust font size for smaller screens */
+        font-size: large; /* Adjust font size for smaller screens */
     }
 
     #callContainer {
@@ -106,9 +106,10 @@ button:disabled {
     }
 
     #callerImage {
-        width: 100px; /* Make the image responsive to the screen width */
-        height: 100px; /* Let the image scale proportionally */
+        width: 150px; /* Make the image responsive to the screen width */
+        height: 150px; /* Let the image scale proportionally */
         max-width: 200px; /* Limit the maximum width to 200px */
+        margin-top: 0px;
     }
 
     #conversation {
@@ -119,6 +120,40 @@ button:disabled {
 
     #startRecording {
         font-size: 14px; /* Adjust button font size for smaller screens */
+        width: 200px;
+    }
+
+    /* You can further adjust styles as needed for smaller screens */
+}
+/* Media query for screens smaller than 768px */
+@media screen and (max-height: 400px) {
+    body {
+        font-size: large; /* Adjust font size for smaller screens */
+    }
+
+    #callContainer {
+        width: 100%; /* Take full width of the viewport on smaller screens */
+        min-height: 400px; /* Remove minimum height */
+        padding-top: 0px;
+    }
+
+    #callerImage {
+        width: 100px; /* Make the image responsive to the screen width */
+        height: 100px; /* Let the image scale proportionally */
+         /* Limit the maximum width to 200px */
+        margin-bottom: 0px;
+    }
+
+    #conversation {
+        max-height: 4em; /* Adjust the max height for smaller screens */
+        width: 90%; /* Let the content determine the height */
+        margin-left: 5%;
+    }
+
+    #startRecording {
+        font-size: 14px; /* Adjust button font size for smaller screens */
+        width: 200px;
+        bottom: auto;
     }
 
     /* You can further adjust styles as needed for smaller screens */

@@ -1,5 +1,6 @@
 // Check the stored permission status
 const storedPermissionStatus = localStorage.getItem('microphonePermission');
+const audioPlayer = document.getElementById('audioPlayer');
 recognition = "";
 try {
      recognition = new SpeechRecognition();
@@ -28,6 +29,11 @@ let globalPrompt = new Array();
 let welcomeMsgSpoke = false
 function startListening() {
     if(welcomeMsgSpoke == false){
+        try {
+            let speech = new SpeechSynthesisUtterance();
+        } catch (error){
+            audioPlayer.play();
+        }
         welcomeMsgSpoke = true;
         speak(welcomeMsg);
     } else {
@@ -105,7 +111,6 @@ function speak(text) {
         window.speechSynthesis.speak(speech);
         speechInProgress = false;
      } catch(error){
-       const audioPlayer = document.getElementById('audioPlayer');
        try {
           audioPlayer.start()
        } catch (error) {
