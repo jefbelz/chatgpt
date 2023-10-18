@@ -36,12 +36,13 @@ function startListening() {
         }
         welcomeMsgSpoke = true;
         speak(welcomeMsg);
-        recognition.start();
     } else {
         console.log("start listening");
         startRecordingButton.disabled = true;
         startRecordingButton.textContent = "listening"
-
+        try {
+             recognition.start();
+        }
         playBeep()
     }
 }
@@ -83,9 +84,9 @@ function updateConversation(userInput) {
 function disableUserInteraction() {
     startRecordingButton.textContent = "answering..."
     startRecordingButton.disabled = true;
-    try{
-        recognition.stop();
-    } catch(error){}
+//    try{
+//        recognition.stop();
+//    } catch(error){}
 }
 
 function enableUserInteraction(){
