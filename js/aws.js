@@ -52,6 +52,8 @@ function synthesizeSpeech(text, language) {
                     break;
             }
             speechInProgress = false;
+            enableUserInteraction();
+
         });
     })
     .catch(error => console.error('Error:', error));

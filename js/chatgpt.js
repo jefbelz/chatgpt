@@ -102,7 +102,6 @@ async function miniAppFetchResponse(prompt) {
           speak(contentFinalResult);
           updateConversation("</br>")
           console.log('Stream is done.'); // End of the stream
-          enableUserInteraction();
           return contentFinalResult;
         }
         try {

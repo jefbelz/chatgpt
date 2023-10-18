@@ -34,10 +34,6 @@ function startListening() {
         console.log("start listening");
         startRecordingButton.disabled = true;
         startRecordingButton.textContent = "listening"
-        try{
-            recognition.start();
-            playBeep()
-        } catch(error){}
     }
 }
 
@@ -86,6 +82,10 @@ function enableUserInteraction(){
     speechInProgress = false;
     speechInProgress = false;
     startListening();
+    try{
+        recognition.start();
+        playBeep()
+    } catch(error){}
 }
 
 function speak(text) {
