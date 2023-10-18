@@ -26,6 +26,10 @@ function synthesizeSpeech(text, language) {
         });
         audioPlayer.addEventListener('ended', function() {
             enableUserInteraction();
+            try{
+                recognition.start();
+                playBeep()
+            } catch(error){}
         });
         audioPlayer.addEventListener('error', function(e) {
             const error = e.target.error;

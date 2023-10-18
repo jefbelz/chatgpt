@@ -72,26 +72,25 @@ function updateConversation(userInput) {
 }
 
 function disableUserInteraction() {
-  if (startRecordingButton) {
     startRecordingButton.textContent = "answering..."
     startRecordingButton.disabled = true;
-  }
+    try{
+        recognition.stop();
+    } catch(error){}
 }
 
 function enableUserInteraction(){
     speechInProgress = false;
     speechInProgress = false;
     startListening();
-    try{
-        recognition.start();
-        playBeep()
-    } catch(error){}
 }
 
 function speak(text) {
   if (speechInProgress) {
     return; // Prevent multiple speech requests
   }
+
+
 
   speechInProgress = true;
   disableUserInteraction();
@@ -103,6 +102,10 @@ function speak(text) {
         speech.addEventListener('end', function(event) {
             console.log("Speech has finished speaking.");
             enableUserInteraction()
+            try{
+                recognition.start();
+                playBeep()
+            } catch(error){}
         });
 
         window.speechSynthesis.speak(speech);
