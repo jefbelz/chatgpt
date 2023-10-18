@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14c075ca-2605-443f-9308-b12443a1c639" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/sounds/beep-07a.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/miniapp.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/miniapp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniapp.html" beforeDir="false" afterPath="$PROJECT_DIR$/miniapp.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,9 +21,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2WqPhHVonvItaZWmaLXRagclJzU" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -32,11 +34,12 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/JNBE/develop/personal/chatgpt/images"
+    "last_opened_file_path": "C:/Users/JNBE/develop/personal/chatgpt/sounds"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\JNBE\develop\personal\chatgpt\sounds" />
       <recent name="C:\Users\JNBE\develop\personal\chatgpt\images" />
     </key>
   </component>
