@@ -63,6 +63,16 @@ body {
     display: inline-block;
     font-size: xxx-large;
     cursor: pointer;
+    z-index: 999;
+}
+#audioPlayer {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    size: 50px;
 }
 
 #responseAudio {
@@ -157,3 +167,4 @@ button:disabled {
 
     /* You can further adjust styles as needed for smaller screens */
 }
+
