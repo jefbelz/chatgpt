@@ -1,7 +1,7 @@
 // Check the stored permission status
-const storedPermissionStatus = localStorage.getItem('microphonePermission');
+storedPermissionStatus = localStorage.getItem('microphonePermission');
 const audioPlayer = document.getElementById('audioPlayer');
-recognition = "";
+let recognition = "";
 try {
      recognition = new SpeechRecognition();
 }catch(error) {
@@ -22,9 +22,7 @@ fetchTranslation(getI18nCode(userLanguage)).then(result =>{
     welcomeDiv = document.getElementById("welcomediv");
     welcomeDiv.innerHTML = welcomeMsg;
 });
-
-
-
+let audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let globalPrompt = new Array();
 let welcomeMsgSpoke = false
 function startListening() {
@@ -53,6 +51,7 @@ function setupRecognition(){
     recognition.lang = getBCP47LanguageCode(userLanguage);
     recognition.interimResults = false;
     recognition.continuous = true;
+
     recognition.onresult = (event) => {
        const lastResult = event.results[event.results.length - 1];
        console.log(lastResult);
@@ -86,13 +85,11 @@ function updateConversation(userInput) {
 function disableUserInteraction() {
     startRecordingButton.textContent = "answering..."
     startRecordingButton.disabled = true;
-//    try{
-//        recognition.stop();
-//    } catch(error){}
 }
 
 function enableUserInteraction(){
     speechInProgress = false;
+    isMicApproved
     startListening();
 }
 
@@ -131,17 +128,21 @@ function speak(text) {
 
 }
 
-if (localStorage.getItem('microphonePermission') === 'granted' ) {
-} else {
-  // Permission was not granted previously, ask for permission
-  navigator.mediaDevices.getUserMedia({ audio: true })
-    .then(function (stream) {
-       localStorage.setItem('microphonePermission', 'granted');
-    })
-    .catch(function (error) {
-      console.error('Microphone access denied:', error);
+function isMicApproved(){
+    if (localStorage.getItem('microphonePermission') === 'granted' ) {
+        return true;
+    } else {
+      // Permission was not granted previously, ask for permission
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(function (stream) {
+           localStorage.setItem('microphonePermission', 'granted');
+        })
+        .catch(function (error) {
+          console.error('Microphone access denied:', error);
     });
-}
+    return false;
+}}
+
 
 function initializeGlobalPrompt(){
   globalPrompt.length = 0;
@@ -161,7 +162,7 @@ function promptPrepareRequestStream(prompt, role){
    globalPrompt[globalPrompt.length-1].role = role;
    globalPrompt[globalPrompt.length-1].content = prompt;
 }
-const audioContext = new (window.AudioContext || window.webkitAudioContext)(); // Create an audio context
+audioContext = new (window.AudioContext || window.webkitAudioContext)(); // Create an audio context
 function playBeep() {
     try{
         const oscillator = audioContext.createOscillator(); // Create an oscillator
