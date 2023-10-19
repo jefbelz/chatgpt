@@ -42,6 +42,8 @@ function startListening() {
         startRecordingButton.textContent = "listening"
         try {
              recognition.start();
+        } catch (error){
+
         }
         playBeep()
     }
