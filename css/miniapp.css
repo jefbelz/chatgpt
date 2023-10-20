@@ -66,8 +66,8 @@ body {
     z-index: 999;
 }
 #audioPlayer {
-    width: 10px;
-    height: 10px;
+    width: 1px;
+    height: 1px;
     position: absolute;
     bottom: 10px;
     left: 50%;

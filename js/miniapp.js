@@ -108,6 +108,10 @@ function speak(text) {
             console.log("Speech has finished speaking.");
             enableUserInteraction()
         });
+        speech.addEventListener('error', function(event) {
+            console.log("Speech has finished speaking.");
+            enableUserInteraction()
+        });
 
         window.speechSynthesis.speak(speech);
         speechInProgress = false;
