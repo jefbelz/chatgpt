@@ -74,6 +74,9 @@ body {
     transform: translateX(-50%);
     size: 50px;
 }
+audio-container {
+    display: none;
+}
 
 #responseAudio {
     display: none;
