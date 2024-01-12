@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" class="dark" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilia Database</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+
+    <style type="text/css" class="init"></style>
+
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" class="init"></script>
+    <style>
+        #logo {
+
+            margin-right: 30px; /* Adjust the margin as needed */
+        }
+    </style>
+</head>
+<body>
+<table class="table">
+    <tr>
+        <td><img id="logo" src="logolilia.png" alt="Logo"> </td>
+        <td><br><br><h2>Instagram followers database</h2></td>
+    </tr>
+</table>
+
+
+<table id="example" class="display table table-striped dataTable">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Country</th>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Followers</th>
+        <th>Following</th>
+        <th>Is Private</th>
+        <th>Media Count</th>
+        <th>Email</th>
+        <th>Phone Numbers</th> <!-- Merged field for phone numbers -->
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Table rows will be dynamically populated by DataTables -->
+    </tbody>
+</table>
+<button id="exportCSVBtn" class="button"><i class="fas fa-file-csv"></i> Export to CSV</button>
+
+
+<script>
+    function loadJSON() {
+       var resultDiv = document.getElementById('result');
+       var xhr = new XMLHttpRequest();
+
+       xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4) {
+             if (xhr.status === 200) {
+                try {
+                   var jsonData = JSON.parse(xhr.responseText);
+
+                    // Merge phone numbers into a single field
+                     jsonData.forEach(function(item) {
+                        var publicPhone = item.public_phone || '';
+                        var contactPhone = item.contact_phone || '';
+
+                        item.phone_numbers = (publicPhone && contactPhone) ? publicPhone + ' / ' + contactPhone : (publicPhone || contactPhone);
+                    });
+
+                    $('#example').DataTable({
+                        scrollCollapse: true,
+                        scrollY: '50vh',
+                         scrollX: true,
+                        data: jsonData,
+                        columns: [
+        { data: 'id', searchable: false },
+        { data: 'country', searchable: true },
+        { data: 'username', searchable: true },
+        { data: 'name', searchable: true },
+        { data: 'followers_count', searchable: false },
+        { data: 'following_count', searchable: false },
+        { data: 'is_private', render: function(data) {
+            return data ? 'Yes' : 'No';
+        }, searchable: true },
+        { data: 'media_count', searchable: false },
+        { data: 'email', searchable: true },
+        { data: 'phone_numbers', searchable: true },
+
+    ],
+     lengthMenu: [
+        [9, 25, 50, -1],
+        [9, 25, 50, 'All']
+    ],
+     initComplete: function () {
+        this.api().columns().every(function (index) {
+            var column = this;
+            var input = document.createElement("input");
+        var columnsToExclude = [0, 4, 5, 7];
+
+        if (columnsToExclude.indexOf(index) === -1) {
+
+            $(input).appendTo($(column.header())).on('keyup change', function () {
+                column.search($(this).val(), false, false, true).draw();
+            });
+
+        } else {
+            $("</br></br>").appendTo($(column.header()))
+        }
+        });
+    },
+
+    dom: '<"top"lp<"clear">>rt<"bottom"if<"clear">>',
+    buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                     });
+
+                   resultDiv.innerHTML = "<pre>" + JSON.stringify(jsonData, null, 2) + "</pre>";
+                } catch (error) {
+                   resultDiv.innerHTML = "Error parsing JSON file: " + error.message;
+                }
+             } else {
+                resultDiv.innerHTML = "Error loading JSON file. Status: " + xhr.status;
+             }
+          }
+       };
+
+       xhr.open('GET', 'data.json', true);
+       xhr.send();
+    }
+    function convertToCSV(data) {
+      var csv = '';
+      // Add header
+      csv += Object.keys(data[0]).join(',') + '\n';
+
+      // Add rows
+      data.forEach(function (item) {
+        csv += Object.values(item).join(',') + '\n';
+      });
+
+      return csv;
+    }
+    function downloadCSV(csvContent, fileName) {
+      var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      var link = document.createElement('a');
+
+      if (link.download !== undefined) {
+        var url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', fileName);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }
+    function exportToCSV() {
+        var table = $('#example').DataTable();
+        var visibleColumnsData = table.columns(':visible').rows({ search: 'applied' }).data().toArray();
+        var csvContent = convertToCSV(visibleColumnsData);
+        downloadCSV(csvContent, 'filtered_data.csv');
+    }
+
+    document.getElementById('exportCSVBtn').addEventListener('click', exportToCSV);
+
+
+
+loadJSON();
+</script>
+
+</body>
+</html>
