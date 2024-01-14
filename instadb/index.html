@@ -35,6 +35,7 @@
     <tr>
         <th>ID</th>
         <th>Country</th>
+        <th>City</th>
         <th>Username</th>
         <th>Name</th>
         <th>Followers</th>
@@ -76,9 +77,11 @@
                         scrollY: '50vh',
                          scrollX: true,
                         data: jsonData,
+                        responsive: true,
                         columns: [
         { data: 'id', searchable: false },
         { data: 'country', searchable: true },
+        { data: 'city', searchable: true },
         { data: 'username', searchable: true },
         { data: 'name', searchable: true },
         { data: 'followers_count', searchable: false },
@@ -162,10 +165,7 @@
         var csvContent = convertToCSV(visibleColumnsData);
         downloadCSV(csvContent, 'filtered_data.csv');
     }
-
     document.getElementById('exportCSVBtn').addEventListener('click', exportToCSV);
-
-
 
 loadJSON();
 </script>
