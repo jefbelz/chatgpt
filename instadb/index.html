@@ -19,6 +19,12 @@
 
             margin-right: 30px; /* Adjust the margin as needed */
         }
+
+    /* Add this style to prevent column wrapping */
+    .dataTables tbody td {
+      white-space: nowrap;
+    }
+
     </style>
 </head>
 <body>
@@ -88,7 +94,7 @@
         { data: 'following_count', searchable: false },
         { data: 'is_private', render: function(data) {
             return data ? 'Yes' : 'No';
-        }, searchable: true },
+        }, searchable: false },
         { data: 'media_count', searchable: false },
         { data: 'email', searchable: true },
         { data: 'phone_numbers', searchable: true },
