@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" class="dark" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilia Database</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+
+    <style type="text/css" class="init"></style>
+
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" class="init"></script>
+    <style>
+        #logo {
+            margin-right: 30px; /* Adjust the margin as needed */
+        }
+    </style>
+</head>
+<body>
+<table class="table">
+    <tr>
+        <td><img id="logo" src="logolilia.png" alt="Logo"> </td>
+        <td><br><br><h2>Reels parsed database</h2></td>
+    </tr>
+</table>
+
+<select id="userSelect">
+    <!-- Options will be dynamically populated by JavaScript -->
+</select>
+
+<table id="example" class="display table table-striped dataTable">
+    <thead>
+    <tr>
+        <th>Description</th>
+        <th>Likes</th>
+        <th>Views</th>
+        <th>Comments</th>
+        <th>Taken at</th>
+
+        <th>Text On video</th>
+        <th>Analysis</th>
+        <th>Transcription</th>
+        <th>Url</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Table rows will be dynamically populated by DataTables -->
+    </tbody>
+</table>
+
+<button id="exportCSVBtn" class="button"><i class="fas fa-file-csv"></i> Export to CSV</button>
+
+<script>
+    var jsonData; // Variable to store JSON data
+
+    function loadJSON() {
+        var resultDiv = document.getElementById('result');
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    try {
+
+                        jsonData = JSON.parse(xhr.responseText);
+
+                        // Populate the dropdown with user options
+                        var userSelect = document.getElementById('userSelect');
+                        jsonData.forEach(function (user) {
+                            var option = document.createElement('option');
+                            option.value = user.userId;
+                            option.textContent = user.user_profile;
+                            userSelect.appendChild(option);
+                        });
+
+                        // Initialize DataTable with the first user's reels
+                        var initialUserId = jsonData[0].userId;
+                        updateDataTable(initialUserId);
+
+                        // Update DataTable when user selection changes
+                        userSelect.addEventListener('change', function () {
+                            var selectedUserId = this.value;
+                            updateDataTable(selectedUserId);
+                        });
+
+                        resultDiv.innerHTML = "<pre>" + JSON.stringify(jsonData, null, 2) + "</pre>";
+                    } catch (error) {
+                        resultDiv.innerHTML = "Error parsing JSON file: " + error.message;
+                    }
+                } else {
+                    resultDiv.innerHTML = "Error loading JSON file. Status: " + xhr.status;
+                }
+            }
+        };
+
+        xhr.open('GET', 'reels.json', true);
+        xhr.send();
+    }
+
+    function updateDataTable(userId) {
+        var selectedUser = jsonData.find(function (user) {
+            return user.userId === userId;
+        });
+
+        var userReels = selectedUser.reels;
+
+        var table = $('#example').DataTable();
+
+        if ($.fn.dataTable.isDataTable('#example')) {
+            table.destroy();
+        }
+         $('#example').DataTable({
+                        scrollCollapse: true,
+                        scrollY: '50vh',
+                         scrollX: true,
+                        data: userReels,
+                        responsive: true,
+                        columns: [
+                            { data: 'text', searchable: true },
+                            { data: 'like_count', searchable: true },
+                            { data: 'view_count', searchable: true },
+                             { data: 'comment_count', searchable: true },
+                            { data: 'taken_at', searchable: true },
+
+                            { data: 'text_on_video', searchable: true },
+                            { data: 'video_analysis', searchable: false },
+                            { data: 'video_transcription', searchable: false },
+
+                            { data: 'video_url',
+                                searchable: false,
+                                render: function (data, type, row) {
+                                    return '<a href="' + data + '" target="_blank">Video</a>';
+                                }
+                                }
+
+
+                        ],
+                         lengthMenu: [
+                            [9, 25, 50, -1],
+                            [9, 25, 50, 'All']
+                        ],
+                         initComplete: function () {
+                            this.api().columns().every(function (index) {
+                                var column = this;
+                                var input = document.createElement("input");
+                            var columnsToExclude = [0,1,2,3 ,4, 5,6, 7,8,9];
+
+                            if (columnsToExclude.indexOf(index) === -1) {
+
+                                $(input).appendTo($(column.header())).on('keyup change', function () {
+                                    column.search($(this).val(), false, false, true).draw();
+                                });
+
+                            } else {
+                                $("</br></br>").appendTo($(column.header()))
+                            }
+                            });
+                        },
+
+                        dom: '<"top"lp<"clear">>rt<"bottom"if<"clear">>',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                     });
+    }
+
+    function convertToCSV(data) {
+        var csv = '';
+        // Add header
+        csv += Object.keys(data[0]).join(',') + '\n';
+
+        // Add rows
+        data.forEach(function (item) {
+            csv += Object.values(item).join(',') + '\n';
+        });
+
+        return csv;
+    }
+
+    function downloadCSV(csvContent, fileName) {
+        var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        var link = document.createElement('a');
+
+        if (link.download !== undefined) {
+            var url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', fileName);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    }
+
+    function exportToCSV() {
+        var table = $('#example').DataTable();
+        var visibleColumnsData = table.columns(':visible').rows({ search: 'applied' }).data().toArray();
+        var csvContent = convertToCSV(visibleColumnsData);
+        downloadCSV(csvContent, 'filtered_data.csv');
+    }
+
+    document.getElementById('exportCSVBtn').addEventListener('click', exportToCSV);
+
+    loadJSON();
+</script>
+</body>
+</html>
