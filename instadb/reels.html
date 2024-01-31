@@ -18,6 +18,15 @@
         #logo {
             margin-right: 30px; /* Adjust the margin as needed */
         }
+
+
+        #userSelect {
+            width: 100%;
+            max-width: 450px; /* Adjust the max-width as needed */
+            margin-bottom: 15px; /* Add some space between the select and the table */
+        }
+    </style>
+
     </style>
 </head>
 <body>
@@ -121,28 +130,68 @@
                         data: userReels,
                         responsive: true,
                         columns: [
-                            { data: 'text', searchable: true },
-                            { data: 'like_count', searchable: true },
-                            { data: 'view_count', searchable: true },
-                             { data: 'comment_count', searchable: true },
-                            { data: 'taken_at', searchable: true },
+                             { data: 'text', searchable: true, width: '20%' ,
+                             render: function (data, type, row) {
+                                // Replace \n with <br> for line breaks
+                                var formattedText = data.replace(/\n/g, '<br>');
+                                return formattedText;
+                                }
+                            },
+                            { data: 'like_count', searchable: true, width: '4%' },
+                            { data: 'view_count', searchable: true, width: '4%' },
+                            { data: 'comment_count', searchable: true, width: '4%' },
+                            {   data: 'taken_at',
+                                searchable: true,
+                                width: '10%',
+                                render: function (data, type, row) {
+                                    // Convert the ISO date string to a Date object
+                                    var date = new Date(data);
 
-                            { data: 'text_on_video', searchable: true },
-                            { data: 'video_analysis', searchable: false },
-                            { data: 'video_transcription', searchable: false },
+                                    // Format the date in the desired format (e.g., "yyyy-mm-dd HH:mm")
+                                    var formattedDate = date.toLocaleString('en-US', {
+                                        year: '2-digit',
+                                        month: '2-digit',
+                                        day: '2-digit',
+                                        hour: '2-digit',
+                                        minute: '2-digit'
+                                    });
 
-                            { data: 'video_url',
+                                    return formattedDate;
+                                }
+                            },
+                            { data: 'text_on_video', searchable: true, width: '15%' ,
+                              render: function (data, type, row) {
+                                // Replace \n with <br> for line breaks
+                                var formattedText = data.replace(/\n/g, '<br>');
+                                return formattedText;
+                                }
+                            },
+                            { data: 'video_analysis', searchable: false, width: '25%' ,
+                              render: function (data, type, row) {
+                                // Replace \n with <br> for line breaks
+                                var formattedText = data.replace(/\n/g, '<br>');
+                                return formattedText;
+                                }
+                            },
+                            { data: 'video_transcription', searchable: false, width: '15%',
+                              render: function (data, type, row) {
+                                // Replace \n with <br> for line breaks
+                                var formattedText = data.replace(/\n/g, '<br>');
+                                return formattedText;
+                                }
+                            },
+                            {
+                                data: 'video_url',
                                 searchable: false,
                                 render: function (data, type, row) {
                                     return '<a href="' + data + '" target="_blank">Video</a>';
-                                }
-                                }
-
-
+                                },
+                                width: '4%'
+                            }
                         ],
                          lengthMenu: [
-                            [9, 25, 50, -1],
-                            [9, 25, 50, 'All']
+                            [15, 25, 50, -1],
+                            [15, 25, 50, 'All']
                         ],
                          initComplete: function () {
                             this.api().columns().every(function (index) {
