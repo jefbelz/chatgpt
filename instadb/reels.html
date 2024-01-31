@@ -53,6 +53,7 @@
         <th>Text On video</th>
         <th>Analysis</th>
         <th>Transcription</th>
+
         <th>Url</th>
 
     </tr>
@@ -80,6 +81,11 @@
 
                         // Populate the dropdown with user options
                         var userSelect = document.getElementById('userSelect');
+                        var allOption = document.createElement('option');
+                        allOption.value = 'all';
+                        allOption.textContent = 'ALL';
+                        userSelect.appendChild(allOption);
+
                         jsonData.forEach(function (user) {
                             var option = document.createElement('option');
                             option.value = user.userId;
@@ -89,6 +95,7 @@
 
                         // Initialize DataTable with the first user's reels
                         var initialUserId = jsonData[0].userId;
+                        userSelect.value=initialUserId
                         updateDataTable(initialUserId);
 
                         // Update DataTable when user selection changes
@@ -112,116 +119,70 @@
     }
 
     function updateDataTable(userId) {
-        var selectedUser = jsonData.find(function (user) {
-            return user.userId === userId;
-        });
+        var userReels;
 
-        var userReels = selectedUser.reels;
-
+        if (userId === 'all') {
+            userReels = [].concat(...jsonData.map(user => user.reels));
+        } else {
+            var selectedUser = jsonData.find(function (user) {
+                return user.userId === userId;
+            });
+            userReels = selectedUser.reels;
+        }
         var table = $('#example').DataTable();
-
         if ($.fn.dataTable.isDataTable('#example')) {
             table.destroy();
         }
-         $('#example').DataTable({
-                        scrollCollapse: true,
-                        scrollY: '50vh',
-                         scrollX: true,
-                        data: userReels,
-                        responsive: true,
-                        columns: [
-                             { data: 'text', searchable: true, width: '20%' ,
-                             render: function (data, type, row) {
-                                // Replace \n with <br> for line breaks
-                                var formattedText = data.replace(/\n/g, '<br>');
-                                return formattedText;
-                                }
-                            },
-                            { data: 'like_count', searchable: true, width: '4%' },
-                            { data: 'view_count', searchable: true, width: '4%' },
-                            { data: 'comment_count', searchable: true, width: '4%' },
-                            {   data: 'taken_at',
-                                searchable: true,
-                                width: '10%',
-                                render: function (data, type, row) {
-                                    // Convert the ISO date string to a Date object
-                                    var date = new Date(data);
 
-                                    // Format the date in the desired format (e.g., "yyyy-mm-dd HH:mm")
-                                    var formattedDate = date.toLocaleString('en-US', {
-                                        year: '2-digit',
-                                        month: '2-digit',
-                                        day: '2-digit',
-                                        hour: '2-digit',
-                                        minute: '2-digit'
-                                    });
+        $('#example').DataTable({
+            scrollCollapse: true,
+            scrollY: '50vh',
+            scrollX: true,
+            data: userReels,
+            responsive: true,
+            columns: [
+                { data: 'text', searchable: true },
+                { data: 'like_count', searchable: true },
+                { data: 'view_count', searchable: true },
+                { data: 'comment_count', searchable: true },
+                { data: 'taken_at', searchable: true },
+                { data: 'text_on_video', searchable: true },
+                { data: 'video_analysis', searchable: false },
+                { data: 'video_transcription', searchable: false },
+                { data: 'video_url',
+                    searchable: false,
+                    render: function (data, type, row) {
+                        return '<a href="' + data + '" target="_blank">Video</a>';
+                    }
+                }
+            ],
+            lengthMenu: [
+                [15, 25, 50, -1],
+                [15, 25, 50, 'All']
+            ],
+            initComplete: function () {
+                this.api().columns().every(function (index) {
+                    var column = this;
+                    var input = document.createElement("input");
+                    var columnsToExclude = [0,1,2,3 ,4, 5,6, 7,8,9];
 
-                                    return formattedDate;
-                                }
-                            },
-                            { data: 'text_on_video', searchable: true, width: '15%' ,
-                              render: function (data, type, row) {
-                                // Replace \n with <br> for line breaks
-                                var formattedText = data.replace(/\n/g, '<br>');
-                                return formattedText;
-                                }
-                            },
-                            { data: 'video_analysis', searchable: false, width: '25%' ,
-                              render: function (data, type, row) {
-                                // Replace \n with <br> for line breaks
-                                var formattedText = data.replace(/\n/g, '<br>');
-                                return formattedText;
-                                }
-                            },
-                            { data: 'video_transcription', searchable: false, width: '15%',
-                              render: function (data, type, row) {
-                                // Replace \n with <br> for line breaks
-                                var formattedText = data.replace(/\n/g, '<br>');
-                                return formattedText;
-                                }
-                            },
-                            {
-                                data: 'video_url',
-                                searchable: false,
-                                render: function (data, type, row) {
-                                    return '<a href="' + data + '" target="_blank">Video</a>';
-                                },
-                                width: '4%'
-                            }
-                        ],
-                         lengthMenu: [
-                            [15, 25, 50, -1],
-                            [15, 25, 50, 'All']
-                        ],
-                         initComplete: function () {
-                            this.api().columns().every(function (index) {
-                                var column = this;
-                                var input = document.createElement("input");
-                            var columnsToExclude = [0,1,2,3 ,4, 5,6, 7,8,9];
-
-                            if (columnsToExclude.indexOf(index) === -1) {
-
-                                $(input).appendTo($(column.header())).on('keyup change', function () {
-                                    column.search($(this).val(), false, false, true).draw();
-                                });
-
-                            } else {
-                                $("</br></br>").appendTo($(column.header()))
-                            }
-                            });
-                        },
-
-                        dom: '<"top"lp<"clear">>rt<"bottom"if<"clear">>',
-                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-                     });
+                    if (columnsToExclude.indexOf(index) === -1) {
+                        $(input).appendTo($(column.header())).on('keyup change', function () {
+                            column.search($(this).val(), false, false, true).draw();
+                        });
+                    } else {
+                        $("</br></br>").appendTo($(column.header()))
+                    }
+                });
+            },
+            dom: '<"top"lp<"clear">>rt<"bottom"if<"clear">>',
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        });
     }
 
     function convertToCSV(data) {
         var csv = '';
-        // Add header
         csv += Object.keys(data[0]).join(',') + '\n';
-
-        // Add rows
         data.forEach(function (item) {
             csv += Object.values(item).join(',') + '\n';
         });
@@ -254,6 +215,7 @@
     document.getElementById('exportCSVBtn').addEventListener('click', exportToCSV);
 
     loadJSON();
+
 </script>
 </body>
 </html>
