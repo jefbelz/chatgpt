@@ -44,17 +44,18 @@
 <table id="example" class="display table table-striped dataTable">
     <thead>
     <tr>
-        <th>Description</th>
+        <th>User</th>
+        <th>URL</th>
+        <th>Caption</th>
         <th>Likes</th>
         <th>Views</th>
         <th>Comments</th>
         <th>Taken at</th>
-
         <th>Text On video</th>
         <th>Analysis</th>
         <th>Transcription</th>
-
-        <th>Url</th>
+        <th>Video</th>
+        <th>Duration</th>
 
     </tr>
     </thead>
@@ -141,30 +142,82 @@
             data: userReels,
             responsive: true,
             columns: [
-                { data: 'text', searchable: true },
-                { data: 'like_count', searchable: true },
-                { data: 'view_count', searchable: true },
-                { data: 'comment_count', searchable: true },
-                { data: 'taken_at', searchable: true },
-                { data: 'text_on_video', searchable: true },
-                { data: 'video_analysis', searchable: false },
-                { data: 'video_transcription', searchable: false },
+                { data: 'username', searchable: true, width: '4%' },
+                { data: 'url',
+                    searchable: false,
+                    render: function (data, type, row) {
+                        return '<a href="' + data + '" target="_blank">reel</a>';
+                    }, width: '4%'
+                },
+                {
+                 data: 'text',
+                 searchable: true,
+                 width: '10%',
+                    render: function (data, type, row) {
+                        var formattedText = data.replace(/\n/g, '<br>');
+                        return formattedText;
+                    }
+                },
+                { data: 'like_count', searchable: true, width: '4%' ,  render: function (data, type, row) {
+                    return data.toLocaleString(); // Example: 1,234
+                }},
+                { data: 'view_count', searchable: true, width: '4%'   ,  render: function (data, type, row) {
+                    return data.toLocaleString(); // Example: 1,234
+                }},
+                { data: 'comment_count', searchable: true, width: '4%'  ,  render: function (data, type, row) {
+                    return data.toLocaleString(); // Example: 1,234
+                }},
+                { data: 'taken_at', searchable: true, width: '4%',
+                  render: function (data, type, row) {
+                    // Convert the ISO date string to a Date object
+                    var date = new Date(data);
+                    var formattedDate = date.toLocaleString('en-RU', {
+                        year: '2-digit',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+
+                    return formattedDate;
+                  }
+                },
+                { data: 'text_on_video', searchable: true, width: '15%'  ,
+                    render: function (data, type, row) {
+                        var formattedText = data.replace(/\n/g, '<br>');
+                        return formattedText;
+                    }
+                },
+                { data: 'video_analysis', searchable: false ,width: '25%' ,
+                    render: function (data, type, row) {
+                        var formattedText = data.replace(/\n/g, '<br>');
+                        return formattedText;
+                    }
+                },
+                { data: 'video_transcription', searchable: false , width: '15%' ,
+                    render: function (data, type, row) {
+                        var formattedText = data.replace(/\n/g, '<br>');
+                        return formattedText;
+                    }
+                },
+
                 { data: 'video_url',
                     searchable: false,
                     render: function (data, type, row) {
                         return '<a href="' + data + '" target="_blank">Video</a>';
-                    }
-                }
+                    }, width: '4%'
+                },
+                { data: 'video_duration', searchable: false , width: '4%' },
             ],
             lengthMenu: [
-                [15, 25, 50, -1],
-                [15, 25, 50, 'All']
+                [20, 50, -1],
+                [20, 50, 'All']
             ],
             initComplete: function () {
                 this.api().columns().every(function (index) {
                     var column = this;
                     var input = document.createElement("input");
-                    var columnsToExclude = [0,1,2,3 ,4, 5,6, 7,8,9];
+                    var columnsToExclude = [0,1,2,3 ,4, 5,6, 7,8,9,10,11];
 
                     if (columnsToExclude.indexOf(index) === -1) {
                         $(input).appendTo($(column.header())).on('keyup change', function () {
