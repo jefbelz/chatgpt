@@ -19,7 +19,7 @@
     <style>
         #logo {
 
-            margin-right: 30px; /* Adjust the margin as needed */
+            margin-right: 10px; /* Adjust the margin as needed */
         }
 
     /* Add this style to prevent column wrapping */
@@ -30,7 +30,7 @@
     </style>
 </head>
 <body>
-<table class="table">
+<table >
     <tr>
         <td><img id="logo" src="logolilia.png" alt="Logo"> </td>
         <td><br><br><h2>Instagram followers database</h2></td>
@@ -84,51 +84,37 @@
                         data: jsonData,
                         responsive: true,
                         columns: [
-        { data: 'username', searchable: true },
+                            { data: 'username', searchable: true },
 
-        { data: 'country', searchable: true },
-        { data: 'city', searchable: true },
-        { data: 'name', searchable: true },
-        { data: 'followers_count', searchable: false },
-        { data: 'following_count', searchable: false },
-        { data: 'is_private', render: function(data) {
-            return data ? 'Yes' : 'No';
-        }, searchable: false },
-        { data: 'media_count', searchable: false },
-        { data: 'email', searchable: true },
-        { data: 'phone_numbers', searchable: true },
+                            { data: 'country', searchable: true },
+                            { data: 'city', searchable: true },
+                            { data: 'name', searchable: true },
+                            { data: 'followers_count', searchable: false },
+                            { data: 'following_count', searchable: false },
+                            { data: 'is_private', render: function(data) {
+                                return data ? 'Yes' : 'No';
+                            }, searchable: false },
+                            { data: 'media_count', searchable: false },
+                            { data: 'email', searchable: true },
+                            { data: 'phone_numbers', searchable: true },
 
-    ],
-     lengthMenu: [
-        [9, 25, 50, -1],
-        [9, 25, 50, 'All']
-    ],
-     initComplete: function () {
-        this.api().columns().every(function (index) {
-            var column = this;
-            var input = document.createElement("input");
-        var columnsToExclude = [0, 4, 5, 7];
-
-        if (columnsToExclude.indexOf(index) === -1) {
-
-            $(input).appendTo($(column.header())).on('keyup change', function () {
-                column.search($(this).val(), false, false, true).draw();
-            });
-
-        } else {
-            $("</br></br>").appendTo($(column.header()))
-        }
-        });
-    },
-
-      dom: 'B<"top"fl>rt<"bottom"ip><"clear">',
-            fixedColumns: true,
-            fixedHeader: true,
-            rowReorder: true,
-            colReorder: true,
-            select: true,
-            buttons: ['copy', 'csv', 'excel', 'pdf', 'print','createState', 'savedStates']
-                     });
+                        ],
+                         lengthMenu: [
+                            [ 25, 50,100, -1],
+                            [ 25, 50, 100,'All']
+                        ],
+                       searchPanes: {
+                                columns: [1,2,3,6]
+                            },
+                         responsive: true,
+                         dom: 'PB<"top"l>rt<"bottom"ip><"clear">',
+                                fixedColumns: true,
+                                fixedHeader: true,
+                                rowReorder: true,
+                                colReorder: true,
+                                select: true,
+                                buttons: ['copy', 'csv', 'excel', 'pdf', 'print','createState', 'savedStates']
+                                         });
 
                    resultDiv.innerHTML = "<pre>" + JSON.stringify(jsonData, null, 2) + "</pre>";
                 } catch (error) {
