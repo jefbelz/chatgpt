@@ -11,6 +11,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-1.13.8/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/cr-1.7.0/fc-4.3.0/fh-3.4.0/kt-2.11.0/r-2.5.0/sc-2.3.0/sp-2.2.0/sl-1.7.0/sr-1.3.0/datatables.min.js"></script>    <style type="text/css" class="init"></style>
+    <script src="https://cdn.datatables.net/rowgroup/1.4.1/js/dataTables.rowGroup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
        <script type="text/javascript" class="init"></script>
     <style>
         #logo {
@@ -20,6 +24,46 @@
     .dataTables tbody td {
       white-space: nowrap;
     }
+
+        .inlineModal {
+         max-width:500px;
+         margin-left: 1px;
+         border: '1px solid #ccc';
+        }
+
+        /* Add this style to prevent column wrapping */
+.dataTables tbody td {
+    white-space: nowrap;
+}
+
+/* Add this style to ensure the modal is positioned correctly */
+#userDetailsModal {
+    position: fixed;
+}
+
+/* Add this style to adjust the layout of the reels table */
+#example {
+    margin-left: 20px; /* Adjust the left margin to match the modal */
+}
+        /* Add this style to adjust the layout of the user details container */
+#userDetailsContainer {
+    width: 400px; /* Adjust the width as needed */
+    margin-right: 20px; /* Adjust the right margin as needed */
+    overflow-y: auto; /* Add a scrollbar if needed */
+    float: left; /* Float the container to the left */
+}
+
+/* Add this style to adjust the layout of the DataTable container */
+#dataTableContainer {
+    margin-left: 400px; /* Adjust the left margin to match the user details container width */
+}
+
+/* Add this style to ensure the grouped row is properly aligned */
+.username-cell {
+    vertical-align: top;
+}
+
+
     </style>
 
     </style>
@@ -56,176 +100,57 @@
     <!-- Table rows will be dynamically populated by DataTables -->
     </tbody>
 </table>
-<script>
- var jsonData; // Variable to store JSON data
 
- function loadJSON() {
-     var resultDiv = document.getElementById('result');
-     var xhr = new XMLHttpRequest();
+ <div class="modal" id="userDetailsModal" tabindex="-1" role="dialog">
+         <div class="modal-dialog inlineModal" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+               <div class="modal-body">
+                   <div class="card">
+                       <div class="row g-0">
+                           <div class="col-md-4">
+                               <img src="" class="card-img-top" id="modalPicture" alt="User Profile Picture"  crossorigin="anonymous">
+                           </div>
+                           <div class="col-md-8">
+                               <div class="card-body">
+                                   <h5 class="card-title" id="modalFullName"></h5>
+                                   <p class="card-text" id="modalCategory"></p>
+                                   <p class="card-text" id="modalBiography"></p>
+                               </div>
+                           </div>
+                       </div>
+                       <ul class="list-group list-group-flush">
+                           <table>
+                               <tr>
+                           <td><li class="list-group-item d-flex justify-content-between align-items-center">
+                               <strong>Followers:</strong>
+                               <span class="badge bg-primary rounded-pill" id="modalFollowers"></span>
+                           </li></td>
+                           <td><li class="list-group-item d-flex justify-content-between align-items-center">
+                               <strong>Following:</strong>
+                               <span class="badge bg-primary rounded-pill" id="modalFollowing"></span>
+                           </li></td></tr>
+                           </table>
+                           <li class="list-group-item d-flex justify-content-between align-items-center">
+                               <strong>Contact Phone:</strong>
+                               <span id="modalPhone"></span>
+                           </li>
+                           <!-- Add more properties as needed... -->
+                       </ul>
+                   </div>
+               </div>
 
-     xhr.onreadystatechange = function() {
-         if (xhr.readyState === 4) {
-             if (xhr.status === 200) {
-                 try {
-
-                     var jsonData = JSON.parse(xhr.responseText);
-                     console.log(jsonData)
-
-
-                     $('#example').DataTable({
-                         data: jsonData,
-                         columns: [{
-                                 data: 'username',
-                                 searchable: true,
-                                 width: '4%',
-
-                             },
-                             {
-                                 data: 'url',
-                                 searchable: true,
-                                 render: function(data, type, row) {
-                                     return '<a href="' + data + '" target="_blank">reel</a>';
-                                 },
-                                 width: '4%'
-                             },
-
-                               {
-                                 data: 'like_count',
-                                 searchable: true,
-                                 width: '4%',
-                                 render: function(data, type, row) {
-                                     return data.toLocaleString(); // Example: 1,234
-                                 }
-                             },
-                             {
-                                 data: 'view_count',
-                                 searchable: true,
-                                 width: '4%',
-                                 render: function(data, type, row) {
-                                     return data.toLocaleString(); // Example: 1,234
-                                 }
-                             },
-                             {
-                                 data: 'comment_count',
-                                 searchable: true,
-                                 width: '4%',
-                                 render: function(data, type, row) {
-                                     return data.toLocaleString(); // Example: 1,234
-                                 }
-                             },
-                             {
-                                 data: 'taken_at',
-                                 searchable: true,
-                                 width: '4%',
-                                 render: function(data, type, row) {
-                                     // Convert the ISO date string to a Date object
-                                     var date = new Date(data);
-                                     var formattedDate = date.toLocaleString('en-RU', {
-                                         year: '2-digit',
-                                         month: '2-digit',
-                                         day: '2-digit',
-                                         hour: '2-digit',
-                                         minute: '2-digit'
-                                     });
-
-                                     return formattedDate;
-                                 }
-                             },{
-                                 data: 'video_analysis',
-                                 searchable: false,
-                                 width: '16%',
-                                 render: function(data, type, row) {
-                                     var formattedText = data.replace(/\n/g, '<br>');
-                                     return formattedText;
-                                 }
-                             },
-                             {
-                                 data: 'video_transcription',
-                                 searchable: false,
-                                 width: '17%',
-                                 render: function(data, type, row) {
-                                     var formattedText = data.replace(/\n/g, '<br>');
-                                     return formattedText;
-                                 }
-                             },
-                             {
-                                 data: 'text_on_video',
-                                 width: '15%',
-                                 render: function(data, type, row) {
-                                     var formattedText = data.replace(/\n/g, '<br>');
-                                     return formattedText;
-                                 }
-                             },
-                             {
-                                 data: 'text',
-                                 searchable: true,
-                                 width: '17%',
-                                 render: function(data, type, row) {
-                                     var formattedText = data.replace(/\n/g, '<br>');
-                                     return formattedText;
-                                 }
-                             },
-
-
-
-                             {
-                                 data: 'video_url',
-                                 searchable: false,
-                                 render: function(data, type, row) {
-                                     return '<a href="' + data + '" target="_blank">Video</a>';
-                                 },
-                                 width: '4%'
-                             },
-                             {
-                                 data: 'video_duration',
-                                 searchable: false,
-                                 width: '4%'
-                             },
-                         ],
-                         lengthMenu: [
-                             [20, 50, -1],
-                             [20, 50, 'All']
-                         ],
-                         scrollCollapse: true,
-                         scrollY: '50vh',
-                         scrollX: true,
-                          scrollX: '50vh',
-                          searchPanes: {
-                                threshold: 0.5
-                            },
-                          columnDefs: [
-                              {
-                                    searchPanes: {
-                                        show: true
-                                    },
-                                    targets: [0]
-                                }
-                            ],
-
-                         responsive: true,
-                         dom: 'PB<"top"l>rt<"bottom"ip><"clear">',
-                         fixedColumns: true,
-                         fixedHeader: true,
-                         rowReorder: true,
-                         colReorder: true,
-                         select: true,
-                         buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'createState', 'savedStates']
-                     });
-                     resultDiv.innerHTML = "<pre>" + JSON.stringify(jsonData, null, 2) + "</pre>";
-                 } catch (error) {
-                     resultDiv.innerHTML = "Error parsing JSON file: " + error.message;
-                 }
-             } else {
-                 resultDiv.innerHTML = "Error loading JSON file. Status: " + xhr.status;
-             }
-         }
-     };
-     xhr.open('GET', 'reels.json', true);
-     xhr.send();
-}
-
-loadJSON();
-
-</script>
+               <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+    </div>
+<script src="reels.js"></script>
 </body>
 </html>
