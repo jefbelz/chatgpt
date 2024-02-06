@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Lilia Database</title>
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
@@ -14,57 +15,58 @@
     <script src="https://cdn.datatables.net/rowgroup/1.4.1/js/dataTables.rowGroup.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
 
        <script type="text/javascript" class="init"></script>
     <style>
         #logo {
             margin-right: 10px; /* Adjust the margin as needed */
         }
-    /* Add this style to prevent column wrapping */
-    .dataTables tbody td {
-      white-space: nowrap;
-    }
-
         .inlineModal {
-         max-width:500px;
+<!--         max-width:500px;-->
          margin-left: 1px;
          border: '1px solid #ccc';
         }
+    #example td {
+      white-space: nowrap;
+       padding: 3px;
+       text-align:left;
+    }
+.user-details-container {
+background-color: #6c757d;
+    align: right;
+    white-space: wrap;
+        display: flex;
+        height: 100%;
+        width: 97vw;
+    }
 
-        /* Add this style to prevent column wrapping */
-.dataTables tbody td {
-    white-space: nowrap;
+.left-pane {
+    width: 30%;
+    padding: 10px;
+    overflow-y: auto; /* Add scroll bar if content exceeds height */
 }
 
-/* Add this style to ensure the modal is positioned correctly */
-#userDetailsModal {
-    position: fixed;
+.right-pane {
+    width: 70%;
+    padding: 10px;
+    overflow-y: auto; /* Add scroll bar if content exceeds height */
 }
+ .list-group-item {
+    display: flex;
 
-/* Add this style to adjust the layout of the reels table */
-#example {
-    margin-left: 20px; /* Adjust the left margin to match the modal */
-}
-        /* Add this style to adjust the layout of the user details container */
-#userDetailsContainer {
-    width: 400px; /* Adjust the width as needed */
-    margin-right: 20px; /* Adjust the right margin as needed */
-    overflow-y: auto; /* Add a scrollbar if needed */
-    float: left; /* Float the container to the left */
-}
+  }
 
-/* Add this style to adjust the layout of the DataTable container */
-#dataTableContainer {
-    margin-left: 400px; /* Adjust the left margin to match the user details container width */
-}
-
-/* Add this style to ensure the grouped row is properly aligned */
-.username-cell {
-    vertical-align: top;
-}
-
-
-    </style>
+  .list-group-item strong { white-space: nowrap;
+    width: 110px; /* Set a fixed width for the labels */
+    display: inline-block; /* Make labels display as blocks */
+    margin-right: 10px; /* Add some margin for spacing between labels and content */
+  }
+  .list-group-item label { white-space: nowrap;
+    width: calc(100% - 110px); /* Set a fixed width for the labels */
+    white-space: wrap;
+    text-align: justify;
+  }
 
     </style>
 </head>
@@ -75,82 +77,103 @@
         <td><br><br><h2>Reels parsed database</h2></td>
     </tr>
 </table>
-<table id="example" class="display compact table-striped dataTable" >
-    <thead>
-    <tr>
-        <th>User</th>
-        <th >URL</th>
-        <th>Likes</th>
-        <th>Views</th>
-        <th>Comments</th>
-        <th>Taken at</th>
+<div style="width: 100%; margin: auto;"> <!-- Set a fixed width for the container -->
+    <table id="example" class="dataTable display  table-striped ">
+        <thead>
+        <tr>
+            <th>User</th>
+            <th >URL</th>
+            <th>Likes</th>
+            <th>Views</th>
+            <th>Comments</th>
+            <th >Taken at</th>
+            <th>Duration</th>
+            <th>Engagement Rate</th>
+            <th>Analysis</th>
+            <th>Transcription</th>
+            <th>Text On video</th>
+            <th >Caption</th>
+            <th>Video</th>
 
-        <th>Analysis</th>
-        <th>Transcription</th>
-        <th>Text On video</th>
-        <th >Caption</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Table rows will be dynamically populated by DataTables -->
+        </tbody>
+    </table>
+
+</div>
 
 
-        <th>Video</th>
-        <th>Duration</th>
 
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Table rows will be dynamically populated by DataTables -->
-    </tbody>
-</table>
 
- <div class="modal" id="userDetailsModal" tabindex="-1" role="dialog">
-         <div class="modal-dialog inlineModal" role="document">
-           <div class="modal-content">
-               <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-               <div class="modal-body">
-                   <div class="card">
-                       <div class="row g-0">
-                           <div class="col-md-4">
-                               <img src="" class="card-img-top" id="modalPicture" alt="User Profile Picture"  crossorigin="anonymous">
-                           </div>
-                           <div class="col-md-8">
-                               <div class="card-body">
-                                   <h5 class="card-title" id="modalFullName"></h5>
-                                   <p class="card-text" id="modalCategory"></p>
-                                   <p class="card-text" id="modalBiography"></p>
-                               </div>
-                           </div>
-                       </div>
-                       <ul class="list-group list-group-flush">
-                           <table>
-                               <tr>
-                           <td><li class="list-group-item d-flex justify-content-between align-items-center">
-                               <strong>Followers:</strong>
-                               <span class="badge bg-primary rounded-pill" id="modalFollowers"></span>
-                           </li></td>
-                           <td><li class="list-group-item d-flex justify-content-between align-items-center">
-                               <strong>Following:</strong>
-                               <span class="badge bg-primary rounded-pill" id="modalFollowing"></span>
-                           </li></td></tr>
-                           </table>
-                           <li class="list-group-item d-flex justify-content-between align-items-center">
-                               <strong>Contact Phone:</strong>
-                               <span id="modalPhone"></span>
-                           </li>
-                           <!-- Add more properties as needed... -->
-                       </ul>
-                   </div>
-               </div>
-
-               <div class="modal-footer">
-                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-          </div>
-      </div>
+<div class="modal" id="userDetailsModal" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="exampleModalLabel">User Details</h5>-->
+<!--            </div>-->
+            <div class="modal-body">
+                <div class="user-details-container">
+                    <div class="left-pane">
+                        <div class="card">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="" class="card-img-top" id="modalPicture" alt="User Profile Picture" crossorigin="anonymous">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title" id="modalFullName"></h5>
+                                        <p class="card-text" id="modalCategory"></p>
+                                        <p class="card-text" id="modalBiography"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <strong>Followers:</strong>
+                                    <span class="badge bg-primary rounded-pill" id="modalFollowers"></span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <strong>Following:</strong>
+                                    <span class="badge bg-primary rounded-pill" id="modalFollowing"></span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <strong>Contact Phone:</strong>
+                                    <span id="modalPhone"></span>
+                                </li>
+                                <!-- Add more properties as needed... -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="right-pane">
+                        <div class="card">
+                            <ul class="list-group">
+                                <li class="list-group-item ">
+                                    <strong>Caption:</strong>
+                                    <label id="modalCaption"></label>
+                                </li>
+                                <li class="list-group-item ">
+                                    <strong>Text on Video:  </strong>
+                                    <label id="modalTextOnVideo"></label>
+                                </li>
+                                <li class="list-group-item ">
+                                    <strong>Transcription:</strong>
+                                    <label id="modalTranscription"></label>
+                                </li>
+                                <li class="list-group-item ">
+                                    <strong>Analysis:</strong>
+                                    <label id="modalAnalysis"></label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+
 <script src="reels.js"></script>
 </body>
 </html>
