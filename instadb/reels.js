@@ -109,10 +109,10 @@ function loadUsers(){
              },
              {
                  data: 'text',
-                render: function(data, type, row) {
-                      var formattedText = data.trim();
-                      return '<textarea class="form-control" rows="3"  style="width: 450px;">'+formattedText+'</textarea>';
-                  }
+                    render: function(data, type, row) {
+                     var formattedText = data.trim();
+                     return '<textarea class="form-control" rows="3"  style="width: 450px;">'+formattedText+'</textarea>';
+                 }
              },
              {
                  data: 'video_url',
@@ -142,27 +142,28 @@ function loadUsers(){
          select: true,
          buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'createState', 'savedStates'],
          columnDefs: [
-               { targets: [11], visible: false } // Hide columns 1 and 2 initially
+               { targets: [12], visible: false } // Hide columns 1 and 2 initially
              ],
-           // Event handler for cell click
+
 
      });
-    $('#example tbody').on('click', 'td:nth-child(1)', function () {
-        var cell = $(this);
-        console.log(cell)
-        var row = cell.closest('tr');
-        var username = cell.text();
+ $('#example tbody').on('click', 'td:nth-child(1)', function () {
 
-        // Find user details in userXhr based on the clicked username
-        var userDetails = users.find(user => user.username === username);
-        var reelsDetails = table.row($(this).closest('tr')).data();
+                  var cell = $(this);
+                  console.log(cell)
+                  var row = cell.closest('tr');
+                  var username = cell.text();
 
-        // Display user details in a modal or expandable row
-        if (userDetails) {
-            toggleExpandableRow(row, userDetails, reelsDetails);
+                  // Find user details in userXhr based on the clicked username
+                  var userDetails = users.find(user => user.username === username);
+                  var reelsDetails = table.row($(this).closest('tr')).data();
 
-        }
-    });
+                  // Display user details in a modal or expandable row
+                  if (userDetails) {
+                      toggleExpandableRow(row, userDetails, reelsDetails);
+
+                  }
+              })
  };
 
  function toggleExpandableRow(row, userDetails, reelsDetails) {
