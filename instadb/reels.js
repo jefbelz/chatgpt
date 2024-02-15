@@ -141,9 +141,9 @@ function loadUsers(){
          scrollCollapse: true,
          select: true,
          buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'createState', 'savedStates'],
-         columnDefs: [
-               { targets: [12], visible: false } // Hide columns 1 and 2 initially
-             ],
+//         columnDefs: [
+//               { targets: [12], visible: false } // Hide columns 1 and 2 initially
+//             ],
 
 
      });
@@ -227,7 +227,7 @@ document.getElementById('searchButton').addEventListener('click', function () {
 
 
     // Construct the URL for the request
-    var apiUrl = 'https://ae2qzcdit3mseiomj7257wnpsy0cicew.lambda-url.eu-central-1.on.aws?account=' + encodeURIComponent(searchUserValue) + '&nrReels=' + encodeURIComponent(numberOfReelsValue);
+    var apiUrl = 'https://xvzd4kqxcbg5x6yrrf7vy5fpiu0paque.lambda-url.eu-central-1.on.aws?account=' + encodeURIComponent(searchUserValue) + '&nrReels=' + encodeURIComponent(numberOfReelsValue);
 
     fetch(apiUrl)
         .then(response => response.json())
