@@ -12,7 +12,7 @@ function limitTextTo40Characters(inputText) {
 var users = ""
 function loadUsers(){
     var userXhr = new XMLHttpRequest();
-    userXhr.open('GET', 'https://eppr2sqzrbesd2uxbgfa4vqin40buvet.lambda-url.eu-central-1.on.aws/?users=true', false);
+    userXhr.open('GET', 'https://f4m7goevkzwb3wwft5wwis6k4i0sulif.lambda-url.eu-central-1.on.aws/?users=true', false);
     userXhr.send();
 
     if (userXhr.status === 200) {
@@ -26,7 +26,7 @@ function loadUsers(){
  function loadJSON() {
      var table = $('#example').DataTable({
           ajax: {
-                    url: 'https://eppr2sqzrbesd2uxbgfa4vqin40buvet.lambda-url.eu-central-1.on.aws/?reels=true',
+                    url: 'https://f4m7goevkzwb3wwft5wwis6k4i0sulif.lambda-url.eu-central-1.on.aws/?reels=true',
                     dataSrc: '' // Use an empty string to indicate that the data should be used directly without any modification
                },
          columns: [{
