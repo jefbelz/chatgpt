@@ -1,3 +1,127 @@
+var i18nEnglish = {
+    "columnUser": "User",
+    "columnURL": "URL",
+    "columnLikes": "Likes",
+    "columnViews": "Views",
+    "columnComments": "Comments",
+    "columnTakenAt": "Taken at",
+    "columnDuration": "Duration",
+    "columnEngagementRate": "Engagement Rate",
+    "columnAnalysis": "Analysis",
+    "columnTranscription": "Transcription",
+    "columnTextOnVideo": "Text On video",
+    "columnText": "Text",
+    "columnVideo": "Video",
+    "title": "База данных анализа Reels",
+    "searchLabel" : "Search",
+    "searchUserNameForm" : "Enter instagram username",
+    "searchReelsForm" : "Enter number",
+    "searchReels" : "NrReels:",
+    "searchButton" : "Search",
+  };
+  // Sample i18n object with Russian translations
+  var i18nRussian = {
+    "columnUser": "Пользователь",
+    "columnURL": "URL",
+    "columnLikes": "Лайки",
+    "columnViews": "Просмотры",
+    "columnComments": "Комментарии",
+    "columnTakenAt": "Дата",
+    "columnDuration": "Длительность",
+    "columnEngagementRate": "Уровень вовлеченности",
+    "columnAnalysis": "Анализ",
+    "columnTranscription": "Транскрипция",
+    "columnTextOnVideo": "Текст на видео",
+    "columnText": "Текст",
+    "columnVideo": "Видео",
+    "title": "Reels Database",
+      "searchLabel": "Поиск",
+      "searchUserNameForm": "Введите имя пользователя Instagram",
+      "searchReelsForm": "Введите количество",
+      "searchReels": "Количество Reels:",
+      "searchButton": "Поиск"
+  };
+var i18n = i18nRussian;
+  // Function to set DataTable language based on language parameter
+  function setDataTableLanguage(language) {
+    i18n = (language === 'english') ? i18nEnglish : i18nRussian;
+    var i18n = Object.values(i18nEnglish);
+    var table = $('#example').DataTable()
+    table.columns().header().to$().each(function(index) {
+      $(this).text(i18n[index]); // Replace 'columnLabel' with your actual column label key
+    });
+
+  }
+
+function searchNewReels(){
+
+   var searchUserValue = document.getElementById('searchUser').value;
+   var numberOfReelsValue = document.getElementById('numberOfReels').value;
+    if (searchUserValue.trim() === '' || numberOfReelsValue.trim() === '') {
+        dialog = $( "#dialog-message" )
+        dialog.dialog( "open" );
+        return;
+    }
+
+     var searchButton = $("button.btn.btn-secondary:first");
+    searchButton.click();
+    syncSleep(1000);
+    var searchButton = $("body");
+    searchButton.click();
+
+    var dtSearchDiv = document.querySelector('.dt-search');
+    dtSearchDiv.innerHTML = `
+        <div id="progressbar">
+            <div class="progress-label">Loading...</div>
+        </div>`;
+
+   $( "#progressbar" ).progressbar({
+        value: false
+   });
+    // Construct the URL for the request
+    var apiUrl = 'https://xvzd4kqxcbg5x6yrrf7vy5fpiu0paque.lambda-url.eu-central-1.on.aws?account=' + encodeURIComponent(searchUserValue) + '&nrReels=' + encodeURIComponent(numberOfReelsValue);
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+
+            console.log('Data received:', data);
+            loadUsers();
+             reloadTableAndSelectUser(searchUserValue);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        })
+        .finally(() => {
+              replaceSearchDiv();
+        });
+};
+
+function syncSleep(ms) {
+  var start = new Date().getTime();
+  while (new Date().getTime() < start + ms) {}
+}
+
+function reloadTableAndSelectUser(userName){
+    var searchButton = $("button.btn.btn-secondary:first");
+    searchButton.click();
+    var table = $('#example').DataTable();
+    table.ajax.reload();
+    var tableSearch = $('#DataTables_Table_0').DataTable()
+
+    var tableData = tableSearch.data().toArray();
+    var foundObject = tableData.find(function(item) {
+        return item.display === userName;
+    });
+    if (foundObject)
+        var foundIndex = foundObject.index;
+        tableSearch.row(':eq('+ foundIndex +')', { page: 'current' }).select()
+    syncSleep(1000);
+    var searchButton = $("body");
+    searchButton.click();
+
+}
+
 function limitTextTo40Characters(inputText) {
   inputText = inputText.replace(/\n/g, '<br>');
   if (inputText.length > 40) {
@@ -24,130 +148,184 @@ function loadUsers(){
 }
 
  function loadJSON() {
-     var table = $('#example').DataTable({
-          ajax: {
-                    url: 'https://f4m7goevkzwb3wwft5wwis6k4i0sulif.lambda-url.eu-central-1.on.aws/?reels=true',
-                    dataSrc: '' // Use an empty string to indicate that the data should be used directly without any modification
-               },
-         columns: [{
-                 data: 'username',
-
-             },
-             {
-                 data: 'url',
-                 render: function(data, type, row) {
-                     return '<a href="' + data + '" target="_blank">reel</a>';
+    var table = $('#example').DataTable({
+              ajax: {
+                url: 'https://f4m7goevkzwb3wwft5wwis6k4i0sulif.lambda-url.eu-central-1.on.aws/?reels=true',
+                dataSrc: '' // Use an empty string to indicate that the data should be used directly without any modification
+              },
+             columns: [
+                 {
+                    data: 'username',
+                    title: i18n.columnUser
                  },
-             },
+                 {
+                     data: 'url',
+                     title: i18n.columnURL,
+                     render: function(data, type, row) {
+                         return '<a href="' + data + '" target="_blank">reel</a>';
+                     },
+                 },
+                 {
+                     data: 'like_count',
+                     title: i18n.columnLikes ,
+                     render: function(data, type, row) {
+                         return data.toLocaleString(); // Example: 1,234
+                     }
+                 },
+                 {
+                     data: 'view_count',
+                      title: i18n.columnViews ,
+                     render: function(data, type, row) {
+                         return data.toLocaleString(); // Example: 1,234
+                     }
+                 },
+                 {
+                     data: 'comment_count',
+                     title: i18n.columnComments,
+                     render: function(data, type, row) {
+                         return data.toLocaleString(); // Example: 1,234
+                     }
+                 },
+                 {
+                     data: 'taken_at',
+                     title: i18n.columnTakenAt,
+                     render: function(data, type, row) {
+                         // Convert the ISO date string to a Date object
+                         var date = new Date(data);
+                         var formattedDate = date.toLocaleString('en-RU', {
+                             year: '2-digit',
+                             month: '2-digit',
+                             day: '2-digit',
+                             hour: '2-digit',
+                             minute: '2-digit'
+                         });
 
-               {
-                 data: 'like_count',
-                 render: function(data, type, row) {
-                     return data.toLocaleString(); // Example: 1,234
-                 }
-             },
-             {
-                 data: 'view_count',
-                 render: function(data, type, row) {
-                     return data.toLocaleString(); // Example: 1,234
-                 }
-             },
-             {
-                 data: 'comment_count',
-                 render: function(data, type, row) {
-                     return data.toLocaleString(); // Example: 1,234
-                 }
-             },
-             {
-                 data: 'taken_at',
-                 render: function(data, type, row) {
-                     // Convert the ISO date string to a Date object
-                     var date = new Date(data);
-                     var formattedDate = date.toLocaleString('en-RU', {
-                         year: '2-digit',
-                         month: '2-digit',
-                         day: '2-digit',
-                         hour: '2-digit',
-                         minute: '2-digit'
-                     });
-
-                     return formattedDate;
-                 }
-             },
-             {
-                data: 'video_duration'
-               },
-             {
-                data: null,
-                render: function(data, type, row) {
-                          var userDetails = users.find(user => user.username === row.username);
-                          var factor = Math.pow(10, 2);
-                         return Math.round((((row.like_count + row.comment_count)/userDetails.follower_count) * 100)* factor) / factor;
-
-                   }
-            },
-             {
-                 data: 'video_analysis',
-                 render: function(data, type, row) {
-                     var formattedText = data.trim();
-                     return '<textarea class="form-control" rows="3"  style="width: 450px;">'+formattedText+'</textarea>';
-                 }
-             },
-             {
-                 data: 'video_transcription',
-                 render: function(data, type, row) {
-                     var formattedText = data.trim();
-                     return '<textarea class="form-control" rows="3"  style="width: 450px;">'+formattedText+'</textarea>';
-                 }
-             },
-             {
-                 data: 'text_on_video',
-                   render: function(data, type, row) {
-                    var formattedText = data.trim();
-                    return '<textarea class="form-control" rows="3"  style="width: 450px;">'+formattedText+'</textarea>';
-                }
-             },
-             {
-                 data: 'text',
+                         return formattedDate;
+                     }
+                 },
+                 {
+                    data: 'video_duration',
+                    title: i18n.columnDuration
+                   },
+                 {
+                    data: null,
+                    title: i18n.columnEngagementRate,
                     render: function(data, type, row) {
-                     var formattedText = data.trim();
-                     return '<textarea class="form-control" rows="3"  style="width: 450px;">'+formattedText+'</textarea>';
-                 }
-             },
-             {
-                 data: 'video_url',
-                 render: function(data, type, row) {
-                     return '<a href="' + data + '" target="_blank">Video</a>';
-                 }
-             },
+                              var userDetails = users.find(user => user.username === row.username);
+                              var factor = Math.pow(10, 2);
+                             return Math.round((((row.like_count + row.comment_count)/userDetails.follower_count) * 100)* factor) / factor;
 
-         ],
-         lengthMenu: [
-             [20, 50, -1],
-             [20, 50, 'All']
-         ],
-          searchPanes: {
-                threshold: 0.2,
-                initCollapsed: true
+                       }
+                },
+                 {
+                     data: 'video_analysis',
+                     title: i18n.columnAnalysis ,
+                     render: function(data, type, row) {
+                         var formattedText = data.trim();
+                         return '<textarea class="form-control" rows="3"  style="width: 450px;">'+formattedText+'</textarea>';
+                     }
+                 },
+                 {
+                     data: 'video_transcription',
+                     title: i18n.columnTextOnVideo,
+                     render: function(data, type, row) {
+                         var formattedText = data.trim();
+                         return '<textarea class="form-control" rows="3"  style="width: 450px;">'+formattedText+'</textarea>';
+                     }
+                 },
+                 {
+                     data: 'text_on_video',
+                     title: i18n.columnTranscription,
+                       render: function(data, type, row) {
+                        var formattedText = data.trim();
+                        return '<textarea class="form-control" rows="3"  style="width: 450px;">'+formattedText+'</textarea>';
+                    }
+                 },
+                 {
+                     data: 'text',
+                     title: i18n.columnText ,
+                        render: function(data, type, row) {
+                         var formattedText = data.trim();
+                         return '<textarea class="form-control" rows="3"  style="width: 450px;">'+formattedText+'</textarea>';
+                     }
+                 },
+                 {
+                     data: 'video_url',
+                       title: i18n.columnVideo,
+                     render: function(data, type, row) {
+                         return '<a href="' + data + '" target="_blank">Video</a>';
+                     }
+                 },
+
+             ],language: {
+//                       searchPanes: {
+//                           clearMessage: 'Clear Filters',
+//                           emptyPanes: 'There are no panes to display. :/',
+//                           collapse: { 0: 'Search Options', _: 'Search Options (%d)' },
+//                            title: {
+//                               _: 'Filters Selected - %d',
+//                               0: 'No Filters Selected',
+//                               1: 'One Filter Selected',
+//
+//                             }
+//                       },
+                         url: '//cdn.datatables.net/plug-ins/2.0.0/i18n/ru.json',
+                               //cdn.datatables.net/plug-ins/2.0.0/i18n/es-ES.json
+                               //cdn.datatables.net/plug-ins/2.0.0/i18n/pl.json
+                   },
+                layout: {
+                    topStart: {
+                        buttons: [
+                            {
+                                extend: 'searchPanes',
+                                config: {
+                                    cascadePanes: true,
+                                    collapse: false
+                                }
+                            },
+                            'copy', 'csv', 'excel', 'pdf', 'print'
+                        ]
+                    }
+                },    columnDefs: [
+                  {
+                      searchPanes: {
+                          show: true,
+                          dtOpts: {
+                                  select: {
+                                      style: 'multi',
+                                      targets: [1,2,3]
+                                  }
+                              }
+                      },
+                      targets: [0]
+                  },
+
+              ],
+                       fixedColumns: true,
+                       fixedHeader: true,
+                       rowReorder: true,
+                       colReorder: true,
+                       scrollY: '370px',
+                       scrollX: true,
+                       scrollCollapse: true,
+                       select: true,
+
+            select: {
+                style: 'multi',
+                selector: 'td'
             },
-
-         dom: 'PB<"top"l>rt<"bottom"ip><"clear">',
-         fixedColumns: true,
-         fixedHeader: true,
-         rowReorder: true,
-         colReorder: true,
-         scrollY: '350px',
-         scrollX: true,
-         scrollCollapse: true,
-         select: true,
-         buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'createState', 'savedStates'],
-//         columnDefs: [
-//               { targets: [12], visible: false } // Hide columns 1 and 2 initially
-//             ],
+       columnDefs: [
+               { targets: [12], visible: false } // Hide columns 1 and 2 initially
+             ],
+    });
 
 
-     });
- $('#example tbody').on('click', 'td:nth-child(1)', function () {
+        table
+            .row(0)
+            .draw()
+            .searchPanes.rebuildPane();
+
+     $('#example tbody').on('click', 'td:nth-child(1)', function () {
 
                   var cell = $(this);
                   console.log(cell)
@@ -182,15 +360,7 @@ function loadUsers(){
     }
 }
 
-function formatUserDetails(userDetails) {
-    // Create HTML structure for user details
-    var html = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-    html += '<tr><td><strong>Full Name:</strong></td><td>' + userDetails.full_name + '</td></tr>';
-    html += '<tr><td><strong>Category:</strong></td><td>' + userDetails.category + '</td></tr>';
-    // Add more properties as needed...
-    html += '</table>';
-    return html;
-}
+
 
 function showModal(userDetails, reelsDetails) {
     var userModal = $('#userDetailsModal').clone();
@@ -208,45 +378,6 @@ function showModal(userDetails, reelsDetails) {
     userModal.find('#modalCaption').text(reelsDetails.text);
     return userModal.html();
 }
-
-document.getElementById('searchButton').addEventListener('click', function () {
-   var searchUserValue = document.getElementById('searchUser').value;
-   var numberOfReelsValue = document.getElementById('numberOfReels').value;
-    if (searchUserValue.trim() === '' || numberOfReelsValue.trim() === '') {
-        dialog = $( "#dialog-message" )
-        dialog.dialog( "open" );
-        return;
-    }
-
-
-   document.getElementById('progressbar').style.display = 'block';
-   $( "#progressbar" ).progressbar({
-        value: false
-   });
-   document.getElementById('searchDiv').style.display = 'none';
-
-
-    // Construct the URL for the request
-    var apiUrl = 'https://xvzd4kqxcbg5x6yrrf7vy5fpiu0paque.lambda-url.eu-central-1.on.aws?account=' + encodeURIComponent(searchUserValue) + '&nrReels=' + encodeURIComponent(numberOfReelsValue);
-
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            // Process the retrieved data, e.g., update the table with new results
-            console.log('Data received:', data);
-            loadUsers();
-        })
-        .catch(error => {
-            // Handle any errors that occurred during the fetch
-            console.error('Error fetching data:', error);
-        })
-        .finally(() => {
-            // Hide the progress bar when the request is complete
-            document.getElementById('progressbar').style.display = 'none';
-            document.getElementById('searchDiv').style.display = 'flex';
-        });
-});
-
 $( function() {
 $( "#dialog-message" ).dialog({
   modal: true,
@@ -263,3 +394,21 @@ $( "#dialog-message" ).dialog({
 
 loadUsers();
 loadJSON();
+
+function replaceSearchDiv(){
+   var dtSearchDiv = document.querySelector('.dt-search');
+   dtSearchDiv.innerHTML = `
+       <div id="searchDiv" class="searchDiv">
+           <label for="searchUser" class="form-label">` + i18n['searchLabel'] + `</label>&nbsp;
+           <input type="text" class="form-control" id="searchUser" placeholder="` + i18n['searchUserName'] + `" aria-describedby="searchButton">
+            &nbsp;
+           <label for="numberOfReels" class="form-label">` + i18n['searchReels'] + `</label>&nbsp;
+           <input type="number" class="form-control" id="numberOfReels" placeholder="` + i18n['searchReelsForm'] + `" aria-describedby="searchButton">
+            &nbsp;
+           <button class="btn btn-primary" type="button" onclick="searchNewReels()" id="searchButton">` + i18n['searchButton'] + `</button>
+       </div>`;
+
+}
+ $(document).ajaxComplete(function() {
+    replaceSearchDiv();
+});
