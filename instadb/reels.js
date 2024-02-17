@@ -400,7 +400,7 @@ function replaceSearchDiv(){
    dtSearchDiv.innerHTML = `
        <div id="searchDiv" class="searchDiv">
            <label for="searchUser" class="form-label">` + i18n['searchLabel'] + `</label>&nbsp;
-           <input type="text" class="form-control" id="searchUser" placeholder="` + i18n['searchUserName'] + `" aria-describedby="searchButton">
+           <input type="text" class="form-control" id="searchUser" placeholder="` + i18n['searchUserNameForm'] + `" aria-describedby="searchButton">
             &nbsp;
            <label for="numberOfReels" class="form-label">` + i18n['searchReels'] + `</label>&nbsp;
            <input type="number" class="form-control" id="numberOfReels" placeholder="` + i18n['searchReelsForm'] + `" aria-describedby="searchButton">
