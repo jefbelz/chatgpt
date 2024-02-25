@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="dark" data-bs-theme="dark">
-<iframe
-        src="https://chatgpt.lilia.by/IframeChatBot.html"
-        frameborder="0"
-        width="850"
-        height="100%"
-        style="position: fixed; bottom: 0; right: 0; overflow: hidden;"
-></iframe>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,13 +39,8 @@
     <link rel="stylesheet" href=css/styles.css>
 </head>
 <body>
-<table style="width:100%;" >
-    <tr>
-        <td style="width:20%"><img id="logo" src="logolilia.png" alt="Logo"> </td>
-        <td style="width:80%;text-align: center;text-valign:center"><br><br><h2>База данных анализа Reels</h2></td>
 
-    </tr>
-</table>
+
 
 <div style="width: 98%;   margin-left: 20px; margin-right: 20px;"> <!-- Set a fixed width for the container -->
     <table id="example" class="dataTable display table-striped compact" >
@@ -79,8 +68,15 @@
     </table>
 </div>
 
+<table style="width:100%;" >
+    <tr>
+        <td style="width:20%"><img id="logo" src="logolilia.png" alt="Logo"> </td>
+        <td style="width:80%;text-align: center;text-valign:center"><br><br><h2>База данных анализа Reels</h2></td>
 
+    </tr>
+</table>
 
+<div class="mydivcontent" id="loadmyapp"></div>
 
 <div class="modal" id="userDetailsModal" >
     <div class="modal-dialog" role="document">
@@ -152,6 +148,10 @@
     </p>
 </div>
 <script src="reels.js"></script>
+
+
+<div class="mydivcontent" style="z-index:9999;" id="loadmyapp"></div>
+<script src="iframe.js"></script>
 </body>
 </html>
 
