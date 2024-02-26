@@ -221,7 +221,10 @@ function loadUsers(){
                      data: 'video_analysis',
                      title: i18n.columnAnalysis ,
                      render: function(data, type, row) {
-                         var formattedText = data.trim();
+                        if (data)
+                            var formattedText = data.trim();
+                        else
+                            var formattedText = "";
                          return '<textarea class="form-control" rows="3"  style="width: 450px;">'+formattedText+'</textarea>';
                      }
                  },
@@ -229,7 +232,10 @@ function loadUsers(){
                      data: 'video_transcription',
                      title: i18n.columnTextOnVideo,
                      render: function(data, type, row) {
-                         var formattedText = data.trim();
+                         if (data)
+                             var formattedText = data.trim();
+                         else
+                             var formattedText = "";
                          return '<textarea class="form-control" rows="3"  style="width: 450px;">'+formattedText+'</textarea>';
                      }
                  },
@@ -237,7 +243,10 @@ function loadUsers(){
                      data: 'text_on_video',
                      title: i18n.columnTranscription,
                        render: function(data, type, row) {
-                        var formattedText = data.trim();
+                        if (data)
+                            var formattedText = data.trim();
+                        else
+                            var formattedText = "";
                         return '<textarea class="form-control" rows="3"  style="width: 450px;">'+formattedText+'</textarea>';
                     }
                  },
@@ -245,7 +254,10 @@ function loadUsers(){
                      data: 'text',
                      title: i18n.columnText ,
                         render: function(data, type, row) {
-                         var formattedText = data.trim();
+                        if (data)
+                            var formattedText = data.trim();
+                        else
+                            var formattedText = "";
                          return '<textarea class="form-control" rows="3"  style="width: 450px;">'+formattedText+'</textarea>';
                      }
                  },
