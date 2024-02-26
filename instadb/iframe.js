@@ -11,8 +11,8 @@ var myHtml = `
 
                     #chatbox-container {
                         font-size: small;
-                        position: absolute;
-                        bottom: 70px; /* Adjust as needed */
+                        position: fixed;
+                        bottom: 65px;
                         right: 20px;
                         width: 480px;
                         height: 750px;
