@@ -65,9 +65,11 @@ function searchNewReels(){
 
      var searchButton = $("button.btn.btn-secondary:first");
     searchButton.click();
-    syncSleep(1000);
+    syncSleep(500);
     var searchButton = $("body");
     searchButton.click();
+    syncSleep(500);
+    document.body.click();
 
     var dtSearchDiv = document.querySelector('.dt-search');
     dtSearchDiv.innerHTML = `
@@ -116,10 +118,11 @@ function reloadTableAndSelectUser(userName){
     if (foundObject)
         var foundIndex = foundObject.index;
         tableSearch.row(':eq('+ foundIndex +')', { page: 'current' }).select()
-    syncSleep(1000);
+    syncSleep(500);
     var searchButton = $("body");
     searchButton.click();
-
+    syncSleep(500);
+    document.body.click();
 }
 
 function limitTextTo40Characters(inputText) {
@@ -294,9 +297,14 @@ function loadUsers(){
                                     cascadePanes: true,
                                     collapse: false
                                 }
-                            },
-                            'copy', 'csv', 'excel', 'pdf', 'print'
+                            }
+
                         ]
+                    },
+                    bottomStart: {
+                        buttons: [
+                            'copy', 'csv', 'excel', 'pdf', 'print'
+                           ]
                     }
                 },    columnDefs: [
                   {
