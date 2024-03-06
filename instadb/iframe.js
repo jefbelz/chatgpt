@@ -68,8 +68,7 @@ var myHtml = `
                 <div id="chatbox-container">
                     <iframe id="gradio-iframe" src="https://belzarena-ffmpeg.hf.space" frameborder="0"></iframe>
                 </div>
-            </body>
-        `;
+            </body>        `;
 document.getElementById('loadmyapp').innerHTML = myHtml;
     var chatbox = document.getElementById("chatbox-container");
     var button = document.getElementById("toggle-chatbox-btn");
