@@ -47,10 +47,24 @@ var myHtml = `
                         vertical-align: baseline;
                         background: transparent;
                     }
+
+                    #toggle-chatbox-btn {
+                      display: flex;
+                      align-items: center;
+                    }
+
+                    .logo {
+                      width: 60px; /* Adjust the width of your logo as needed */
+                      margin-right: 8px; /* Adjust the margin between the logo and text as needed */
+                    }
+
                 </style>
             </head>
             <body>
-                <button id="toggle-chatbox-btn" class="btn btn-primary">Open Chat</button>
+                <button id="toggle-chatbox-btn" class="btn btn-primary">
+                    <img src="logo.png" alt="Logo" class="logo">
+                    ИИ помощник
+                </button>
                 <div id="chatbox-container">
                     <iframe id="gradio-iframe" src="https://belzarena-ffmpeg.hf.space" frameborder="0"></iframe>
                 </div>
