@@ -27,7 +27,7 @@ var myHtml = `
                     #toggle-chatbox-btn {
                         position: fixed;
                         bottom: 20px;
-                        right: 20px;
+                        right: 50px;
                         padding: 10px;
                     }
 
@@ -54,8 +54,8 @@ var myHtml = `
                     }
 
                     .logo {
-                      width: 60px; /* Adjust the width of your logo as needed */
-                      margin-right: 8px; /* Adjust the margin between the logo and text as needed */
+                      width: 50px; /* Adjust the width of your logo as needed */
+                      margin-right: 4px; /* Adjust the margin between the logo and text as needed */
                     }
 
                 </style>
@@ -76,9 +76,9 @@ document.getElementById('loadmyapp').innerHTML = myHtml;
     button.addEventListener("click", function() {
         if (chatbox.style.display === "none" || chatbox.style.display === "") {
             chatbox.style.display = "block";
-            button.innerText = "Close Chat";
+            button.innerText =  "<img src='logo.png' alt='Logo' class='logo'> закрыть";
         } else {
             chatbox.style.display = "none";
-            button.innerText = "Open Chat";
+            button.innerText = "<img src='logo.png' alt='Logo' class='logo'> ИИ помощник";
         }
     });
