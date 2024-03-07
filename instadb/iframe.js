@@ -102,10 +102,12 @@ additionalStyles.textContent = `
 
     /* Add or modify other styles as needed */
     #toggle-chatbox-btn {
-        position: fixed;
-        bottom: 20px;
-        right: 50px;
-
+       position: fixed;
+           bottom: 12px;
+           border-radius: 20px;
+           right: 75px;
+           width: 170px;
+       }
     }
 
     /* Add or modify styles for other elements as needed */
