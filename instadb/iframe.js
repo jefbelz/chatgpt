@@ -90,8 +90,8 @@ additionalStyles.textContent = `
         position: fixed;
         bottom: 85px;
         right: 20px;
-        width: 480px;
-        height: 750px;
+        width: 500px;
+        height: 825px;
         background-color: #fff;
         border: 1px solid #ccc;
         border-radius: 8px;
