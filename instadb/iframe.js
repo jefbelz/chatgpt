@@ -106,17 +106,10 @@ additionalStyles.textContent = `
            bottom: 12px;
            border-radius: 20px;
            right: 75px;
-           width: 170px;
+
+           min-width:170px;
        }
     }
-
-    /* Add or modify styles for other elements as needed */
-    iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-
     /* Simple CSS reset for the Shadow DOM */
     .mydivcontent html, body, div, iframe {
         margin: 0;
@@ -148,7 +141,7 @@ shadowRoot.innerHTML += `
         ИИ помощник
     </button>
     <div id="chatbox-container">
-        <iframe id="gradio-iframe" src="https://belzarena-ffmpeg.hf.space" frameborder="0"></iframe>
+        <iframe class="gradioIframe" id="gradio-iframe" src="https://belzarena-ffmpeg.hf.space" frameborder="0" style = " width: 100%;height: 100%; overflow-y: hidden;"></iframe>
     </div>
 `;
 
