@@ -1,7 +1,7 @@
 
 var myHtml = `
             <head>
-                <link rel="stylesheet" href="instadb/css/styles.css">
+                <link rel="stylesheet" href="https://chatgpt.lilia.by/instadb/css/styles.css">
                 <style>
                     body {
                         margin: 0;
@@ -62,7 +62,7 @@ var myHtml = `
             </head>
             <body>
                 <button id="toggle-chatbox-btn" class="btn btn-primary">
-                    <img src="logo.png" alt="Logo" class="logo">
+                    <img src="https://chatgpt.lilia.by/instadb/logo.png" alt="Logo" class="logo">
                     ИИ помощник
                 </button>
                 <div id="chatbox-container">
@@ -76,9 +76,9 @@ document.getElementById('loadmyapp').innerHTML = myHtml;
     button.addEventListener("click", function() {
         if (chatbox.style.display === "none" || chatbox.style.display === "") {
             chatbox.style.display = "block";
-            button.innerText =  "<img src='logo.png' alt='Logo' class='logo'> закрыть";
+            button.innerText =  "<img src='https://chatgpt.lilia.by/instadb/logo.png' alt='Logo' class='logo'> закрыть";
         } else {
             chatbox.style.display = "none";
-            button.innerText = "<img src='logo.png' alt='Logo' class='logo'> ИИ помощник";
+            button.innerText = "<img src='https://chatgpt.lilia.by/instadb/logo.png' alt='Logo' class='logo'> ИИ помощник";
         }
     });
