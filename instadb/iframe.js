@@ -141,7 +141,7 @@ shadowRoot.innerHTML += `
         ИИ помощник
     </button>
     <div id="chatbox-container">
-        <iframe class="gradioIframe" id="gradio-iframe" src="https://belzarena-ffmpeg.hf.space/gradio" frameborder="0" style = " width: 100%;height: 100%; overflow-y: hidden;"></iframe>
+        <iframe class="gradioIframe" id="gradio-iframe" src="https://belzarena-ffmpeg.hf.space" frameborder="0" style = " width: 100%;height: 100%; overflow-y: hidden;"></iframe>
     </div>
 `;
 
