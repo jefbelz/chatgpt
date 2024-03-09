@@ -153,7 +153,7 @@ additionalStyles.textContent = `
           border-radius: 20px;
           right: revert;
           min-width: 170px;
-          z-index: 1;
+          z-index: 9999;
           top: calc(100vh - 110px);
           bottom: 100px;
        }
