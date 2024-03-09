@@ -128,6 +128,44 @@ additionalStyles.textContent = `
         margin-right: 4px;
 
     }
+
+
+@media (max-width: 768px) {
+    #chatbox-container {
+        position: fixed;
+            bottom: 85px;
+            right: 0px;
+            width: 100vw;
+            height: 100vh;
+            background-color: #fff;
+            /* border: 1px solid #ccc; */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: none;
+            /* font-size: xx-small;
+
+        position: sticky; */
+
+    }
+        #toggle-chatbox-btn {
+            /* bottom: -20px; */
+           border-radius: 20px;
+           /* right: 50%; */
+           min-width: 170px;
+           z-index: 1;
+           top: -27px;
+           position: fixed;
+           /* height: 100px; */
+           top: calc(100vh - 100px);
+           }
+
+
+
+}
+
+
+
 `;
 
 // Append the linked stylesheet and additional styles to the Shadow DOM
