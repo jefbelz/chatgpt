@@ -154,7 +154,8 @@ additionalStyles.textContent = `
           right: revert;
           min-width: 170px;
           z-index: 1;
-          top: calc(100vh - 100px);
+          top: calc(100vh - 110px);
+          bottom: 100px;
        }
 
 }
