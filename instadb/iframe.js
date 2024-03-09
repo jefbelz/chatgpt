@@ -148,19 +148,14 @@ additionalStyles.textContent = `
         position: sticky; */
 
     }
-        #toggle-chatbox-btn {
-            /* bottom: -20px; */
-           border-radius: 20px;
-           /* right: 50%; */
-           min-width: 170px;
-           z-index: 1;
-           top: -27px;
-           position: fixed;
-           /* height: 100px; */
-           top: calc(100vh - 100px);
-           }
-
-
+    #toggle-chatbox-btn {
+      bottom: revert;
+          border-radius: 20px;
+          right: revert;
+          min-width: 170px;
+          z-index: 1;
+          top: calc(100vh - 100px);
+       }
 
 }
 
