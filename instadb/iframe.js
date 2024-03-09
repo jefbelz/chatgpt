@@ -78,12 +78,12 @@ additionalStyles.textContent = `
 
     }
     #toggle-chatbox-btn {
-      bottom: revert;
+      bottom: calc(100px - 5vh);;
           border-radius: 20px;
           right: revert;
           min-width: 170px;
           z-index: 10000;
-          top: calc(100vh - 110px);
+//          top: calc(100vh - 110px);
 
        }
 
