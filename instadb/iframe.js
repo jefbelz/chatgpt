@@ -54,6 +54,7 @@ additionalStyles.textContent = `
         width: 50px;
         height: 50px;
         margin-right: 4px;
+        min-height: 50px;
 
     }
 
