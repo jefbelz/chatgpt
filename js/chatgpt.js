@@ -156,3 +156,48 @@ async function miniAppFetchResponse(prompt) {
   });
 }
 
+
+ async function fetchResponseReels(prompt) {
+      let globalPrompt = new Array();
+      const apiUrl = "https://pis2lv2ircq2xvryj5bdkblnfa0rspzc.lambda-url.eu-central-1.on.aws/";
+      globalPrompt.length = 0;
+      globalPrompt = [{
+         role: 'system',
+         content: 'Действуй как профессиональный SMM  менеджер и reels мейкер'
+      }];
+       globalPrompt.push({
+          role: 'user',
+          content: prompt
+       });
+
+      fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          globalPrompt
+        })
+      })
+      .then(response => {
+          const reader = response.body.getReader();
+        function readStream() {
+        let contentFinalResult = "";
+          return reader.read().then(({ done, value }) => {
+            if (done) {
+              return contentFinalResult;
+            }
+            let jsonString = new TextDecoder().decode(value).replace(/data:\s*/g, '');
+             var gptAnswerDiv = document.getElementById('gptAnswer');
+             gptAnswerDiv.innerHTML = jsonString
+             document.getElementById('gptDivAnswer').style.display='block'
+            return jsonString;
+          });
+        }
+        return readStream();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        return "error";
+      });
+}

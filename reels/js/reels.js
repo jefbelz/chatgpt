@@ -29,10 +29,10 @@ var i18nEnglish = {
     "columnTakenAt": "Дата",
     "columnDuration": "Длительность",
     "columnEngagementRate": "Уровень вовлеченности",
-    "columnAnalysis": "Анализ",
-    "columnTranscription": "Транскрипция",
+    "columnAnalysis": "Описание видео",
+    "columnTranscription": "Голос на видео",
     "columnTextOnVideo": "Текст на видео",
-    "columnText": "Текст",
+    "columnText": "Текст под reels",
     "columnVideo": "Видео",
     "title": "Reels Database",
       "searchLabel": "Поиск",
@@ -415,6 +415,32 @@ $( "#dialog-message" ).dialog({
 loadUsers();
 loadJSON();
 
+function openModal() {
+   var productArea = document.getElementById('market');
+    productArea.innerHTML = ""
+    $('#gpt4Modal').modal('show');
+    document.getElementById("buttonSend").disabled = false;
+
+}
+
+async function sendToGptTheReel(){
+     document.getElementById("buttonSend").disabled = true;
+
+     var productArea = document.getElementById('market');
+     var table = $('#example').DataTable();
+     var selectedRows = table.rows({ selected: true }).data().toArray();
+     productArea.style.enabled = "False";
+     prompt = populateText(productArea.value, selectedRows)
+     const answer = await fetchResponseReels(prompt);
+
+
+
+}
+
+function closeModal() {
+    document.getElementById('gptDivAnswer').style.display='None'
+    $('#gpt4Modal').modal('hide');
+  }
 function replaceSearchDiv(){
    var dtSearchDiv = document.querySelector('.dt-search');
    dtSearchDiv.innerHTML = `
@@ -432,3 +458,38 @@ function replaceSearchDiv(){
  $(document).ajaxComplete(function() {
     replaceSearchDiv();
 });
+
+
+
+function populateText(product, reels) {
+//  let text = `Действуй как профессиональный SMM  менеджер и reels мейкер. Далее будут приведены несколько сценариев роликов reels с описанием о чем видеоряд, а также субтитрами.
+//              Эти reels  являются популярными  и набрали много тысяч просмотров. Тебе необходимо проанализировать сюжеты, описание, субтитры, длительность ролика, заголовок, смыслы и предложить минимум 5 идей со сценариями для моего продукта.
+//              Мой продукт - это ${product}
+//                Учитывай боль, желания, потребности моей целевой аудитории, чтобы максимально хорошо адаптировать сюжет ролика под мой продукт или услугу.
+//                Обрати внимание, что крайне важным для успеха reels, чтобы он набрал много просмотров, является цепляющий заголовок.
+//                Предложи не менее 5 сценариев для привлечения внимания к моему продукту.
+//                Предоставь, пожалуйста, ответ по следующей структуре: номер сценария,цепляющий заголовок, короткое описание видеоряда, субтитры.
+//                Далее привожу сценарии  и описание видеоряд популярных видео.\n
+//`;
+
+  let reelsData = `Duration,views,Описание видеоряда,описание, текст на видео\n`;
+  reels.forEach(reel => {
+    reelsData += `${reel.video_duration}, ${reel.view_count}, ${reel.video_analysis.replace(/\n/g, "<br>")}, ${reel.text.replace(/\n/g, "<br>")},  ${reel.video_transcription.replace(/\n/g, "<br>")}\n\n`;
+  });
+
+
+     let text = `Далее будут приведены несколько сценариев роликов reels с описанием о чем видеоряд, а также субтитрами. Эти reels  являются популярными  и набрали много тысяч просмотров. Тебе необходимо проанализировать сюжеты, описание, субтитры, длительность ролика, заголовок, смыслы и действовать как первоклассный специалист по reels. Твоя задача проанализировать приведенные ниже reels  и составить как  минимум 5 идей со сценариями для моего продукта.
+                 Мой продукт - это ${product}
+                \n
+                 Далее привожу сценарии  и описание видеоряд популярных видео.
+                 ${reelsData}\n
+                 \n
+                 Учитывай боль, желания, потребности моей целевой аудитории, чтобы максимально хорошо адаптировать сюжет ролика под мой продукт или услугу. Очень важно адаптировать идеи из сценариев ниже под мою аудиторию и мой продукт. Будь креативным и адаптируй сценарии, которые описаны выше, под моих потенциальных клиентов.
+                 Обрати внимание, что крайне важным для успеха reels, чтобы он набрал много просмотров, является цепляющий заголовок. Заголовок должен привлекать внимание, быть интригующим или эмоциональным. Избегай общий фраз и клише.
+                 Предложи не менее 5 сценариев для привлечения внимания к моему продукту.\n\n
+    `;
+
+
+
+  return text;
+}

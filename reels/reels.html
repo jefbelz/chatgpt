@@ -36,12 +36,13 @@
     <script src="https://cdn.datatables.net/select/2.0.0/js/dataTables.select.min.js"></script>
     <link rel="stylesheet" href=https://code.jquery.com/ui/1.13.2/themes/black-tie/jquery-ui.css>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href=css/styles.css>
+
+    <link rel="stylesheet" href=../instadb/css/styles.css>
 </head>
 <body>
 <table style="width:100%;" >
     <tr>
-        <td style="width:20%"><img id="logo" src="logolilia.png" alt="Logo"> </td>
+        <td style="width:20%"><img id="logo" src="../instadb/logolilia.png" alt="Logo"> </td>
         <td style="width:80%;text-align: center;text-valign:center"><br><br><h2>База данных анализа Reels</h2></td>
 
     </tr>
@@ -142,10 +143,41 @@
         Please fill both fields before proceed
     </p>
 </div>
-<script src="reels.js"></script>
-<div class="mydivcontent" id="loadmyapp"></div>
+<script src="../js/chatgpt.js"></script>
+<script src="js/reels.js"></script>
+
+<!-- Modal to send to gpt4-->
+<div class="modal fade" id="gpt4Modal" tabindex="-1" aria-labelledby="gpt4ModalLabel" aria-hidden="true">
+    <div class="modal-dialog gpt4Modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="gpt4ModalLabel">Быстрая подготовка к GPT4</h5>
+                <button type="button" class="close" onclick="closeModal()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="market">Рыночная зона действия новой катушки:</label>
+                    <input type="text" class="form-control" id="market">
+                </div>
+                <div class="form-group" id="gptDivAnswer" style="display:none">
+                    <label for="gptAnswer">GPT Answer:</label>
+                    <textarea class="form-control" id="gptAnswer" rows="15"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Отмена</button>
+                <button type="button" id=buttonSend class="btn btn-primary" onclick="sendToGptTheReel()">Отправлять</button>
+            </div>
+        </div>
+    </div>
+</div>
+<button type="button" class="btn btn-primary button-right " onclick="openModal()">
+    Отправить в GPT
+</button>
 <div  id="loadmyapp" style="position: relative; z-index: 9999;"></div>
-<script src="https://chatgpt.lilia.by/instadb/iframe.js"></script>
+<!--<script src="iframe.js"></script>-->
 </body>
 </html>
 

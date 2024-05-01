@@ -451,6 +451,7 @@ td.right-cell .special-textbox {
        border-radius: 5px;
    }
 
+
    /* Apply the same styles to textboxes and selects */
    .input-container input[type="text"], .select {
        width: 99%;
@@ -579,5 +580,7 @@ td.right-cell .special-textbox {
        width: 150px;
        padding: 7px;
    }
+
+
 
 }

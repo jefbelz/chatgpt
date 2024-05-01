@@ -3135,4 +3135,22 @@ background-color:#f6bd3f;
         div.dtsp-panesContainer div.dtsp-title {
             float: left;
             padding: 0px 0;
+
+        }
+
+        .button-right {
+            text-align: right;
+            float: right;
+            margin-right: 25px;
+            margin-top: 10px;
+        }
+
+
+
+        .gpt4Modal {
+            min-width: 80vw !important;
+                height: 80vh !important;
+                max-height: 80vh !important; /* Ensure the modal doesn't exceed 80vh */
+                overflow-y: auto; /* Add vertical scroll if content exceeds height */
+
         }
