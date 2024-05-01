@@ -62,7 +62,6 @@
             <th>Engagement Rate</th>
             <th>Analysis</th>
             <th>Transcription</th>
-            <th>Text On video</th>
             <th>Text</th>
             <th>Video</th>
 
@@ -139,7 +138,7 @@
 </div>
 <div id="dialog-message" title="Attention">
 
-    <p id="message">
+    <p id="messageModal">
         Please fill both fields before proceed
     </p>
 </div>
@@ -161,6 +160,11 @@
                     <label for="market">Опишите свою услугу или нишу, о чем ChatGPT  должен составить сценарий для ваших reels:</label>
                     <input type="text" class="form-control" id="market">
                 </div>
+                <br>
+                <div id="gptprogressbar">
+                    <div class="progress-label" id="gptProgressBarLabel"></div>
+                </div>
+
                 <div class="form-group" id="gptDivAnswer" style="display:none">
                     <label for="gptAnswer">GPT Answer:</label>
                     <textarea class="form-control" id="gptAnswer" rows="15"></textarea>

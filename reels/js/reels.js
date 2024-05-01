@@ -18,6 +18,9 @@ var i18nEnglish = {
     "searchReelsForm" : "Enter number",
     "searchReels" : "NrReels:",
     "searchButton" : "Search",
+    "noDataSearch": "There is no data, please search for it before using this functionality",
+    "pleaseFillAllData": "Please fill both fields before proceed",
+    "loading": "Processing request please wait..."
   };
   // Sample i18n object with Russian translations
   var i18nRussian = {
@@ -39,9 +42,23 @@ var i18nEnglish = {
       "searchUserNameForm": "Введите имя пользователя Instagram",
       "searchReelsForm": "Введите количество",
       "searchReels": "Количество Reels:",
-      "searchButton": "Поиск"
+      "searchButton": "Поиск",
+      "noDataSearch": "Данных нет, найдите их, прежде чем использовать эту функцию.",
+    "pleaseFillAllData": "Пожалуйста, заполните оба поля, прежде чем продолжить",
+    "loading" : "Обработка запроса, пожалуйста, подождите…"
   };
 var i18n = i18nRussian;
+
+//GET PAGE PARAMETERS
+
+const urlParams = new URLSearchParams(window.location.search);
+const email = urlParams.get('email');
+if (email == null)
+    window.location.href = 'index.html';
+
+//----------------------------------------
+
+
   // Function to set DataTable language based on language parameter
   function setDataTableLanguage(language) {
     i18n = (language === 'english') ? i18nEnglish : i18nRussian;
@@ -59,6 +76,8 @@ function searchNewReels(){
    var numberOfReelsValue = document.getElementById('numberOfReels').value;
     if (searchUserValue.trim() === '' || numberOfReelsValue.trim() === '') {
         dialog = $( "#dialog-message" )
+        $( "#messageModal" ).text(i18n.pleaseFillAllData)
+
         dialog.dialog( "open" );
         return;
     }
@@ -81,7 +100,7 @@ function searchNewReels(){
         value: false
    });
     // Construct the URL for the request
-    var apiUrl = 'https://xvzd4kqxcbg5x6yrrf7vy5fpiu0paque.lambda-url.eu-central-1.on.aws?account=' + encodeURIComponent(searchUserValue) + '&nrReels=' + encodeURIComponent(numberOfReelsValue);
+    var apiUrl = 'https://xvzd4kqxcbg5x6yrrf7vy5fpiu0paque.lambda-url.eu-central-1.on.aws?account=' + encodeURIComponent(searchUserValue) + '&nrReels=' + encodeURIComponent(numberOfReelsValue) + '&email=' + encodeURIComponent(email);
 
     fetch(apiUrl)
         .then(response => response.json())
@@ -139,12 +158,11 @@ function limitTextTo40Characters(inputText) {
 var users = ""
 function loadUsers(){
     var userXhr = new XMLHttpRequest();
-    userXhr.open('GET', 'https://f4m7goevkzwb3wwft5wwis6k4i0sulif.lambda-url.eu-central-1.on.aws/?users=true', false);
+    userXhr.open('GET', 'https://f4m7goevkzwb3wwft5wwis6k4i0sulif.lambda-url.eu-central-1.on.aws/?users=true&email=' + email, false);
     userXhr.send();
 
     if (userXhr.status === 200) {
       users = JSON.parse(userXhr.responseText);
-      // Do something with users
     } else {
       console.error('Failed to fetch users');
     }
@@ -153,8 +171,8 @@ function loadUsers(){
  function loadJSON() {
     var table = $('#example').DataTable({
               ajax: {
-                url: 'https://f4m7goevkzwb3wwft5wwis6k4i0sulif.lambda-url.eu-central-1.on.aws/?reels=true',
-                dataSrc: '' // Use an empty string to indicate that the data should be used directly without any modification
+                url: 'https://f4m7goevkzwb3wwft5wwis6k4i0sulif.lambda-url.eu-central-1.on.aws/?reels=true&email=' + email,
+                dataSrc: ''
               },
              columns: [
                  {
@@ -233,7 +251,7 @@ function loadUsers(){
                  },
                  {
                      data: 'video_transcription',
-                     title: i18n.columnTextOnVideo,
+                     title: i18n.columnTranscription,
                      render: function(data, type, row) {
                          if (data)
                              var formattedText = data.trim();
@@ -241,17 +259,6 @@ function loadUsers(){
                              var formattedText = "";
                          return '<textarea class="form-control" rows="3"  style="width: 450px;">'+formattedText+'</textarea>';
                      }
-                 },
-                 {
-                     data: 'text_on_video',
-                     title: i18n.columnTranscription,
-                       render: function(data, type, row) {
-                        if (data)
-                            var formattedText = data.trim();
-                        else
-                            var formattedText = "";
-                        return '<textarea class="form-control" rows="3"  style="width: 450px;">'+formattedText+'</textarea>';
-                    }
                  },
                  {
                      data: 'text',
@@ -273,20 +280,10 @@ function loadUsers(){
                  },
 
              ],language: {
-//                       searchPanes: {
-//                           clearMessage: 'Clear Filters',
-//                           emptyPanes: 'There are no panes to display. :/',
-//                           collapse: { 0: 'Search Options', _: 'Search Options (%d)' },
-//                            title: {
-//                               _: 'Filters Selected - %d',
-//                               0: 'No Filters Selected',
-//                               1: 'One Filter Selected',
-//
-//                             }
-//                       },
                          url: '//cdn.datatables.net/plug-ins/2.0.0/i18n/ru.json',
                                //cdn.datatables.net/plug-ins/2.0.0/i18n/es-ES.json
                                //cdn.datatables.net/plug-ins/2.0.0/i18n/pl.json
+                   "emptyTable": i18n.noDataSearch
                    },
                 layout: {
                     topStart: {
@@ -335,7 +332,7 @@ function loadUsers(){
                 selector: 'td'
             },
        columnDefs: [
-               { targets: [12], visible: false } // Hide columns 1 and 2 initially
+               { targets: [11], visible: false } // Hide columns 1 and 2 initially
              ],
     });
 
@@ -348,7 +345,7 @@ function loadUsers(){
      $('#example tbody').on('click', 'td:nth-child(1)', function () {
 
                   var cell = $(this);
-                  console.log(cell)
+
                   var row = cell.closest('tr');
                   var username = cell.text();
 
@@ -391,10 +388,8 @@ function showModal(userDetails, reelsDetails) {
     userModal.find('#modalFollowers').text(userDetails.follower_count);
     userModal.find('#modalFollowing').text(userDetails.following_count);
     userModal.find('#modalPhone').text(userDetails.contact_phone_number);
-
     userModal.find('#modalTranscription').text(reelsDetails.video_transcription);
     userModal.find('#modalAnalysis').text(reelsDetails.video_analysis);
-    userModal.find('#modalTextOnVideo').text(reelsDetails.text_on_video);
     userModal.find('#modalCaption').text(reelsDetails.text);
     return userModal.html();
 }
@@ -431,6 +426,14 @@ async function sendToGptTheReel(){
      var selectedRows = table.rows({ selected: true }).data().toArray();
      productArea.style.enabled = "False";
      prompt = populateText(productArea.value, selectedRows)
+
+
+    $( "#gptprogressbar" ).progressbar({
+        value: false
+    });
+    $( "#gptProgressBarLabel" ).text(i18n.loading);
+
+
      const answer = await fetchResponseReels(prompt);
 
 
@@ -449,7 +452,7 @@ function replaceSearchDiv(){
            <input type="text" class="form-control" id="searchUser" placeholder="` + i18n['searchUserNameForm'] + `" aria-describedby="searchButton">
             &nbsp;
            <label for="numberOfReels" class="form-label">` + i18n['searchReels'] + `</label>&nbsp;
-           <input type="number" class="form-control" id="numberOfReels" placeholder="` + i18n['searchReelsForm'] + `" aria-describedby="searchButton">
+           <input type="number" class="form-control" id="numberOfReels" value="10" placeholder="` + i18n['searchReelsForm'] + `" aria-describedby="searchButton">
             &nbsp;
            <button class="btn btn-primary" type="button" onclick="searchNewReels()" id="searchButton">` + i18n['searchButton'] + `</button>
        </div>`;

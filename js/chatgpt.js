@@ -188,6 +188,7 @@ async function miniAppFetchResponse(prompt) {
               return contentFinalResult;
             }
             let jsonString = new TextDecoder().decode(value).replace(/data:\s*/g, '');
+             $( "#gptprogressbar" ).hide();
              var gptAnswerDiv = document.getElementById('gptAnswer');
              gptAnswerDiv.innerHTML = jsonString
              document.getElementById('gptDivAnswer').style.display='block'

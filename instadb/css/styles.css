@@ -3008,6 +3008,11 @@ background-color:#f6bd3f;
 
 }
 
+.ui-dialog {
+background-color: blue
+}
+
+
 .ui-dialog .ui-dialog-buttonpane button{
     background-color:#f6bd3f;
     border-color: #ffffff

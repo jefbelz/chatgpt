@@ -1,0 +1,31 @@
+
+//         lengthMenu: [
+//             [20, 50, -1],
+//             [20, 50, 'All']
+//         ],
+
+                searchPanes: {
+                    clearMessage: 'Obliterate Selections',
+                    collapse: { 0: 'Search Options', _: 'Search Options (%d)' }
+                }
+            ,
+            layout: {
+                topStart: {
+                    buttons: ['searchPanes']
+                }
+            },
+            buttons:['copy', 'csv', 'excel', 'pdf', 'print', 'searchPanes'],
+         dom: 'PB<"top"l>',
+//         fixedColumns: true,
+//         fixedHeader: true,
+//         rowReorder: true,
+//         colReorder: true,
+//         scrollY: '350px',
+//         scrollX: true,
+//         scrollCollapse: true,
+//         select: true,
+
+         columnDefs: [
+               { targets: [12], visible: false } // Hide columns 1 and 2 initially
+             ],
+     });
