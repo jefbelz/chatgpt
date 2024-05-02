@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('#userTable').DataTable({
         ajax: {
-            url: 'get_users.php',
+            url: 'https://zvo3uegtkk4lhnc7jtzabf6hdq0egsyx.lambda-url.eu-central-1.on.aws/?action=list',
             dataSrc: ''
         },
         columns: [
