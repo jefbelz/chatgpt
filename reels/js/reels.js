@@ -601,7 +601,7 @@ function displayResponse() {
       if(item.role == "system") {
         //copy answer
         copyButtonLabel = "Скопировать ответ"
-        buttons =  "<button class='btn btn-primary' onclick='regenerateAnswer("+ i +")'>regenerate</button>&nbsp;&nbsp;";
+        buttons =  "<button class='btn btn-primary' onclick='regenerateAnswer("+ i +")'>перегенерировать</button>&nbsp;&nbsp;";
         responseText = responseText +  "<label for='answerDiv"+i+ "'>Это приглашение, которое мы сделаем для чата GPT.</label>"
       } else {
       //copy prompt
