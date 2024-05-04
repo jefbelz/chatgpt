@@ -52,8 +52,7 @@ var i18n = i18nRussian;
 //GET PAGE PARAMETERS
 
 const urlParams = new URLSearchParams(window.location.search);
-//const email = urlParams.get('email');
-email="belzarena@gmail.com"
+const email = urlParams.get('email');
 if (email == null)
     window.location.href = 'index.html';
 
