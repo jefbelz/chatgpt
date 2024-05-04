@@ -31,19 +31,6 @@
         function readStream() {
         let contentFinalResult = "";
           return reader.read().then(({ done, value }) => {
-                  // Check if the response is a readable stream
-          //        if (!response.body) {
-          //          throw new Error('Readable streams not supported in this browser.');
-          //        }
-//                  let contentFinalResult = "";
-//
-//          //        let jsonString = new TextDecoder().decode(response).replace(/data:\s*/g, '');
-//                    contentFinalResult = response.body
-//                    promptPrepareRequestStream(contentFinalResult, "system");
-//                   displayResponse();
-//                  closeWaitingModal();
-//                   activateChat(true);
-//
             if (done) {
               console.log('Stream is done.'); // End of the stream
               closeWaitingModal();
@@ -54,32 +41,9 @@
             let jsonString = new TextDecoder().decode(value).replace(/data:\s*/g, '');
             promptPrepareRequestStream(jsonString, "system");
             displayResponse();
-//            try {
-//              // Process data as it arrives
-////              let jsonString = new TextDecoder().decode(value).replace(/data:\s*/g, '');
-//
-////              var dataAux = jsonString.split("}]}")
-//               let jsonString = JSON.parse(new TextDecoder().decode(value).replace(/data:\s*/g, ''));
-//               contentFinalResult = jsonString.body
-//
-////              dataAux.forEach( data=> {
-////                  data = data.trim() + "}]}";
-////                  if (data.length > "10") {
-////                    var parsedContent = JSON.parse(data);
-////                    const content = parsedContent.choices[0].delta.content.replace("undefined","");
-////                    contentFinalResult += content;
-////                  }
-////              });
-//              promptPrepareRequestStream(contentFinalResult, "system");
-//              displayResponse();
-//              // Continue reading the stream
-//            } catch(error){
-//              console.log("");
-//            }
             return readStream();
           });
         }
-//
         return readStream();
       })
       .catch(error => {
@@ -157,20 +121,10 @@ async function miniAppFetchResponse(prompt) {
 }
 
 
- async function fetchResponseReels(prompt) {
-      let globalPrompt = new Array();
-      const apiUrl = "https://pis2lv2ircq2xvryj5bdkblnfa0rspzc.lambda-url.eu-central-1.on.aws/";
-      globalPrompt.length = 0;
-      globalPrompt = [{
-         role: 'system',
-         content: 'Действуй как профессиональный SMM  менеджер и reels мейкер'
-      }];
-       globalPrompt.push({
-          role: 'user',
-          content: prompt
-       });
+ async function fetchResponseReels(globalPrompt) {
 
-      fetch(apiUrl, {
+      const apiUrl = "https://pis2lv2ircq2xvryj5bdkblnfa0rspzc.lambda-url.eu-central-1.on.aws/";
+      return fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -179,26 +133,5 @@ async function miniAppFetchResponse(prompt) {
           globalPrompt
         })
       })
-      .then(response => {
-          const reader = response.body.getReader();
-        function readStream() {
-        let contentFinalResult = "";
-          return reader.read().then(({ done, value }) => {
-            if (done) {
-              return contentFinalResult;
-            }
-            let jsonString = new TextDecoder().decode(value).replace(/data:\s*/g, '');
-             $( "#gptprogressbar" ).hide();
-             var gptAnswerDiv = document.getElementById('gptAnswer');
-             gptAnswerDiv.innerHTML = jsonString
-             document.getElementById('gptDivAnswer').style.display='block'
-            return jsonString;
-          });
-        }
-        return readStream();
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        return "error";
-      });
+
 }

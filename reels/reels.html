@@ -164,11 +164,17 @@
                 <div id="gptprogressbar">
                     <div class="progress-label" id="gptProgressBarLabel"></div>
                 </div>
+                <div id="answerGroup" class="scrollable-content">
+                    <code id="responseContainer" class="form-group" ></code>
+                    <br>
+                    <div class="form-group" id="gptDivAdditionalQuestion" style="display:none">
+                        <label for="gptAdditionalQuestion">kEEP TALKING - your question:</label>
+                        <textarea class="form-control" id="gptAdditionalQuestion" rows="4"></textarea>
+                        <button type="button" class="btn btn-primary button-right"  style="margin-right: 0px!important;" onclick="additionalReelsQuestion()">Отмена</button>
+                    </div>
 
-                <div class="form-group" id="gptDivAnswer" style="display:none">
-                    <label for="gptAnswer">GPT Answer:</label>
-                    <textarea class="form-control" id="gptAnswer" rows="15"></textarea>
                 </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" onclick="closeModal()">Отмена</button>
@@ -180,8 +186,6 @@
 <button type="button" class="btn btn-primary button-right " onclick="openModal()">
     Отправить в GPT
 </button>
-<div  id="loadmyapp" style="position: relative; z-index: 9999;"></div>
-<!--<script src="iframe.js"></script>-->
 </body>
 </html>
 

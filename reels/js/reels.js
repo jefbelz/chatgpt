@@ -52,7 +52,8 @@ var i18n = i18nRussian;
 //GET PAGE PARAMETERS
 
 const urlParams = new URLSearchParams(window.location.search);
-const email = urlParams.get('email');
+//const email = urlParams.get('email');
+email="belzarena@gmail.com"
 if (email == null)
     window.location.href = 'index.html';
 
@@ -417,31 +418,11 @@ function openModal() {
     document.getElementById("buttonSend").disabled = false;
 
 }
-
-async function sendToGptTheReel(){
-     document.getElementById("buttonSend").disabled = true;
-
-     var productArea = document.getElementById('market');
-     var table = $('#example').DataTable();
-     var selectedRows = table.rows({ selected: true }).data().toArray();
-     productArea.style.enabled = "False";
-     prompt = populateText(productArea.value, selectedRows)
-
-
-    $( "#gptprogressbar" ).progressbar({
-        value: false
-    });
-    $( "#gptProgressBarLabel" ).text(i18n.loading);
-
-
-     const answer = await fetchResponseReels(prompt);
-
-
-
-}
-
 function closeModal() {
-    document.getElementById('gptDivAnswer').style.display='None'
+    globalPrompt = new Array()
+    document.getElementById("responseContainer").style.display = "none";
+    document.getElementById("gptDivAdditionalQuestion").style.display = "none";
+
     $('#gpt4Modal').modal('hide');
   }
 function replaceSearchDiv(){
@@ -461,8 +442,6 @@ function replaceSearchDiv(){
  $(document).ajaxComplete(function() {
     replaceSearchDiv();
 });
-
-
 
 function populateText(product, reels) {
 //  let text = `Действуй как профессиональный SMM  менеджер и reels мейкер. Далее будут приведены несколько сценариев роликов reels с описанием о чем видеоряд, а также субтитрами.
@@ -492,7 +471,153 @@ function populateText(product, reels) {
                  Предложи не менее 5 сценариев для привлечения внимания к моему продукту.\n\n
     `;
 
-
-
   return text;
+}
+
+function autoResizeAllTextAreas(){
+    for(var i=1; i< globalPrompt.length;i++){
+        textarea = document.getElementById("answerDiv"+i);
+        if(textarea)
+            autoResize(textarea);
+     }
+}
+//to work with chatgpt history
+let globalPrompt = new Array();
+globalPrompt.length = 0;
+function initializePrompt(prompt){
+
+      globalPrompt = [{
+         role: 'system',
+         content: 'Действуй как профессиональный SMM  менеджер и reels мейкер'
+      }];
+       addPrompt(prompt, 'user')
+       return globalPrompt
+}
+
+function addPrompt(prompt, role){
+       globalPrompt.push({
+          role: role,
+          content: prompt
+       });
+
+}
+
+async function sendToGptTheReel(){
+   document.getElementById("buttonSend").disabled = true;
+   var productArea = document.getElementById('market');
+   var table = $('#example').DataTable();
+   var selectedRows = table.rows({ selected: true }).data().toArray();
+   productArea.style.enabled = "False";
+   prompt = populateText(productArea.value, selectedRows)
+   initializePrompt(prompt)
+   requestGptAnswer()
+}
+
+
+async function requestGptAnswer(){
+    $( "#gptprogressbar" ).show();
+    $( "#answerGroup" ).hide();
+    $( "#market" ).attr("disabled", true);
+    $( "#gptprogressbar" ).progressbar({
+        value: false
+    });
+    $( "#gptProgressBarLabel" ).text(i18n.loading);
+
+    fetchResponseReels(globalPrompt).then(response => {
+              const reader = response.body.getReader();
+            function readStream() {
+            let contentFinalResult = "";
+              return reader.read().then(({ done, value }) => {
+                if (done) {
+                  return contentFinalResult;
+                }
+                let jsonString = new TextDecoder().decode(value).replace(/data:\s*/g, '');
+                 $( "#gptprogressbar" ).hide();
+                 addPrompt(jsonString, 'system')
+                 $( "#answerGroup" ).show();
+                 displayResponse()
+              });
+            }
+            return readStream();
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            return "error";
+          });
+}
+
+function autoResize(textarea) {
+  textarea.style.height = "auto"; // Reset the height to its default auto value
+  textarea.style.height = textarea.scrollHeight + "px"; // Set the height to match the content
+}
+function scrollToBottom() {
+ var answerGroup = document.getElementById('answerGroup');
+
+ // Scroll to the bottom of the scrollbar
+ answerGroup.scrollTop = answerGroup.scrollHeight;
+
+
+}
+function copyAnswer(divId) {
+  // Get the div containing the answer
+  const answerDiv = document.getElementById('answerDiv' + divId);
+  // Get the answer content
+  const answerContent = answerDiv.innerHTML.replace(/<button.*<\/button>.*/, ''); ;
+  // Get the invisible textarea
+  navigator.clipboard.writeText(answerContent)
+        .then(() => {
+          console.log('Content copied to clipboard!');
+        })
+        .catch((error) => {
+          console.error('Failed to copy content: ', error);
+        });
+
+  // Deselect the content
+  window.getSelection().removeAllRanges();
+}
+function regenerateAnswer(answerId){
+    globalPrompt.splice(answerId);
+    requestGptAnswer();
+
+}
+
+function additionalReelsQuestion(){
+    const additionalReelsQuestion = document.getElementById('gptAdditionalQuestion')
+    addPrompt(additionalReelsQuestion.value, 'user')
+    additionalReelsQuestion.value = ""
+    requestGptAnswer();
+}
+
+
+function displayResponse() {
+
+    document.getElementById("responseContainer").style.display = "block";
+    const responseContainer = document.getElementById('responseContainer');
+    let responseText = ""
+    var copyButtonLabel = "";
+    for(var i=1; i< globalPrompt.length; i++) {
+      let buttons="";
+      item = globalPrompt[i];
+      copyButtonLabel = "Copy";
+      if(item.role == "system") {
+        //copy answer
+        copyButtonLabel = "Скопировать ответ"
+        buttons =  "<button class='btn btn-primary' onclick='regenerateAnswer("+ i +")'>regenerate</button>&nbsp;&nbsp;";
+        responseText = responseText +  "<label for='answerDiv"+i+ "'>Это приглашение, которое мы сделаем для чата GPT.</label>"
+      } else {
+      //copy prompt
+        copyButtonLabel = "Скопировать запрос"
+        responseText = responseText +  "<label for='answerDiv"+i+ "'>Это ChatGPT. Ответ на наш вопрос.</label>"
+      }
+
+      buttons += "<button class='btn btn-primary' onclick='copyAnswer("+ i +")'>"+ copyButtonLabel +"</button>";
+      responseText = responseText + "<div class='form-group' ><textarea  class='form-control' id='answerDiv"+i+ "' rows='4' oninput='autoResize(this)'>" + item.content + "</textarea><br>" + buttons + "</div>";
+      responseContainer.innerHTML = responseText;
+      document.getElementById("gptDivAdditionalQuestion").style.display = "block";
+
+      //once we add the textarea to screen we then make sure it autoresize to match the content it has on it.
+      autoResizeAllTextAreas();
+      scrollToBottom() ;
+
+    };
 }

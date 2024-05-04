@@ -3090,7 +3090,7 @@ background-color:#f6bd3f;
   }
   .progress-label {
     position: absolute;
-    left: 50%;
+    left: 36%;
     top: 4px;
     font-weight: bold;
     color: white;
@@ -3157,3 +3157,13 @@ background-color:#f6bd3f;
                 overflow-y: auto; /* Add vertical scroll if content exceeds height */
 
         }
+
+        label {
+            color: white;
+        }
+
+
+    #answerGroup {
+        max-height: 450px; /* Set a max height for the #answerGroup div */
+        overflow-y: auto; /* Add vertical scrollbar if content overflows */
+    }
