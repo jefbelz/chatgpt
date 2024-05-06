@@ -3155,7 +3155,7 @@ background-color:#f6bd3f;
                 height: 80vh !important;
                 max-height: 80vh !important; /* Ensure the modal doesn't exceed 80vh */
                 overflow-y: auto; /* Add vertical scroll if content exceeds height */
-
+                z-index: 1000
         }
 
         label {
@@ -3166,4 +3166,14 @@ background-color:#f6bd3f;
     #answerGroup {
         max-height: 450px; /* Set a max height for the #answerGroup div */
         overflow-y: auto; /* Add vertical scrollbar if content overflows */
+    }
+
+    .modal {
+        z-index: 1000
+    }
+    .modal-backdrop.show {
+        z-index: -500
+    }
+    .ui-dialog {
+        z-index: 10000; /* Adjust the z-index value as needed */
     }

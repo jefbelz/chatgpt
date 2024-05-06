@@ -20,7 +20,8 @@ var i18nEnglish = {
     "searchButton" : "Search",
     "noDataSearch": "There is no data, please search for it before using this functionality",
     "pleaseFillAllData": "Please fill both fields before proceed",
-    "loading": "Processing request please wait..."
+    "loading": "Processing request please wait...",
+    "cancelDialog": 'The "cancel" button will delete all previously created entries and example scripts. Are you sure you want to stop chatting with ChatGPT?'
   };
   // Sample i18n object with Russian translations
   var i18nRussian = {
@@ -45,7 +46,8 @@ var i18nEnglish = {
       "searchButton": "Поиск",
       "noDataSearch": "Данных нет, найдите их, прежде чем использовать эту функцию.",
     "pleaseFillAllData": "Пожалуйста, заполните оба поля, прежде чем продолжить",
-    "loading" : "Обработка запроса, пожалуйста, подождите…"
+    "loading" : "Обработка запроса, пожалуйста, подождите…",
+    "cancelDialog": 'Кнопка "отмена" удалит все ранее созданные записи и примеры сценариев. Вы уверены, что хотите прекратить диалог с ChatGPT?'
   };
 var i18n = i18nRussian;
 
@@ -413,16 +415,39 @@ loadJSON();
 function openModal() {
    var productArea = document.getElementById('market');
     productArea.innerHTML = ""
+    document.getElementById("buttonSend").style.display = "block";
+     document.getElementById("buttonSendAdditionalMsg").style.display = "none";
     $('#gpt4Modal').modal('show');
     document.getElementById("buttonSend").disabled = false;
 
 }
 function closeModal() {
-    globalPrompt = new Array()
-    document.getElementById("responseContainer").style.display = "none";
-    document.getElementById("gptDivAdditionalQuestion").style.display = "none";
 
-    $('#gpt4Modal').modal('hide');
+    dialog = $( "#dialog-message" )
+    dialog.dialog({
+        modal: true,
+        buttons: {
+            отмена: function() {
+                $( this ).dialog( "close" );
+            },
+            Продолжить: function() {
+                // Add your OK button action here
+                $( this ).dialog( "close" );
+                globalPrompt = new Array()
+                document.getElementById("responseContainer").style.display = "none";
+                document.getElementById("gptDivAdditionalQuestion").style.display = "none";
+                document.getElementById("market").innerHTML=""
+                $('#gpt4Modal').modal('hide');
+            },
+        }
+    });
+
+
+
+    $( "#messageModal" ).text(i18n.pleaseFillAllData)
+    dialog.dialog( "open" );
+
+
   }
 function replaceSearchDiv(){
    var dtSearchDiv = document.querySelector('.dt-search');
@@ -502,7 +527,8 @@ function addPrompt(prompt, role){
 }
 
 async function sendToGptTheReel(){
-   document.getElementById("buttonSend").disabled = true;
+   document.getElementById("buttonSend").style.display = "none";
+   document.getElementById("buttonSendAdditionalMsg").style.display = "none";
    var productArea = document.getElementById('market');
    var table = $('#example').DataTable();
    var selectedRows = table.rows({ selected: true }).data().toArray();
@@ -613,6 +639,7 @@ function displayResponse() {
       responseText = responseText + "<div class='form-group' ><textarea  class='form-control' id='answerDiv"+i+ "' rows='4' oninput='autoResize(this)'>" + item.content + "</textarea><br>" + buttons + "</div>";
       responseContainer.innerHTML = responseText;
       document.getElementById("gptDivAdditionalQuestion").style.display = "block";
+      document.getElementById("buttonSendAdditionalMsg").style.display = "block";
 
       //once we add the textarea to screen we then make sure it autoresize to match the content it has on it.
       autoResizeAllTextAreas();

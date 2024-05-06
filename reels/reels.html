@@ -170,7 +170,6 @@
                     <div class="form-group" id="gptDivAdditionalQuestion" style="display:none">
                         <label for="gptAdditionalQuestion">Напишите ваш запрос в ChatGPT ниже:</label>
                         <textarea class="form-control" id="gptAdditionalQuestion" rows="4"></textarea>
-                        <button type="button" class="btn btn-primary button-right"  style="margin-right: 0px!important;" onclick="additionalReelsQuestion()">Отмена</button>
                     </div>
 
                 </div>
@@ -179,6 +178,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" onclick="closeModal()">Отмена</button>
                 <button type="button" id=buttonSend class="btn btn-primary" onclick="sendToGptTheReel()">Отправлять</button>
+                <button type="button" id="buttonSendAdditionalMsg" class="btn btn-primary"  style="margin-right: 0px!important; display:none" onclick="additionalReelsQuestion()">Отмена</button>
             </div>
         </div>
     </div>
