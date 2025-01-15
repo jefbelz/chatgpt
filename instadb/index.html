@@ -74,6 +74,7 @@
                          var city_name = item.city_name || item.city;
                          item.following_count = item.following_count ||'';
                          item.name = item.name || item.username;
+                         item.media_count = item.media_count || 0;
                         item.city_name = city_name;
                         item.phone_numbers = (publicPhone && contactPhone) ? publicPhone + ' / ' + contactPhone : (publicPhone || contactPhone);
                     });
