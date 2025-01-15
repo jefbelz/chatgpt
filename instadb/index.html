@@ -46,7 +46,6 @@
         <th>City</th>
         <th>Name</th>
         <th>Following</th>
-        <th>Is Private</th>
         <th>Media Count</th>
         <th>Phone Numbers</th> <!-- Merged field for phone numbers -->
     </tr>
@@ -91,8 +90,7 @@
                             { data: 'city_name', searchable: true },
                             { data: 'name', searchable: true },
                             { data: 'following_count', searchable: false },
-                            { data: 'is_private', render: function(data) {
-                                return data ? 'Yes' : 'No';
+                           
                             }, searchable: false },
                             { data: 'media_count', searchable: false },
 
