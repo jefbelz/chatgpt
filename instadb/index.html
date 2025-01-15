@@ -72,6 +72,8 @@
                         var publicPhone = item.public_phone || '';
                         var contactPhone = item.contact_phone || '';
 
+                         var city_name = item.city_name || item.city;
+                        item.city_name = city_name;
                         item.phone_numbers = (publicPhone && contactPhone) ? publicPhone + ' / ' + contactPhone : (publicPhone || contactPhone);
                     });
 
