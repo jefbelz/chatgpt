@@ -47,6 +47,7 @@
         <th>Name</th>
         <th>Following</th>
         <th>Media Count</th>
+        <th>Email</th>
         <th>Phone Numbers</th> <!-- Merged field for phone numbers -->
     </tr>
     </thead>
@@ -76,6 +77,7 @@
                          item.name = item.name || item.username;
                          item.media_count = item.media_count || 0;
                         item.city_name = city_name;
+                        item.email = item.email || '';
                         item.phone_numbers = (publicPhone && contactPhone) ? publicPhone + ' / ' + contactPhone : (publicPhone || contactPhone);
                     });
 
@@ -93,6 +95,7 @@
                             { data: 'name', searchable: true },
                             { data: 'following_count', searchable: false },
                             { data: 'media_count', searchable: false },
+                             { data: 'email', searchable: false },
 
                             { data: 'phone_numbers', searchable: true },
 
