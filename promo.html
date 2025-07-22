@@ -19,6 +19,7 @@
     <meta property="og:image" content="og-image.jpg">
 </head>
 <body>
+<!--
 <nav class="mobile-nav">
     <div class="mobile-nav-header">
         <div class="mobile-logo">
@@ -46,32 +47,30 @@
         <a href="#faq" class="menu-item">FAQ</a>
         <a href="#pricing" class="menu-item cta-menu-item">💛 Получить доступ</a>
     </div>
-</nav>
+</nav> -->
     <!-- Hero Section -->
     <section class="hero" id="home">
+<div class="hero-background">
+  <picture>
+    <source media="(min-width: 768px)" srcset="background2.jpg">
+    <img src="background1.jpg" alt="Hero background">
+  </picture>
+</div>
         <div class="container">
             <div class="hero-content">
-                <div class="logo">
+                
                     <div class="pill-logo">
-                        <span>НЕ</span>
+                        <img src='logoFull.png' width="70%">
                     </div>
-                    <div class="logo-text">
-                        <h1>ВОЛШЕБНАЯ,<br>НО ТАБЛЕТКА</h1>
-                        <p>КУРС ИИ ДЛЯ ФОТОГРАФОВ</p>
-                    </div>
-                </div>
-                
-                <p class="subtitle">Первый Telegram-курс о нейросетях с короткими инструкциями</p>
-                <p class="subtitle">Готовые решения для любых задач фотографа,<br>
-                которые экономят часы на ретуши и продвижении</p>
-                
+                         
+                <p class="subtitle">Первый Telegram-курс о</br>нейросетях только для фотографов</br>Сэкономь время на ретуши и</br>маркетинге</p>                
                 <p style="font-size: 1.5rem; margin: 30px 0;">
-                    <span class="highlight">⏰ СКИДКА 50%</span> - только до 31 июля
+                    <span class="subtitle">⏰ СКИДКА 50%</span> - только до 31 июля
                 </p>
-                
+                <div class="text-left">
                 <a href="#pricing" class="cta-button">👉 Получить доступ</a>
-                
-                <div class="countdown" id="countdown">
+                </div>
+               <!-- <div class="countdown" id="countdown">
                     <div class="countdown-item">
                         <div class="countdown-value" id="days">00</div>
                         <div class="countdown-label">дней</div>
@@ -87,7 +86,7 @@
                     <div class="countdown-item">
                         <div class="countdown-value" id="seconds">00</div>
                         <div class="countdown-label">секунд</div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -264,7 +263,7 @@
 				</div>
 			</div>
             
-            <div class="mt-50 text-center">
+           <!-- <div class="mt-50 text-center">
                 <div style="display: grid; grid-template-columns: 1fr; gap: 12px; max-width: 800px; margin: 0 auto;">
     <div style="display: flex; align-items: flex-start; gap: 8px; background: #f8f8f8; padding: 10px 12px; border-radius: 10px;">
         <span style="font-size: 1.3rem; flex-shrink: 0;">✅</span>
@@ -310,8 +309,8 @@
 				</div>
                 <a href="#pricing" class="cta-button mt-40">👉 Выбрать тариф</a>
             </div>
-        </div>
-    </section>
+        </div>-->
+    </section> 
 
     <!-- Course Modules -->
     <section class="features" id="modules">
@@ -360,7 +359,9 @@
                 <p style="font-size: 1.3rem; margin-bottom: 30px;">
                     🎁 Бонус: доступ к внутреннему AI-сайту для написания любого текста
                 </p>
+				<div class="text-center">
                 <a href="#pricing" class="cta-button">НАЧАТЬ ОБУЧЕНИЕ СЕЙЧАС</a>
+				</div>
             </div>
         </div>
     </section>
@@ -376,37 +377,45 @@
             </div>
             
             <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Базовый</h3>
-                    <p style="font-size: 1.2rem; margin: 20px 0;">1 месяц доступа</p>
-                    <div class="price">
-                        <div class="old-price">99 EUR</div>
-                        <div>50 EUR</div>
-                    </div>
-                    <p style="font-size: 1.1rem; color: var(--text-light);">4500 RUB</p>
-                    <a href="#" class="cta-button mt-40">Выбрать</a>
-                </div>
-                
-                <div class="pricing-card featured">
+			                <div class="pricing-card ">
                     <h3>Оптимум</h3>
                     <p style="font-size: 1.2rem; margin: 20px 0;">2 месяца доступа</p>
                     <div class="price">
-                         <div class="old-price">150 EUR</div>
-                        <div>75 EUR</div>
+                         <div class="old-price">511 BYN</div>
+                        <div>255 BYN</div>
                     </div>
+					<p style="font-size: 1.1rem;">75 EUR</p>
                     <p style="font-size: 1.1rem;">6800 RUB</p>
-                    <a href="#" class="cta-button mt-40" style="background: white; color: var(--primary-dark);">Выбрать</a>
+					<div class="text-center">
+                    <a href="#" class="cta-button mt-40">Выбрать</a>
+					</div>
                 </div>
-                
+                <div class="pricing-card featured">
+                    <h3>Базовый</h3>
+                    <p style="font-size: 1.2rem; margin: 20px 0;">1 месяц доступа</p>
+                    <div class="price">
+                        <div class="old-price">340 BYN</div>
+                        <div>170 BYN</div>
+                    </div>
+					 <p style="font-size: 1.1rem; color: var(--text-light);">50 EUR</p>
+                    <p style="font-size: 1.1rem; color: var(--text-light);">4500 RUB</p>
+					<div class="text-center">
+                    <a href="#" class="cta-button mt-40" style="background: white; color: var(--primary-dark);">Выбрать</a>
+					</div>
+                </div>
+                                
                 <div class="pricing-card">
                     <h3>Макс</h3>
                     <p style="font-size: 1.2rem; margin: 20px 0;">3 месяца доступа</p>
                     <div class="price">
-                        <div class="old-price">250 EUR</div>
-                        <div>125 EUR</div>
+                        <div class="old-price">850 BYN</div>
+                        <div>425 BYN</div>
                     </div>
+					 <p style="font-size: 1.1rem; color: var(--text-light);">125 EUR</p>
                     <p style="font-size: 1.1rem; color: var(--text-light);">11400 RUB</p>
+					<div class="text-center">
                     <a href="#" class="cta-button mt-40">Выбрать</a>
+					</div>
                 </div>
             </div>
             
@@ -489,6 +498,7 @@
             </div>
             
             <div class="text-center mt-50">
+			
                 <a href="#pricing" class="cta-button">ХОЧУ ТАК ЖЕ</a>
             </div>
         </div>
@@ -599,12 +609,15 @@
                 Присоединяйся к сотням фотографов, которые уже используют ИИ<br>
                 и экономят часы на рутине
             </p>
+			<div class="text-center">
             <a href="#pricing" class="cta-button" style="font-size: 1.3rem; padding: 25px 50px;">
                 🚀 Начать прямо сейчас со скидкой 50%
             </a>
+			<!--
             <p style="margin-top: 30px; font-size: 1.1rem;">
-                ⏰ Осталось <span id="final-countdown" style="color: var(--primary-dark); font-weight: bold;"></span> до конца акции
-            </p>
+                ⏰ Осталось <span id="final-countdown" style="color: var(--primary-dark); font-weight: bold;"></span> до конца акции --
+            </p>-->
+			</div>
         </div>
     </section>
 
