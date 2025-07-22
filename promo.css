@@ -28,49 +28,6 @@
     line-height: 1.5;
 }
 
-/* Mobile Responsive for Checklist */
-@media (max-width: 768px) {
-    .checklist-grid {
-        grid-template-columns: 1fr; /* Single column on mobile */
-        gap: 12px;
-        padding: 0;
-    }
-    
-    .checklist-item {
-        background: var(--bg-light);
-        padding: 10px 12px;
-        border-radius: 10px;
-        gap: 8px;
-    }
-    
-    .checklist-item span {
-        font-size: 1.3rem;
-    }
-    
-    .checklist-item p {
-        font-size: 0.85rem;
-        line-height: 1.4;
-    }
-}
-
-@media (max-width: 480px) {
-    .checklist-grid {
-        gap: 10px;
-    }
-    
-    .checklist-item {
-        padding: 8px 10px;
-    }
-    
-    .checklist-item span {
-        font-size: 1.2rem;
-    }
-    
-    .checklist-item p {
-        font-size: 0.8rem;
-    }
-}
-
 :root {
     --primary-color: #FFD700;
     --primary-dark: #FFA500;
@@ -124,8 +81,10 @@ body::before {
 .pill-logo {
     width: 60px;
     height: 120px;
-    background: linear-gradient(to bottom, var(--primary-color) 50%, #E0E0E0 50%);
+    background: linear-gradient(to bottom, var(--primary-color) 50%, white 50%);
+	border-color: black;
     border-radius: 60px;
+	 border: 0.1px solid ;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -523,335 +482,6 @@ h1 {
 .faq-item.active .faq-toggle {
     transform: rotate(45deg);
 }
-/* Mobile Responsive - Better Space Utilization */
-@media (max-width: 768px) {
-    section {
-        min-height: auto;
-        padding: 30px 0; /* Reduced from 40px */
-    }
-
-    .container {
-        padding: 0 15px;
-    }
-
-    /* Hero adjustments */
-    .hero {
-        padding: 40px 0;
-    }
-
-    .logo {
-        flex-direction: row; /* Keep horizontal on mobile */
-        gap: 10px;
-        margin-bottom: 20px;
-		margin-left: 10%;
-    }
-
-    .pill-logo {
-        width: 40px;
-        height: 80px;
-    }
-
-    .pill-logo span {
-        font-size: 1rem;
-        top: 20%;
-    }
-
-    .logo-text h1 {
-        font-size: 1.3rem;
-    }
-
-    .logo-text p {
-        font-size: 0.85rem;
-    }
-
-    h1 {
-        font-size: 1.5rem;
-        margin-bottom: 15px;
-    }
-
-    h2 {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-    }
-
-    .subtitle {
-        font-size: 1rem;
-        margin-bottom: 20px;
-    }
-
-    /* Compact countdown */
-    .countdown {
-        gap: 8px;
-        margin-top: 25px;
-    }
-
-    .countdown-item {
-        min-width: 55px;
-        padding: 8px;
-    }
-
-    .countdown-value {
-        font-size: 1.3rem;
-    }
-
-    .countdown-label {
-        font-size: 0.7rem;
-    }
-
-    /* Buttons */
-    .cta-button {
-        padding: 12px 25px;
-        font-size: 0.95rem;
-    }
-
-    /* Feature cards - horizontal scroll on mobile */
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    margin-top: 40px;
-}
-
-    .feature-card {
-        min-width: 250px;
-        padding: 20px;
-    }
-
-    .feature-card h3 {
-        font-size: 0.95rem;
-    }
-
-    .feature-icon {
-        font-size: 2rem;
-        margin-bottom: 10px;
-    }
-
-    /* Video section */
-    .video-container {
-        margin: 25px auto;
-    }
-
-    .video-placeholder {
-        aspect-ratio: 16/10; /* Slightly less tall on mobile */
-        font-size: 2rem;
-    }
-
-    /* Comparison grid - more compact */
-    .comparison-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-        margin-top: 25px;
-    }
-
-    .pain-item, .solution-item {
-        padding: 12px 15px;
-        font-size: 0.85rem;
-        border-radius: 10px;
-    }
-
-    .pain-item .icon, .solution-item .icon {
-        font-size: 1.2rem;
-    }
-
-    /* Steps - horizontal scroll */
-    .steps {
-        display: flex;
-        overflow-x: auto;
-        gap: 20px;
-        padding-bottom: 10px;
-        -webkit-overflow-scrolling: touch;
-        flex-direction: row;
-        align-items: stretch;
-    }
-
-    .step {
-        min-width: 140px;
-        flex-shrink: 0;
-    }
-
-    .step-number {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-        margin-bottom: 10px;
-    }
-
-    .step h3 {
-        font-size: 0.9rem;
-    }
-
-    .step p {
-        font-size: 0.8rem;
-    }
-
-    /* Modules - more compact */
-    .modules-grid {
-        gap: 12px;
-    }
-
-    .module-card {
-        padding: 18px;
-    }
-
-    .module-card h3 {
-        font-size: 0.95rem;
-        margin-bottom: 8px;
-    }
-
-    .module-card p {
-        font-size: 0.85rem;
-    }
-
-    /* Pricing cards - horizontal scroll */
-    .pricing-grid {
-        display: flex;
-        overflow-x: auto;
-        gap: 15px;
-        padding-bottom: 10px;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .pricing-card {
-        min-width: 250px;
-        flex-shrink: 0;
-        padding: 25px 20px;
-    }
-
-    .pricing-card.featured {
-        transform: scale(1);
-    }
-
-    .price {
-        font-size: 2rem;
-        margin: 15px 0;
-    }
-
-    .old-price {
-        font-size: 1.1rem;
-    }
-
-    /* Testimonials - more compact */
-    .testimonial-card {
-        padding: 20px;
-        margin-bottom: 15px;
-    }
-
-    .testimonial-header {
-        margin-bottom: 15px;
-    }
-
-    .avatar {
-        width: 45px;
-        height: 45px;
-    }
-
-    .testimonial-card p {
-        font-size: 0.9rem;
-        margin-bottom: 10px;
-    }
-
-    /* Author section */
-    .author-content {
-        gap: 30px;
-    }
-
-    .author-image {
-        flex: 0 0 200px;
-    }
-
-    .author-info li {
-        font-size: 0.9rem;
-        margin-bottom: 10px;
-    }
-
-    /* FAQ - more compact */
-    .faq-item {
-        margin-bottom: 10px;
-    }
-
-    .faq-question {
-        padding: 15px;
-        font-size: 0.9rem;
-    }
-
-    .faq-answer {
-        font-size: 0.85rem;
-    }
-
-    .faq-item.active .faq-answer {
-        padding: 15px;
-    }
-
-    /* Utility adjustments */
-    .mt-20 {
-        margin-top: 15px;
-    }
-
-    .mt-40 {
-        margin-top: 25px;
-    }
-
-    .mt-50 {
-        margin-top: 30px;
-    }
-
-    .mb-20 {
-        margin-bottom: 15px;
-    }
-
-    .mb-40 {
-        margin-bottom: 25px;
-    }
-
-    .mb-50 {
-        margin-bottom: 30px;
-    }
-
-    /* Text spacing */
-    p {
-        margin-bottom: 10px;
-    }
-
-    /* Hide line breaks on mobile for better flow */
-    br {
-        display: none;
-    }
-}
-
-/* Extra small devices */
-@media (max-width: 480px) {
-    .container {
-        padding: 0 12px;
-    }
-
-    section {
-        padding: 25px 0;
-    }
-
-    h1 {
-        font-size: 1.3rem;
-    }
-
-    h2 {
-        font-size: 1.2rem;
-    }
-
-    /* Even more compact cards */
-    .feature-card {
-        min-width: 200px;
-        padding: 15px;
-    }
-
-    .pricing-card {
-        min-width: 220px;
-    }
-
-    /* Smaller gaps */
-    .comparison-grid {
-        gap: 8px;
-    }
-}
-
 /* Add visual indicator for scrollable areas */
 .features-grid::-webkit-scrollbar,
 .steps::-webkit-scrollbar,
@@ -1133,3 +763,690 @@ h1 {
         margin: 0;
     }
 }
+
+
+/* Mobile Responsive - Better Space Utilization with smaller fonts and more spacing */
+@media (max-width: 768px) {
+    section {
+        min-height: auto;
+        padding: 25px 0; /* Further reduced */
+    }
+
+    .container {
+        padding: 0 12px; /* Slightly less padding */
+    }
+
+    /* Hero adjustments */
+    .hero {
+        padding: 30px 0;
+    }
+
+    .logo {
+        flex-direction: row;
+        gap: 8px;
+        margin-bottom: 15px;
+        margin-left: 5%;
+    }
+
+    .pill-logo {
+        width: 35px;
+        height: 70px;
+    }
+
+    .pill-logo span {
+        font-size: 0.9rem;
+        top: 20%;
+    }
+
+    .logo-text h1 {
+        font-size: 1.1rem;
+    }
+
+    .logo-text p {
+        font-size: 0.75rem;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+
+    h2 {
+        font-size: 1.15rem;
+        margin-bottom: 12px;
+    }
+
+    h3 {
+        font-size: 0.9rem;
+    }
+
+    .subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+        line-height: 1.4;
+    }
+
+    /* Smaller countdown */
+    .countdown {
+        gap: 6px;
+        margin-top: 20px;
+    }
+
+    .countdown-item {
+        min-width: 50px;
+        padding: 6px;
+    }
+
+    .countdown-value {
+        font-size: 1.1rem;
+    }
+
+    .countdown-label {
+        font-size: 0.65rem;
+    }
+
+    /* Smaller buttons */
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+
+    /* Feature cards with more spacing */
+    .features-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* Increased gap */
+        margin-top: 30px;
+        padding: 0;
+        overflow: visible;
+    }
+
+    .feature-card {
+        min-width: 100%;
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+        padding: 18px;
+    }
+
+    .feature-card h3 {
+        font-size: 0.85rem;
+        line-height: 1.3;
+    }
+
+    .feature-icon {
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+    }
+
+    /* Video section */
+    .video-container {
+        margin: 20px auto;
+    }
+
+    .video-placeholder {
+        aspect-ratio: 16/10;
+        font-size: 1.8rem;
+    }
+
+    /* Comparison grid with more spacing */
+    .comparison-grid {
+        grid-template-columns: 1fr;
+        gap: 15px; /* Increased gap */
+        margin-top: 20px;
+    }
+
+    .pain-item, .solution-item {
+        padding: 10px 12px;
+        font-size: 0.75rem;
+        border-radius: 10px;
+    }
+
+    .pain-item .icon, .solution-item .icon {
+        font-size: 1rem;
+    }
+
+    /* Steps with better spacing */
+    .steps {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px; /* Increased gap */
+        overflow: visible;
+        padding: 0;
+        margin-top: 25px;
+    }
+
+    .step {
+        min-width: auto;
+        text-align: center;
+        padding: 8px;
+    }
+
+    .step-number {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+        margin: 0 auto 6px;
+    }
+
+    .step h3 {
+        font-size: 0.75rem;
+        margin-bottom: 4px;
+    }
+
+    .step p {
+        font-size: 0.65rem;
+        line-height: 1.2;
+    }
+
+    /* Modules with more spacing */
+    .modules-grid {
+        gap: 18px; /* Increased gap */
+        margin-top: 30px;
+    }
+
+    .module-card {
+        padding: 15px;
+    }
+
+    .module-card h3 {
+        font-size: 0.85rem;
+        margin-bottom: 6px;
+    }
+
+    .module-card p {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+
+    /* Pricing cards with more spacing */
+    .pricing-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* Increased gap */
+        overflow: visible;
+        padding: 0;
+        margin-top: 25px;
+    }
+
+    .pricing-card {
+        min-width: 100%;
+        width: 100%;
+        padding: 20px 18px;
+        margin: 0;
+    }
+
+    .pricing-card h3 {
+        font-size: 1rem;
+    }
+
+    .pricing-card.featured h3 {
+        font-size: 1.1rem;
+    }
+
+    .price {
+        font-size: 1.6rem;
+        margin: 12px 0 8px;
+    }
+
+    .old-price {
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+    }
+
+    .pricing-card p {
+        font-size: 0.8rem;
+    }
+
+    /* Testimonials with more spacing */
+    .testimonial-card {
+        padding: 18px;
+        margin-bottom: 20px; /* Increased spacing */
+    }
+
+    .testimonial-header {
+        margin-bottom: 12px;
+    }
+
+    .avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .testimonial-card p {
+        font-size: 0.8rem;
+        margin-bottom: 8px;
+        line-height: 1.4;
+    }
+
+    .testimonial-card .highlight {
+        font-size: 0.85rem;
+    }
+
+    /* Author section */
+    .author-content {
+        gap: 25px;
+    }
+
+    .author-image {
+        flex: 0 0 180px;
+    }
+
+    .author-info li {
+        font-size: 0.8rem;
+        margin-bottom: 8px;
+    }
+
+    /* FAQ with better spacing */
+    .faq-item {
+        margin-bottom: 15px; /* Increased spacing */
+    }
+
+    .faq-question {
+        padding: 12px 15px;
+        font-size: 0.8rem;
+    }
+
+    .faq-answer {
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+
+    .faq-item.active .faq-answer {
+        padding: 12px 15px;
+    }
+
+    .faq-toggle {
+        font-size: 1.1rem;
+    }
+
+    /* Checklist items */
+    .checklist-grid {
+        gap: 15px; /* Increased gap */
+    }
+    
+    .checklist-item {
+        padding: 8px 10px;
+        gap: 6px;
+    }
+    
+    .checklist-item span {
+        font-size: 1.1rem;
+    }
+    
+    .checklist-item p {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+
+    /* Utility adjustments */
+    .mt-20 {
+        margin-top: 12px;
+    }
+
+    .mt-40 {
+        margin-top: 20px;
+    }
+
+    .mt-50 {
+        margin-top: 25px;
+    }
+
+    .mb-20 {
+        margin-bottom: 12px;
+    }
+
+    .mb-40 {
+        margin-bottom: 20px;
+    }
+
+    .mb-50 {
+        margin-bottom: 25px;
+    }
+
+    /* General text */
+    p {
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+    }
+
+    /* Inline style overrides */
+    [style*="font-size: 2.5rem"] {
+        font-size: 1.5rem !important;
+    }
+
+    [style*="font-size: 2rem"] {
+        font-size: 1.3rem !important;
+    }
+
+    [style*="font-size: 1.8rem"] {
+        font-size: 1.1rem !important;
+    }
+
+    [style*="font-size: 1.5rem"] {
+        font-size: 1rem !important;
+    }
+
+    [style*="font-size: 1.3rem"] {
+        font-size: 0.9rem !important;
+    }
+
+    [style*="font-size: 1.2rem"] {
+        font-size: 0.85rem !important;
+    }
+
+    [style*="font-size: 1.1rem"] {
+        font-size: 0.8rem !important;
+    }
+}
+
+/* Extra small devices - even more compact */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    section {
+        padding: 20px 0;
+    }
+
+    h1 {
+        font-size: 1.1rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+
+    h3 {
+        font-size: 0.85rem;
+    }
+
+    /* Even smaller cards with more spacing */
+    .feature-card {
+        padding: 15px 12px;
+    }
+
+    .feature-card h3 {
+        font-size: 0.8rem;
+    }
+
+    .feature-icon {
+        font-size: 1.5rem;
+    }
+
+    /* Pricing adjustments */
+    .pricing-card {
+        padding: 18px 15px;
+    }
+
+    .price {
+        font-size: 1.4rem;
+    }
+
+    .old-price {
+        font-size: 0.85rem;
+    }
+
+    .pricing-card .cta-button {
+        width: 100%;
+        padding: 10px 15px;
+        font-size: 0.8rem;
+    }
+
+    /* Steps */
+    .steps {
+        gap: 15px;
+    }
+
+    .step {
+        padding: 6px;
+    }
+
+    .step-number {
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
+    }
+
+    .step h3 {
+        font-size: 0.7rem;
+    }
+
+    .step p {
+        font-size: 0.6rem;
+    }
+
+    /* Smaller gaps for very small screens */
+    .comparison-grid {
+        gap: 10px;
+    }
+
+    .modules-grid {
+        gap: 15px;
+    }
+
+    .testimonial-card {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    /* Checklist */
+    .checklist-grid {
+        gap: 12px;
+    }
+    
+    .checklist-item {
+        padding: 6px 8px;
+    }
+    
+    .checklist-item span {
+        font-size: 1rem;
+    }
+    
+    .checklist-item p {
+        font-size: 0.7rem;
+    }
+}
+
+/* Global paragraph spacing */
+p {
+    margin-bottom: 5px; /* Reduced from default */
+    line-height: 1.4; /* Tighter line height */
+}
+
+/* Remove margin from last paragraph in a container */
+p:last-child {
+    margin-bottom: 0;
+}
+
+/* Mobile specific paragraph spacing */
+@media (max-width: 768px) {
+    p {
+        font-size: 0.85rem;
+        margin-bottom: 4px; /* Reduced from 8px */
+        line-height: 1.3; /* Even tighter on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    p {
+        font-size: 0.8rem;
+        margin-bottom: 3px; /* Minimal spacing on small screens */
+        line-height: 1.25;
+    }
+}
+
+
+/* Mobile Navigation */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.mobile-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: white;
+}
+
+.mobile-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pill-logo-small {
+    width: 25px;
+    height: 50px;
+	 border: 0.1px solid ;
+    background: linear-gradient(to bottom, var(--primary-color) 50%, white  50%);
+	border-color: black;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.pill-logo-small span {
+    position: absolute;
+    top: 18%;
+    font-weight: 900;
+    font-size: 0.6rem;
+    color: var(--text-dark);
+}
+
+.mobile-logo-text {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+/* Menu Toggle Button */
+.menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-dark);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+
+.mobile-menu.active {
+    display: block;
+}
+
+.menu-item {
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.menu-item:hover,
+.menu-item:active {
+    background: var(--bg-light);
+    padding-left: 25px;
+}
+
+.cta-menu-item {
+    background: var(--primary-color);
+    font-weight: 600;
+    text-align: center;
+    margin: 10px 20px;
+    border-radius: 25px;
+    border: none;
+}
+
+.cta-menu-item:hover {
+    background: var(--primary-dark);
+}
+
+/* Show mobile nav only on mobile */
+@media (max-width: 768px) {
+    .mobile-nav {
+        display: block;
+    }
+    
+    /* Add padding to body to account for fixed nav */
+    body {
+        padding-top: 60px;
+    }
+    
+    /* Adjust hero section */
+    .hero {
+        padding-top: 20px;
+    }
+}
+
+/* Smooth scrolling with offset for fixed header */
+@media (max-width: 768px) {
+    html {
+        scroll-padding-top: 60px;
+    }
+}
+
+
+
+
+
+/* For specific sections where you want even less space */
+/* Override all paragraph bottom margins globally */
+p {
+    margin-bottom: 5px !important;
+}
+
+@media (max-width: 768px) {
+    p {
+        margin-bottom: 4px !important;
+    }
+}
+
