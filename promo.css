@@ -468,13 +468,15 @@ h1 {
     font-size: 3rem;
     cursor: pointer;
 }
-
+   
 /* Comparison Grid */
 .comparison-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     margin-top: 40px;
+	   
+
 }
 
 .pain-item, .solution-item {
@@ -488,14 +490,49 @@ h1 {
 
 .pain-item {
     background: #FFE8E8;
-    border: 2px solid #FFB3B3;
+    border: 2px solid var(--primary-color);
+	 padding: 10px 12px;
+        font-size: 0.75rem;
+        border-radius: 10px;
+}
+ .pain-item .icon, .solution-item .icon {
+        font-size: 1rem;
+    }
+	.solution-item .icon {
+      filter: hue-rotate(180deg) saturate(2)
 }
 
 .solution-item {
     background: #FFFBE8;
     border: 2px solid var(--primary-color);
 }
+@media (max-width: 768px) {
+    .comparison-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    /* Group each pain/solution pair */
+    .pain-item {
+        border-radius: 15px 15px 0 0;
+        border-bottom: none;
+        margin-bottom: 0;
+		padding: 10px 12px;
+    }
+    
+    .solution-item {
+        border-radius: 0 0 15px 15px;
+        border-top: 1px dashed #ccc;
+		padding: 10px 12px;
 
+    }
+    
+    
+    .solution-item {
+        position: relative;
+    }
+}
 /* Steps */
 .steps {
     display: flex;
@@ -1111,22 +1148,7 @@ h1 {
         font-size: 1.8rem;
     }
 
-    /* Comparison grid with more spacing */
-    .comparison-grid {
-        grid-template-columns: 1fr;
-        gap: 15px; /* Increased gap */
-        margin-top: 20px;
-    }
-
-    .pain-item, .solution-item {
-        padding: 10px 12px;
-        font-size: 0.75rem;
-        border-radius: 10px;
-    }
-
-    .pain-item .icon, .solution-item .icon {
-        font-size: 1rem;
-    }
+    
 
     /* Steps with better spacing */
     .steps {
@@ -1439,10 +1461,6 @@ h1 {
         font-size: 0.6rem;
     }
 
-    /* Smaller gaps for very small screens */
-    .comparison-grid {
-        gap: 10px;
-    }
 
     .modules-grid {
         gap: 15px;
