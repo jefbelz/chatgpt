@@ -498,9 +498,7 @@ h1 {
  .pain-item .icon, .solution-item .icon {
         font-size: 1rem;
     }
-	  .solution-item .icon {
-      filter: hue-rotate(260deg) saturate(6);
-}
+	  
 
 .solution-item {
     background: #FFFBE8;
