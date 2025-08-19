@@ -71,9 +71,10 @@
                      jsonData.forEach(function(item) {
                         var publicPhone = item.public_phone || '';
                         var contactPhone = item.contact_phone || '';
-
+                        var username = item.username || '';
                          var city_name = item.city_name || item.city;
                          item.following_count = item.following_count ||'';
+                         item.username = username;
                          item.name = item.name || item.username;
                          item.media_count = item.media_count || 0;
                         item.city_name = city_name;
