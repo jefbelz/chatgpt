@@ -628,7 +628,7 @@ h1 {
 /* Ensure 3 columns on desktop */
 @media (min-width: 769px) {
     .pricing-grid {
-        grid-template-columns: repeat(3, 1fr); /* Force 3 columns on desktop */
+        grid-template-columns: repeat(2, 1fr); /* Force 3 columns on desktop */
     }
 }
 
