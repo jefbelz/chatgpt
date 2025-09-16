@@ -5,20 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="248850e5-1f3a-4f81-990b-b631a127ca60" name="Changes" comment="update on 19/08/2025">
-      <change afterPath="$PROJECT_DIR$/.idea/chatgpt.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/instadb/dataOld.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nanobanana/background1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nanobanana/background2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nanobanana/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nanobanana/logofull.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nanobanana/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/promo.css" beforeDir="false" afterPath="$PROJECT_DIR$/promo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nanobanana/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nanobanana/images/img1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nanobanana/images/img10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nanobanana/images/img3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nanobanana/images/img4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nanobanana/images/img5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nanobanana/images/img6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nanobanana/images/img7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nanobanana/images/img8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nanobanana/images/img9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nanobanana/instructions.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +157,47 @@
       <option name="project" value="LOCAL" />
       <updated>1757976613456</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="update on 19/08/2025">
+      <option name="closed" value="true" />
+      <created>1758018456040</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1758018456040</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update on 19/08/2025">
+      <option name="closed" value="true" />
+      <created>1758018829060</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1758018829060</updated>
+    </task>
+    <task id="LOCAL-00008" summary="update on 19/08/2025">
+      <option name="closed" value="true" />
+      <created>1758018964063</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1758018964063</updated>
+    </task>
+    <task id="LOCAL-00009" summary="update on 19/08/2025">
+      <option name="closed" value="true" />
+      <created>1758019165682</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1758019165682</updated>
+    </task>
+    <task id="LOCAL-00010" summary="update on 19/08/2025">
+      <option name="closed" value="true" />
+      <created>1758024433249</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1758024433249</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

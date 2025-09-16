@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NanoBanana AI for Photoshop - Installation Guide</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Language toggle styles */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: white;
+            border-radius: 25px;
+            padding: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 5px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--primary-color, #007cff);
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Default: Show Russian, Hide English */
+        [lang="en"] {
+            display: none;
+        }
+
+        [lang="ru"] {
+            display: initial;
+        }
+
+        /* When English is selected */
+        body.lang-en [lang="en"] {
+            display: initial;
+        }
+
+        body.lang-en [lang="ru"] {
+            display: none;
+        }
+
+        /* When Russian is selected (default) */
+        body.lang-ru [lang="en"] {
+            display: none;
+        }
+
+        body.lang-ru [lang="ru"] {
+            display: initial;
+        }
+        
+        /* Custom styles for the guide */
+        .guide-section {
+            padding-top: 80px; /* Make space for language toggle */
+            padding-bottom: 60px;
+            min-height: 100vh;
+        }
+        .guide-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        .guide-content h1, .guide-content h2, .guide-content h3 {
+            color: var(--text-dark);
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+        }
+        .guide-content p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+        .guide-content ul, .guide-content ol {
+            padding-left: 20px;
+            margin-bottom: 1em;
+        }
+        .guide-content li {
+            margin-bottom: 0.5em;
+        }
+        .guide-content code {
+            background: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: "Courier New", Courier, monospace;
+        }
+    </style>
+</head>
+<body class="lang-ru">
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn" onclick="setLanguage('en', this)">EN</button>
+        <button class="lang-btn active" onclick="setLanguage('ru', this)">RU</button>
+    </div>
+
+    <section class="guide-section">
+        <div class="container">
+            <div class="guide-content">
+                <div lang="en">
+                    <h1>🚀 Step-by-Step Guide: Getting Your NanoBanana API Key and Setting Up the Photoshop Script</h1>
+<h2>Why You Need This</h2>
+<p>The Photoshop script connects to NanoBanana's AI models (like Nano-Banana / Flux Kontext). To do this, it needs permission to talk to NanoBanana's servers. That permission is granted through an <strong>API key</strong> — a long secret code that works like a password.</p>
+<p>👉 Without this key, the script cannot run AI models inside Photoshop.</p>
+<h2>1. Create or Log In to a NanoBanana Account</h2>
+<ol>
+<li>Open <strong><a href="https://nanobananaapi.ai/" target="_blank">https://nanobananaapi.ai/</a></strong> in your browser.</li>
+<li>Click <strong>"Explore Features"</strong> or <strong>"Start"</strong> button.</li>
+<li>You'll see a login modal with two options:
+<ul>
+<li><strong>Google Account</strong>: Click the Google button to sign in with your Gmail</li>
+<li><strong>Microsoft Account</strong>: Click <strong>"Sign in with Microsoft"</strong></li>
+</ul>
+</li>
+</ol>
+<p><img src="Image2.png" alt="Login Screen" style="max-width: 100%; border-radius: 10px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></p>
+<ol>
+<li>Complete the verification process:
+<ul>
+<li>You'll see a CAPTCHA verification with <strong>"I am human"</strong></li>
+<li>Check the box to verify you're human</li>
+</ul>
+</li>
+</ol>
+<p><img src="Image3.png" alt="Verification" style="max-width: 100%; border-radius: 10px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></p>
+<p>✅ After logging in, you'll be redirected to your NanoBanana dashboard.</p>
+<h2>2. Navigate to API Keys Section</h2>
+<ol>
+<li>Once logged in, you'll see the main dashboard.</li>
+<li>In the left sidebar, click on <strong>"API Keys"</strong> section.</li>
+</ol>
+<p><img src="Image4.png" alt="Dashboard" style="max-width: 100%; border-radius: 10px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></p>
+<ol>
+<li>You'll see your API key management page with:
+<ul>
+<li>Your existing API key (partially hidden for security)</li>
+<li>Creation date</li>
+<li>Options to manage your key</li>
+</ul>
+</li>
+</ol>
+<h2>3. Get Your API Key</h2>
+<ol>
+<li>In the API Keys section, you'll see a key labeled <strong>"Default"</strong>.</li>
+<li>Click the <strong>copy button</strong> next to your API key to copy it to clipboard.
+<ul>
+<li>⚠️ This is secret — never share it publicly. Treat it like your password.</li>
+</ul>
+</li>
+<li>Keep this key safe - you'll need it for the Photoshop script.</li>
+</ol>
+<h2>4. Check Your Credits (Optional Top-up)</h2>
+<p>💡 <strong>Good news!</strong> Your account comes with <strong>50 free credits</strong> for testing. Each generation costs 4 credits, so you have enough for about 12-13 free generations.</p>
+<ol>
+<li>Click on <strong>"Payments"</strong> in the left sidebar.</li>
+</ol>
+<p><img src="Image5.png" alt="Credits Dashboard" style="max-width: 100%; border-radius: 10px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></p>
+<ol>
+<li>You'll see:
+<ul>
+<li><strong>Current balance</strong>: Your available credits</li>
+<li><strong>Credit packages available</strong>: 1,000, 10,000, 105,000, and 275,000 credits</li>
+<li><strong>Pricing</strong>: Starting from basic packages</li>
+</ul>
+</li>
+<li><strong>For testing</strong>: The existing 50 free credits are perfect to start with. Since each generation costs 4 credits, this gives you approximately 12-13 free attempts.</li>
+<li><strong>For extended use</strong>: The most basic top-up package (1,000 credits) will give you approximately 250 requests and is very affordable.</li>
+</ol>
+<h2>5. Install the Photoshop Script</h2>
+<ol>
+<li>Download the <code>.jsx</code> file provided.</li>
+<li>Copy it into your Photoshop Scripts folder:
+<ul>
+<li><strong>Windows</strong>: <code>C:\Program Files\Adobe\Adobe Photoshop <version>\Presets\Scripts</code></li>
+<li><strong>Mac</strong>: <code>/Applications/Adobe Photoshop <version>/Presets/Scripts</code></li>
+</ul>
+</li>
+<li>Restart Photoshop.
+<ul>
+<li>After restart, the script will appear under <strong>File → Scripts</strong>.</li>
+</ul>
+</li>
+</ol>
+<h2>6. Connect the Script to NanoBanana API</h2>
+<ol>
+<li>In Photoshop, run the script (<strong>File → Scripts → NanoBanana</strong>).</li>
+</ol>
+<p><img src="Image7.png" alt="API Key Input" style="max-width: 100%; border-radius: 10px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></p>
+<ol>
+<li>When you see the <strong>"API Key Required"</strong> dialog:
+<ul>
+<li>Paste the API key you copied from the NanoBanana dashboard</li>
+<li>Click <strong>"OK"</strong> to save</li>
+</ul>
+</li>
+<li>The script will remember your key for future use.</li>
+</ol>
+<h2>7. Configure the Script</h2>
+<p><img src="Image8.png" alt="Script Configuration" style="max-width: 100%; border-radius: 10px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></p>
+<ol>
+<li>In the <strong>NanoBanana v1.0</strong> interface:
+<ul>
+<li><strong>Model</strong>: Select "NanoBanana" from the dropdown</li>
+<li><strong>Language</strong>: Choose "Russian" or your preferred language</li>
+<li><strong>Prompt</strong>: Enter your image generation prompt</li>
+<li><strong>References</strong>: Choose "Browse..." if you want to upload reference images</li>
+<li><strong>Configure other settings as needed</strong></li>
+</ul>
+</li>
+<li>Click <strong>"Generate"</strong> to create your image!</li>
+</ol>
+<h2>8. Advanced Configuration (Optional)</h2>
+<p><img src="Image6.png" alt="Advanced Settings" style="max-width: 100%; border-radius: 10px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></p>
+<p>If you need advanced settings:</p>
+<ol>
+<li>Access <strong>"AI Generator - Initial Setup"</strong></li>
+<li>Configure:
+<ul>
+<li><strong>Hotkey combinations</strong> (Ctrl+Shift+Ctrl+H)</li>
+<li><strong>Scripts location</strong> and file paths</li>
+<li><strong>Automatic menu addition</strong></li>
+<li><strong>Additional script options</strong></li>
+</ul>
+</li>
+</ol>
+<h2>Available API Endpoints</h2>
+<p>Your account has access to these API endpoints:</p>
+<ul>
+<li><strong>"Create image from text"</strong> - 4 credits per request</li>
+<li><strong>"Get Nano Banana task details"</strong> - 0 credits</li>
+</ul>
+<h2>⚠️ Troubleshooting</h2>
+<ul>
+<li><strong>Can't find your API key?</strong> Go back to NanoBanana dashboard → API Keys section</li>
+<li><strong>Low on credits?</strong> Check the Payments section to top up</li>
+<li><strong>Script not showing in Photoshop?</strong> Make sure you copied the <code>.jsx</code> into the correct folder <em>and restarted Photoshop</em></li>
+<li><strong>Authentication issues?</strong> Try logging out and back in to NanoBanana</li>
+</ul>
+<h2>💡 Pro Tips</h2>
+<ul>
+<li><strong>Start with free credits</strong>: Use your included 50 free credits to test the system</li>
+<li><strong>Most economical option</strong>: The 1,000 credit package gives you ~250 generations</li>
+<li><strong>Save your prompts</strong>: Keep track of prompts that work well for future use</li>
+<li><strong>Monitor usage</strong>: Check your credit balance regularly in the Payments section</li>
+</ul>
+<p>You're now ready to generate amazing AI images directly inside Photoshop! 🎉</p>
+                </div>
+                <div lang="ru">
+                    <h1>🚀 Пошаговое руководство: Получение API-ключа NanoBanana и настройка скрипта для Photoshop</h1>
+<h2>Зачем это нужно</h2>
+<p>Скрипт Photoshop подключается к моделям ИИ NanoBanana (таким как Nano-Banana / Flux Kontext). Для этого ему требуется разрешение на связь с серверами NanoBanana. Это разрешение предоставляется через <strong>API-ключ</strong> — длинный секретный код, который работает как пароль.</p>
+<p>👉 Без этого ключа скрипт не сможет запускать модели ИИ внутри Photoshop.</p>
+<h2>1. Создание или вход в аккаунт NanoBanana</h2>
+<ol>
+<li>Откройте <strong><a href="https://nanobananaapi.ai/" target="_blank">https://nanobananaapi.ai/</a></strong> в вашем браузере.</li>
+<li>Нажмите кнопку <strong>"Исследовать возможности"</strong> или <strong>"Начать"</strong>.</li>
+<li>Вы увидите модальное окно входа с двумя вариантами:
+<ul>
+<li><strong>Аккаунт Google</strong>: Нажмите кнопку Google для входа через Gmail</li>
+<li><strong>Аккаунт Microsoft</strong>: Нажмите <strong>"Войти через Microsoft"</strong></li>
+</ul>
+</li>
+</ol>
+<p><img src="Image2.png" alt="Экран входа" style="max-width: 100%; border-radius: 10px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></p>
+<ol>
+<li>Завершите процесс верификации:
+<ul>
+<li>Вы увидите проверку CAPTCHA с <strong>"Soy humano"</strong> (Я человек)</li>
+<li>Поставьте галочку, чтобы подтвердить, что вы человек</li>
+</ul>
+</li>
+</ol>
+<p><img src="Image3.png" alt="Верификация" style="max-width: 100%; border-radius: 10px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></p>
+<p>✅ После входа вы будете перенаправлены на панель управления NanoBanana.</p>
+<h2>2. Переход к разделу API-ключей</h2>
+<ol>
+<li>После входа в систему вы увидите главную панель управления.</li>
+<li>На левой боковой панели нажмите на раздел <strong>"API-ключ"</strong>.</li>
+</ol>
+<p><img src="Image4.png" alt="Панель управления" style="max-width: 100%; border-radius: 10px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></p>
+<ol>
+<li>Вы увидите страницу управления API-ключами с:
+<ul>
+<li>Вашим существующим API-ключом (частично скрыт для безопасности)</li>
+<li>Датой создания</li>
+<li>Опциями управления вашим ключом</li>
+</ul>
+</li>
+</ol>
+<h2>3. Получение вашего API-ключа</h2>
+<ol>
+<li>В разделе API-ключей вы увидите ключ с меткой <strong>"Default"</strong>.</li>
+<li>Нажмите <strong>кнопку копирования</strong> рядом с вашим API-ключом, чтобы скопировать его в буфер обмена.
+<ul>
+<li>⚠️ Это секретная информация — никогда не делитесь ею публично. Относитесь к ней как к паролю.</li>
+</ul>
+</li>
+<li>Сохраните этот ключ в безопасном месте - он понадобится для скрипта Photoshop.</li>
+</ol>
+<h2>4. Проверка ваших кредитов (Дополнительное пополнение)</h2>
+<p>💡 <strong>Хорошие новости!</strong> Ваш аккаунт поставляется с <strong>50 бесплатными кредитами</strong> для тестирования. Каждая генерация стоит 4 кредита, так что у вас хватит примерно на 12-13 бесплатных генераций.</p>
+<ol>
+<li>Нажмите на <strong>"Платежи"</strong> на левой боковой панели.</li>
+</ol>
+<p><img src="Image5.png" alt="Панель кредитов" style="max-width: 100%; border-radius: 10px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></p>
+<ol>
+<li>Вы увидите:
+<ul>
+<li><strong>Текущий баланс</strong>: Ваши доступные кредиты</li>
+<li><strong>Доступные пакеты кредитов</strong>: 1,000, 10,000, 105,000 и 275,000 кредитов</li>
+<li><strong>Цены</strong>: Начиная с базовых пакетов</li>
+</ul>
+</li>
+<li><strong>Для тестирования</strong>: Существующих 50 бесплатных кредитов прекрасно достаточно для начала. Поскольку каждая генерация стоит 4 кредита, это дает вам примерно 12-13 бесплатных попыток.</li>
+<li><strong>Для расширенного использования</strong>: Самый базовый пакет пополнения (1,000 кредитов) даст вам примерно 250 запросов и очень доступен по цене.</li>
+</ol>
+<h2>5. Установка скрипта Photoshop</h2>
+<ol>
+<li>Скачайте предоставленный файл <code>.jsx</code>.</li>
+<li>Скопируйте его в папку скриптов Photoshop:
+<ul>
+<li><strong>Windows</strong>: <code>C:\Program Files\Adobe\Adobe Photoshop <version>\Presets\Scripts</code></li>
+<li><strong>Mac</strong>: <code>/Applications/Adobe Photoshop <version>/Presets/Scripts</code></li>
+</ul>
+</li>
+<li>Перезапустите Photoshop.
+<ul>
+<li>После перезапуска скрипт появится в меню <strong>Файл → Сценарии</strong>.</li>
+</ul>
+</li>
+</ol>
+<h2>6. Подключение скрипта к NanoBanana API</h2>
+<ol>
+<li>В Photoshop запустите скрипт (<strong>Файл → Сценарии → NanoBanana</strong>).</li>
+</ol>
+<p><img src="Image7.png" alt="Ввод API-ключа" style="max-width: 100%; border-radius: 10px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></p>
+<ol>
+<li>Когда появится диалоговое окно <strong>"Ключ API Требуется"</strong>:
+<ul>
+<li>Вставьте API-ключ, который вы скопировали с панели управления NanoBanana</li>
+<li>Нажмите <strong>"ОК"</strong> для сохранения</li>
+</ul>
+</li>
+<li>Скрипт запомнит ваш ключ для будущего использования.</li>
+</ol>
+<h2>7. Настройка скрипта</h2>
+<p><img src="Image8.png" alt="Конфигурация скрипта" style="max-width: 100%; border-radius: 10px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></p>
+<ol>
+<li>В интерфейсе <strong>NanoBanana v1.0</strong>:
+<ul>
+<li><strong>Модель</strong>: Выберите "NanoBanana" из выпадающего списка</li>
+<li><strong>Язык</strong>: Выберите "Русский" или ваш предпочитаемый язык</li>
+<li><strong>Промпт</strong>: Введите ваш промпт для генерации изображения</li>
+<li><strong>Референсы</strong>: Выберите "Обзор...", если хотите загрузить референсные изображения</li>
+<li>Настройте другие параметры по необходимости</li>
+</ul>
+</li>
+<li>Нажмите <strong>"Генерировать"</strong> для создания вашего изображения!</li>
+</ol>
+<h2>8. Расширенная настройка (Опционально)</h2>
+<p><img src="Image6.png" alt="Расширенные настройки" style="max-width: 100%; border-radius: 10px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></p>
+<p>Если вам нужны расширенные настройки:</p>
+<ol>
+<li>Откройте <strong>"AI Generator - Первая настройка"</strong></li>
+<li>Настройте:
+<ul>
+<li><strong>Комбинации горячих клавиш</strong> (Ctrl+Shift+Ctrl+H)</li>
+<li><strong>Расположение скриптов</strong> и пути к файлам</li>
+<li><strong>Автоматическое добавление в меню</strong></li>
+<li><strong>Дополнительные опции скрипта</strong></li>
+</ul>
+</li>
+</ol>
+<h2>Доступные конечные точки API</h2>
+<p>Ваш аккаунт имеет доступ к этим конечным точкам API:</p>
+<ul>
+<li><strong>"Создать изображение из текста"</strong> - 4 кредита за запрос</li>
+<li><strong>"Получить детали задачи Nano Banana"</strong> - 0 кредитов</li>
+</ul>
+<h2>⚠️ Устранение неполадок</h2>
+<ul>
+<li><strong>Не можете найти ваш API-ключ?</strong> Вернитесь на панель управления NanoBanana → раздел API-ключ</li>
+<li><strong>Мало кредитов?</strong> Проверьте раздел Платежи для пополнения</li>
+<li><strong>Скрипт не показывается в Photoshop?</strong> Убедитесь, что вы скопировали <code>.jsx</code> в правильную папку <em>и перезапустили Photoshop</em></li>
+<li><strong>Проблемы с аутентификацией?</strong> Попробуйте выйти и снова войти в NanoBanana</li>
+</ul>
+<h2>💡 Полезные советы</h2>
+<ul>
+<li><strong>Начните с бесплатных кредитов</strong>: Используйте ваши включенные 50 бесплатных кредитов для тестирования системы</li>
+<li><strong>Самый экономичный вариант</strong>: Пакет 1,000 кредитов дает вам ~250 генераций</li>
+<li><strong>Сохраняйте ваши промпты</strong>: Отслеживайте промпты, которые работают хорошо, для будущего использования</li>
+<li><strong>Контролируйте использование</strong>: Регулярно проверяйте баланс ваших кредитов в разделе Платежи</li>
+</ul>
+<p>Теперь вы готовы генерировать потрясающие изображения ИИ прямо в Photoshop! 🎉</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Language toggle functionality
+        function setLanguage(lang, button) {
+            document.body.className = document.body.className.replace(/lang-\w+/g, '');
+            document.body.classList.add('lang-' + lang);
+
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+
+            if (button) {
+                button.classList.add('active');
+            } else {
+                const index = lang === 'en' ? 0 : 1;
+                const btnToActivate = document.querySelectorAll('.lang-btn')[index];
+                if (btnToActivate) btnToActivate.classList.add('active');
+            }
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'ru';
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
