@@ -107,12 +107,24 @@
         <button class="lang-btn" onclick="setLanguage('en', this)">EN</button>
         <button class="lang-btn active" onclick="setLanguage('ru', this)">RU</button>
     </div>
+     <section class="video-section" style="min-height:1vh;">
+        <div class="container">
+            <h2 class="text-center mb-40" style="font-size: 2rem;">
+                <span lang="en">See It In Action</span>
+                <span lang="ru">Посмотрите в действии</span>
+            </h2>
+
+            <div class="video-container text-center">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/eX73FDAaam0?si=R0cR48dSxzlkTSMr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
 
     <section class="guide-section">
         <div class="container">
             <div class="guide-content">
                 <div lang="en">
-                    <h1>🚀 Step-by-Step Guide: Getting Your NanoBanana API Key and Setting Up the Photoshop Script</h1>
+                    <h1>🚀 Step-by-Step Guide: Getting Your KIE API Key and Setting Up the Photoshop Script</h1>
 <h2>Why You Need This</h2>
 <p>The Photoshop script connects to NanoBanana's AI models (like Nano-Banana / Flux Kontext). To do this, it needs permission to talk to NanoBanana's servers. That permission is granted through an <strong>API key</strong> — a long secret code that works like a password.</p>
 <p>👉 Without this key, the script cannot run AI models inside Photoshop.</p>
@@ -165,8 +177,9 @@
 </ol>
 <h2>4. Check Your Credits (Optional Top-up)</h2>
 <p>💡 <strong>Good news!</strong> Your account comes with <strong>80 free credits</strong> for testing. Each generation costs 4 credits, so you have enough for about 20 free generations.</p>
+<p><strong>Important:</strong> The Photoshop script is a <strong>one-time purchase</strong>. However, to generate images after your free credits are used, you will need to add funds to your <strong>KIE API</strong> account. The script relies on this API, which operates on a credit system.</p>
 <ol>
-<li>Click on <strong>"Payments"</strong> in the left sidebar.</li>
+<li>Click on <strong><a href="https://kie.ai/billing" target="_blank">"Payments"</a></strong> in the left sidebar.</li>
 </ol>
 <p><img src="Image5.png" alt="Credits Dashboard" style="max-width: 100%; border-radius: 10px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></p>
 <ol>
@@ -178,9 +191,14 @@
 </ul>
 </li>
 <li><strong>For testing</strong>: The existing 80 free credits are perfect to start with. Since each generation costs 4 credits, this gives you approximately 20 free attempts.</li>
-<li><strong>For extended use</strong>: The most basic top-up package (1,000 credits) will give you approximately 250 requests and is very affordable.</li>
+<li><strong>For extended use</strong>: If you want to generate more images, you must add money to your KIE API account to buy more credits. The most basic package (1,000 credits) gives you approximately 250 generations and is very affordable.</li>
 </ol>
 <h2>5. Install the Photoshop Script</h2>
+<h3>Minimum Requirements</h3>
+<ul>
+    <li><strong>Operating System:</strong> Windows 10, Windows 11, or macOS.</li>
+    <li><strong>Software:</strong> Adobe Photoshop version 22.0 or higher.</li>
+</ul>
 <ol>
 <li>Download the <code>.jsx</code> file provided.</li>
 <li>Copy it into your Photoshop Scripts folder:
@@ -195,7 +213,7 @@
 </ul>
 </li>
 </ol>
-<h2>6. Connect the Script to NanoBanana API</h2>
+<h2>6. Connect the Script to KIE API</h2>
 <ol>
 <li>In Photoshop, run the script (<strong>File → Scripts → NanoBanana</strong>).</li>
 </ol>
@@ -252,15 +270,15 @@
 </ul>
 <h2>💡 Pro Tips</h2>
 <ul>
-<li><strong>Start with free credits</strong>: Use your included 50 free credits to test the system</li>
+<li><strong>Start with free credits</strong>: Use your included 80 free credits to test the system</li>
 <li><strong>Most economical option</strong>: The 1,000 credit package gives you ~250 generations</li>
 <li><strong>Save your prompts</strong>: Keep track of prompts that work well for future use</li>
-<li><strong>Monitor usage</strong>: Check your credit balance regularly in the Payments section</li>
+<li><strong><a href="https://kie.ai/billing" target="_blank">"Monitor usage"</a></strong>: Check your credit balance regularly in the Payments section</li>
 </ul>
 <p>You're now ready to generate amazing AI images directly inside Photoshop! 🎉</p>
                 </div>
                 <div lang="ru">
-                    <h1>🚀 Пошаговое руководство: Получение API-ключа NanoBanana и настройка скрипта для Photoshop</h1>
+                    <h1>🚀 Пошаговое руководство: Получение API-ключа KIE и настройка скрипта для Photoshop</h1>
 <h2>Зачем это нужно</h2>
 <p>Скрипт Photoshop подключается к моделям ИИ NanoBanana (таким как Nano-Banana / Flux Kontext). Для этого ему требуется разрешение на связь с серверами NanoBanana. Это разрешение предоставляется через <strong>API-ключ</strong> — длинный секретный код, который работает как пароль.</p>
 <p>👉 Без этого ключа скрипт не сможет запускать модели ИИ внутри Photoshop.</p>
@@ -313,8 +331,9 @@
 </ol>
 <h2>4. Проверка ваших кредитов (Дополнительное пополнение)</h2>
 <p>💡 <strong>Хорошие новости!</strong> Ваш аккаунт поставляется с <strong>80 бесплатными кредитами</strong> для тестирования. Каждая генерация стоит 4 кредита, так что у вас хватит примерно на 20 бесплатных генераций.</p>
+<p><strong>Важно:</strong> Скрипт для Photoshop — это <strong>разовая покупка</strong>. Однако для генерации изображений после использования бесплатных кредитов вам потребуется пополнить счет в вашем аккаунте <strong>KIE API</strong>. Скрипт зависит от этого API, который работает по кредитной системе.</p>
 <ol>
-<li>Нажмите на <strong>"Платежи"</strong> на левой боковой панели.</li>
+<li>Нажмите на <strong><a href="https://kie.ai/ru/billing"target="_blank">"Платежи"</a></strong> на левой боковой панели.</li>
 </ol>
 <p><img src="Image5.png" alt="Панель кредитов" style="max-width: 100%; border-radius: 10px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"></p>
 <ol>
@@ -326,16 +345,21 @@
 </ul>
 </li>
 <li><strong>Для тестирования</strong>: Существующих 80 бесплатных кредитов прекрасно достаточно для начала. Поскольку каждая генерация стоит 4 кредита, это дает вам примерно 20 бесплатных попыток.</li>
-<li><strong>Для расширенного использования</strong>: Самый базовый пакет пополнения (1,000 кредитов) даст вам примерно 250 запросов и очень доступен по цене.</li>
+<li><strong>Для расширенного использования</strong>: Если вы хотите генерировать больше изображений, вы должны добавить средства на ваш счет в KIE API, чтобы купить больше кредитов. Самый базовый пакет пополнения (1,000 кредитов) даст вам примерно 250 запросов и очень доступен по цене.</li>
     <p><strong>⚠️ Примечание для пользователей из России:</strong><br>Если у вас возникли проблемы с оплатой российской картой, вы можете воспользоваться услугами посредника. <a href="https://oplatym.ru/" target="_blank">Oplatym.ru</a> – это крупнейшая онлайн-площадка для оплаты зарубежных сервисов, подписок, товаров и услуг из России.</p>
 </ol>
 <h2>5. Установка скрипта Photoshop</h2>
+<h3>Минимальные требования</h3>
+<ul>
+    <li><strong>Операционная система:</strong> Windows 10, Windows 11 или macOS.</li>
+    <li><strong>Программное обеспечение:</strong> Adobe Photoshop версии 22.0 или выше.</li>
+</ul>
 <ol>
 <li>Скачайте предоставленный файл <code>.jsx</code>.</li>
 <li>Скопируйте его в папку скриптов Photoshop:
 <ul>
 <li><strong>Windows</strong>: <code>C:\Program Files\Adobe\Adobe Photoshop <version>\Presets\Scripts</code></li>
-<li><strong>Mac</strong>: <code>/Applications/Adobe Photoshop <version>/Presets/Scripts</code></li>
+<li><strong>Mac</strong>: <code>/Applications/Adobe Photoshop <version>/Presets\Scripts</code></li>
 </ul>
 </li>
 <li>Перезапустите Photoshop.
@@ -344,7 +368,7 @@
 </ul>
 </li>
 </ol>
-<h2>6. Подключение скрипта к NanoBanana API</h2>
+<h2>6. Подключение скрипта к KIE API</h2>
 <ol>
 <li>В Photoshop запустите скрипт (<strong>Файл → Сценарии → NanoBanana</strong>).</li>
 </ol>
@@ -401,10 +425,10 @@
 </ul>
 <h2>💡 Полезные советы</h2>
 <ul>
-<li><strong>Начните с бесплатных кредитов</strong>: Используйте ваши включенные 50 бесплатных кредитов для тестирования системы</li>
+<li><strong>Начните с бесплатных кредитов</strong>: Используйте ваши включенные 80 бесплатных кредитов для тестирования системы</li>
 <li><strong>Самый экономичный вариант</strong>: Пакет 1,000 кредитов дает вам ~250 генераций</li>
 <li><strong>Сохраняйте ваши промпты</strong>: Отслеживайте промпты, которые работают хорошо, для будущего использования</li>
-<li><strong>Контролируйте использование</strong>: Регулярно проверяйте баланс ваших кредитов в разделе Платежи</li>
+<li><strong><a href="https://kie.ai/ru/billing" target="_blank">"Контролируйте использование"</a></strong>: Регулярно проверяйте баланс ваших кредитов в разделе Платежи</li>
 </ul>
 <p>Теперь вы готовы генерировать потрясающие изображения ИИ прямо в Photoshop! 🎉</p>
                 </div>
@@ -413,27 +437,7 @@
         </div>
 
           </section>
-    <section class="video-section">
-        <div class="container">
-            <h2 class="text-center mb-40" style="font-size: 2rem;">
-                <span lang="en">See It In Action</span>
-                <span lang="ru">Посмотрите в действии</span>
-            </h2>
 
-            <div class="video-container text-center">
-                <div class="video-placeholder">
-
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/eX73FDAaam0?si=R0cR48dSxzlkTSMr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-                </div>
-            </div>
-
-            <p class="text-center mt-20">
-                <span lang="en" >Watch how professional designers use NanoBanana to speed up their workflow</span>
-                <span lang="ru" >Смотрите, как профессиональные дизайнеры используют NanoBanana для ускорения работы</span>
-            </p>
-        </div>
-    </section>
     <script>
         // Language toggle functionality
         function setLanguage(lang, button) {
