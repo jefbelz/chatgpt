@@ -287,7 +287,7 @@
         <section class="page" id="page-18">
             <img src="images/18.jpg" alt="Catálogo vestidos Lilia - página 18" />
         </section>
-            <section class="page" id="page-precios">
+            <section class="page" id="page-precios" style="display: none;">
             <img src="images/precios.png" alt="Catálogo vestidos Lilia - precios" />
         </section>
     </main>
@@ -309,5 +309,22 @@
             </p>
         </div>
     </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const params = new URLSearchParams(window.location.search);
+            
+            // Handle Price Visibility
+            if (params.get('price') === 'true') {
+                const priceSection = document.getElementById('page-precios');
+                if (priceSection) priceSection.style.display = 'block';
+            }
+
+            // Handle Catalog Visibility
+            if (params.get('catalogoff') === 'true') {
+                const pages = document.querySelectorAll('section.page:not(#page-precios)');
+                pages.forEach(page => page.style.display = 'none');
+            }
+        });
+    </script>
 </body>
 </html>
