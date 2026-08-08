@@ -1,0 +1,862 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LevelUP newborn 2026 — обновлённый курс</title>
+</head>
+<body>
+<div id="lup2026">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* ===== SCOPED RESET & TOKENS ===== */
+#lup2026{
+  all:initial;
+  display:block;
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  color:#23262B;
+  background:#FFFFFF;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  --lup-yellow:#F5C518;
+  --lup-yellow-soft:#FFF3CC;
+  --lup-graphite:#23262B;
+  --lup-graphite-soft:#565A62;
+  --lup-bg-warm:#F9EFD4;
+  --lup-green:#1F7A4D;
+  --lup-green-dark:#154F31;
+  --lup-red:#D8342A;
+  --lup-border:#E7E0CE;
+  --lup-white:#FFFFFF;
+}
+#lup2026,#lup2026 *,#lup2026 *::before,#lup2026 *::after{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+#lup2026 ul,#lup2026 ol{ list-style:none; }
+#lup2026 img,#lup2026 svg{ display:block; }
+#lup2026 button{ font:inherit; color:inherit; background:none; border:none; cursor:pointer; }
+#lup2026 a{ color:inherit; text-decoration:none; }
+#lup2026 h1,#lup2026 h2,#lup2026 h3,#lup2026 h4{ font-weight:800; line-height:1.15; color:var(--lup-graphite); }
+#lup2026 :focus-visible{ outline:3px solid var(--lup-green); outline-offset:2px; border-radius:4px; }
+#lup2026 .lup-container{ max-width:1080px; margin:0 auto; padding:0 20px; }
+#lup2026 section{ padding:80px 0; }
+#lup2026 .lup-divider{ border-top:1px solid var(--lup-border); }
+#lup2026 .lup-bg-warm{ background:var(--lup-bg-warm); }
+
+#lup2026 .lup-icon{ display:inline-flex; color:var(--lup-graphite); flex-shrink:0; }
+#lup2026 .lup-icon svg{ width:22px; height:22px; }
+
+#lup2026 .lup-eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  color:var(--lup-graphite-soft);
+  font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  margin-bottom:18px;
+}
+#lup2026 .lup-eyebrow::before{ content:""; width:20px; height:2px; background:var(--lup-yellow); display:inline-block; }
+
+#lup2026 .lup-tag{
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,.12); color:#fff;
+  font-size:13.5px; font-weight:600; padding:9px 16px; border-radius:999px;
+  border:1.5px solid rgba(255,255,255,.55);
+  backdrop-filter:blur(2px);
+}
+#lup2026 .lup-tag .lup-icon{ color:#fff; }
+#lup2026 .lup-tag .lup-icon svg{ width:16px; height:16px; }
+#lup2026 .lup-tag-light{ background:transparent; color:var(--lup-graphite); border:1.5px solid var(--lup-graphite); backdrop-filter:none; }
+#lup2026 .lup-tag-light .lup-icon{ color:var(--lup-graphite); }
+#lup2026 .lup-tags-row{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:36px; }
+
+#lup2026 .lup-btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding:16px 30px; border-radius:12px; font-weight:700; font-size:16px;
+  transition:transform .15s ease, box-shadow .15s ease; cursor:pointer;
+}
+#lup2026 .lup-btn:hover{ transform:translateY(-2px); }
+#lup2026 .lup-btn-primary{ background:var(--lup-yellow); color:var(--lup-graphite); box-shadow:0 8px 24px rgba(0,0,0,.25); }
+#lup2026 .lup-btn-primary:hover{ background:#E0B310; }
+#lup2026 .lup-btn-dark{ background:var(--lup-yellow); color:var(--lup-graphite); }
+#lup2026 .lup-btn-dark:hover{ background:#E0B310; }
+#lup2026 .lup-btn-ghost{ background:transparent; color:var(--lup-graphite); border:2px solid var(--lup-graphite); }
+#lup2026 .lup-btn-ghost-light{ background:rgba(255,255,255,.1); color:#fff; border:2px solid #fff; }
+
+#lup2026 .lup-h2{ font-size:clamp(28px,4vw,40px); margin-bottom:14px; letter-spacing:-.01em; }
+#lup2026 .lup-lead{ font-size:clamp(16px,2vw,18.5px); color:var(--lup-graphite-soft); max-width:620px; }
+#lup2026 .lup-section-head{ text-align:center; margin-bottom:48px; }
+#lup2026 .lup-section-head .lup-lead{ margin:0 auto; }
+#lup2026 .lup-section-head .lup-eyebrow{ justify-content:center; width:100%; }
+#lup2026 .lup-section-head .lup-eyebrow::before{ display:none; }
+
+/* ===== HERO — фото видно, текст читаем за счёт тени ===== */
+#lup2026 .lup-hero{
+  position:relative; padding:44px 0 68px; overflow:hidden; text-align:center; color:#fff;
+  background-image:linear-gradient(180deg,rgba(10,10,10,.4),rgba(10,10,10,.58)),url('https://chatgpt.lilia.by/images/levelup/levelup1.jpg');
+  background-size:cover; background-position:center 30%;
+}
+#lup2026 .lup-hero-inner{ max-width:800px; margin:0 auto; position:relative; z-index:2; }
+#lup2026 .lup-logo-img{ display:block; margin:0 auto 40px; width:min(200px,40vw); height:auto; filter:drop-shadow(0 4px 18px rgba(0,0,0,.4)); }
+#lup2026 .lup-hero h1{ font-size:clamp(24px,3.4vw,34px); font-weight:700; letter-spacing:-.01em; margin:0 auto 28px; max-width:680px; color:#fff; text-shadow:0 2px 4px rgba(0,0,0,.45), 0 6px 20px rgba(0,0,0,.5); }
+#lup2026 .lup-hero .lup-lead{ margin:0 auto 48px; font-size:clamp(16px,2vw,18px); color:#FFFFFF; max-width:600px; text-shadow:0 2px 4px rgba(0,0,0,.45), 0 6px 18px rgba(0,0,0,.5); }
+#lup2026 .lup-hero-start{ font-size:13.5px; font-weight:700; color:var(--lup-yellow); letter-spacing:.03em; margin-top:26px; }
+#lup2026 .lup-hero-cta-row{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:8px; }
+#lup2026 .lup-logotype{ display:flex; flex-direction:column; align-items:center; gap:12px; margin-bottom:34px; }
+#lup2026 .lup-logotype-main{ font-size:clamp(38px,7vw,64px); font-weight:900; letter-spacing:-.03em; color:#fff; line-height:1; text-shadow:0 2px 6px rgba(0,0,0,.4), 0 8px 30px rgba(0,0,0,.55); }
+#lup2026 .lup-logotype-sub{ font-size:clamp(14px,2vw,19px); font-weight:800; letter-spacing:.08em; text-transform:uppercase; background:var(--lup-yellow); color:var(--lup-graphite); padding:8px 20px; border-radius:999px; }
+#lup2026 .lup-hero h1 em{ font-style:normal; color:var(--lup-yellow); }
+
+#lup2026 .lup-img-ph{ background:var(--lup-bg-warm); border:2px dashed var(--lup-border); border-radius:18px; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--lup-graphite-soft); font-size:13px; line-height:1.4; padding:16px; }
+
+/* ===== PHOTOBUSINESS VISUAL BLOCK — без скруглений у фото, моки соцдоказательств ===== */
+#lup2026 .lup-pb-grid{ display:grid; gap:28px; align-items:start; }
+#lup2026 .lup-pb-photo{ overflow:hidden; aspect-ratio:2/3; max-width:420px; margin:0 auto; box-shadow:0 16px 40px rgba(0,0,0,.16); }
+#lup2026 .lup-pb-photo img{ width:100%; height:100%; object-fit:cover; }
+#lup2026 .lup-mock-row{ display:grid; gap:12px; grid-template-columns:1fr 1fr; }
+#lup2026 .lup-mock-row-big{ gap:14px; }
+#lup2026 .lup-mock{ background:#fff; border:1px solid #E2E4E8; box-shadow:0 6px 16px rgba(0,0,0,.08); padding:12px 13px; font-size:12px; }
+#lup2026 .lup-mock-row-big .lup-mock{ padding:18px 20px; font-size:13px; }
+#lup2026 .lup-mock-notif{ display:flex; align-items:center; gap:9px; grid-column:1/-1; }
+#lup2026 .lup-mock-notif .lup-mock-ico{ width:32px; height:32px; background:var(--lup-yellow); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:15px; }
+#lup2026 .lup-mock-row-big .lup-mock-notif .lup-mock-ico{ width:42px; height:42px; font-size:19px; }
+#lup2026 .lup-mock-notif b{ display:block; font-size:12.5px; color:var(--lup-graphite); }
+#lup2026 .lup-mock-row-big .lup-mock-notif b{ font-size:15px; }
+#lup2026 .lup-mock-notif span{ color:var(--lup-graphite-soft); font-size:11px; }
+#lup2026 .lup-mock-stat b{ display:block; font-size:20px; color:var(--lup-green-dark); }
+#lup2026 .lup-mock-row-big .lup-mock-stat b{ font-size:28px; }
+#lup2026 .lup-mock-stat span{ color:var(--lup-graphite-soft); font-size:11px; }
+#lup2026 .lup-mock-row-big .lup-mock-stat span{ font-size:13px; }
+#lup2026 .lup-mock-dm .lup-mock-dm-head{ display:flex; align-items:center; gap:7px; margin-bottom:5px; }
+#lup2026 .lup-mock-dm .lup-mock-avatar{ width:20px; height:20px; border-radius:50%; background:var(--lup-bg-warm); flex-shrink:0; }
+#lup2026 .lup-mock-row-big .lup-mock-dm .lup-mock-avatar{ width:26px; height:26px; }
+#lup2026 .lup-mock-dm p{ color:var(--lup-graphite); font-size:12px; line-height:1.4; }
+#lup2026 .lup-mock-row-big .lup-mock-dm p{ font-size:15px; }
+#lup2026 .lup-pb-list{ display:grid; gap:11px; margin-top:18px; }
+#lup2026 .lup-pb-list li{ padding-left:28px; position:relative; font-size:14.5px; color:var(--lup-graphite-soft); }
+#lup2026 .lup-pb-list li::before{ content:"✓"; position:absolute; left:0; color:var(--lup-green); font-weight:800; }
+@media (min-width:760px){ #lup2026 .lup-pb-grid{ grid-template-columns:.9fr 1.1fr; } }
+
+/* ===== TRIAL LESSON BAR ===== */
+#lup2026 .lup-trial{ background:var(--lup-bg-warm); color:var(--lup-graphite); }
+#lup2026 .lup-trial-inner{ display:grid; gap:36px; align-items:center; padding:72px 20px; text-align:center; }
+#lup2026 .lup-trial-head{ font-size:clamp(26px,4vw,36px); font-weight:800; color:var(--lup-graphite); margin-bottom:10px; }
+#lup2026 .lup-trial-sub{ font-size:16px; color:var(--lup-graphite-soft); max-width:480px; margin:0 auto; }
+#lup2026 .lup-trial-thumb{ position:relative; width:100%; max-width:480px; aspect-ratio:16/9; margin:0 auto; overflow:hidden; box-shadow:0 16px 40px rgba(0,0,0,.18); }
+#lup2026 .lup-trial-thumb img{ width:100%; height:100%; object-fit:cover; }
+#lup2026 .lup-trial-thumb .lup-trial-play{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,.2); }
+#lup2026 .lup-trial-thumb .lup-trial-play span{ width:72px; height:72px; border-radius:50%; background:rgba(255,255,255,.95); display:flex; align-items:center; justify-content:center; }
+#lup2026 .lup-trial-thumb .lup-trial-play svg{ width:28px; height:28px; color:var(--lup-graphite); }
+@media (min-width:700px){ #lup2026 .lup-trial-inner{ grid-template-columns:1fr 1.1fr; text-align:left; } #lup2026 .lup-trial-sub{ margin:0; } }
+
+/* ===== СЛУЖБА ЗАБОТЫ ===== */
+#lup2026 .lup-care{ text-align:center; }
+#lup2026 .lup-care p{ color:var(--lup-graphite-soft); margin-bottom:22px; }
+
+/* ===== REAL PHOTO GALLERY — без скруглений ===== */
+#lup2026 .lup-gallery-grid{ display:grid; gap:12px; grid-template-columns:repeat(2,1fr); }
+#lup2026 .lup-gallery-grid img{ width:100%; height:100%; object-fit:cover; border-radius:0; aspect-ratio:4/5; }
+#lup2026 .lup-gallery-grid a.lup-gallery-item{ display:block; overflow:hidden; position:relative; }
+@media (min-width:700px){ #lup2026 .lup-gallery-grid{ grid-template-columns:repeat(3,1fr); } }
+
+/* ===== COMPARISON TABLE ===== */
+#lup2026 .lup-compare{ border:1.5px solid var(--lup-border); border-radius:18px; overflow:hidden; }
+#lup2026 .lup-compare-row{ display:grid; grid-template-columns:1fr 1fr; }
+#lup2026 .lup-compare-row + .lup-compare-row{ border-top:1px solid var(--lup-border); }
+#lup2026 .lup-compare-row.lup-compare-head{ background:var(--lup-graphite); color:#fff; font-weight:800; }
+#lup2026 .lup-compare-cell{ padding:16px 18px; font-size:14.5px; }
+#lup2026 .lup-compare-cell.lup-old{ color:var(--lup-graphite-soft); }
+#lup2026 .lup-compare-cell.lup-new{ font-weight:700; color:var(--lup-green-dark); background:var(--lup-yellow-soft); }
+#lup2026 .lup-compare-row.lup-compare-head .lup-compare-cell{ background:transparent; color:#fff; }
+#lup2026 .lup-compare-row.lup-compare-head .lup-compare-cell.lup-new{ color:var(--lup-yellow); }
+
+/* ===== WHAT'S NEW ===== */
+#lup2026 .lup-new-grid{ display:grid; gap:20px; grid-template-columns:1fr; }
+#lup2026 .lup-new-card{ border:1.5px solid var(--lup-border); border-radius:16px; padding:26px; }
+#lup2026 .lup-new-card .lup-num{ font-size:13px; font-weight:800; color:var(--lup-graphite); border:1.5px solid var(--lup-graphite); width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
+#lup2026 .lup-new-card h3{ font-size:19px; margin-bottom:8px; }
+#lup2026 .lup-new-card p{ color:var(--lup-graphite-soft); font-size:15px; }
+
+/* ===== USP ===== */
+#lup2026 .lup-usp-list{ display:grid; gap:16px; }
+#lup2026 .lup-usp{ display:grid; grid-template-columns:auto 1fr; gap:18px; border:1.5px solid var(--lup-border); border-radius:16px; padding:22px; align-items:flex-start; }
+#lup2026 .lup-usp-ico{ width:44px; height:44px; border-radius:12px; border:1.5px solid var(--lup-graphite); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+#lup2026 .lup-usp h3{ font-size:17px; margin-bottom:6px; }
+#lup2026 .lup-usp p{ font-size:14.5px; color:var(--lup-graphite-soft); }
+
+/* ===== AUDIENCE TABS ===== */
+#lup2026 .lup-tabs-nav{ display:flex; gap:10px; margin-bottom:24px; flex-wrap:wrap; justify-content:center; }
+#lup2026 .lup-tab-btn{ padding:12px 20px; border-radius:10px; background:transparent; font-weight:700; font-size:15px; border:2px solid var(--lup-border); }
+#lup2026 .lup-tab-btn[aria-selected="true"]{ background:var(--lup-graphite); color:var(--lup-yellow); border-color:var(--lup-graphite); }
+#lup2026 .lup-tab-panel{ display:none; border:1.5px solid var(--lup-border); border-radius:18px; padding:28px; }
+#lup2026 .lup-tab-panel.lup-active{ display:block; }
+#lup2026 .lup-tab-panel ul{ margin-top:14px; display:grid; gap:10px; }
+#lup2026 .lup-tab-panel li{ padding-left:26px; position:relative; font-size:15px; color:var(--lup-graphite-soft); }
+#lup2026 .lup-tab-panel li::before{ content:"—"; position:absolute; left:0; color:var(--lup-graphite); font-weight:800; }
+
+/* ===== HOW LESSONS WORK (video insert) ===== */
+#lup2026 .lup-video-card{ position:relative; overflow:hidden; aspect-ratio:16/9; max-width:820px; margin:0 auto; background:#000; }
+#lup2026 .lup-video-card iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+#lup2026 .lup-video-card img{ width:100%; height:100%; object-fit:cover; }
+#lup2026 .lup-howto-cta{ text-align:center; margin-top:28px; }
+#lup2026 .lup-video-play{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(20,20,20,.25); }
+#lup2026 .lup-video-play span{ width:74px; height:74px; border-radius:50%; background:rgba(255,255,255,.92); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,.3); }
+#lup2026 .lup-video-play svg{ width:26px; height:26px; color:var(--lup-graphite); }
+
+/* ===== PROGRAM ACCORDION ===== */
+#lup2026 .lup-acc-item{ border:1px solid var(--lup-border); border-radius:14px; margin-bottom:12px; overflow:hidden; background:#fff; }
+#lup2026 .lup-acc-head{ width:100%; display:flex; justify-content:space-between; align-items:center; gap:16px; padding:18px 20px; text-align:left; }
+#lup2026 .lup-acc-head:hover{ background:var(--lup-bg-warm); }
+#lup2026 .lup-acc-title{ display:flex; flex-direction:column; gap:4px; }
+#lup2026 .lup-acc-title b{ font-size:15.5px; }
+#lup2026 .lup-acc-title small{ font-size:12.5px; color:var(--lup-graphite-soft); font-weight:600; }
+#lup2026 .lup-acc-icon{ width:28px; height:28px; border-radius:50%; border:1.5px solid var(--lup-graphite); display:flex; align-items:center; justify-content:center; font-weight:800; flex-shrink:0; transition:transform .2s ease; }
+#lup2026 .lup-acc-item[data-open="true"] .lup-acc-icon{ transform:rotate(45deg); }
+#lup2026 .lup-acc-body{ max-height:0; overflow:hidden; transition:max-height .25s ease; }
+#lup2026 .lup-acc-body ol{ padding:0 20px 20px; display:grid; gap:10px; counter-reset:lup-lesson; }
+#lup2026 .lup-acc-body li{ font-size:14.5px; color:var(--lup-graphite-soft); padding-left:28px; position:relative; counter-increment:lup-lesson; }
+#lup2026 .lup-acc-body li::before{ content:counter(lup-lesson)"."; position:absolute; left:0; font-weight:800; color:var(--lup-graphite); }
+
+/* ===== BONUSES ===== */
+#lup2026 .lup-bonus-grid{ display:grid; gap:16px; grid-template-columns:1fr; }
+#lup2026 .lup-bonus{ background:var(--lup-graphite); color:#fff; border-radius:16px; padding:22px; }
+#lup2026 .lup-bonus .lup-icon{ color:var(--lup-yellow); margin-bottom:12px; }
+#lup2026 .lup-bonus h4{ color:#fff; font-size:16px; margin-bottom:6px; }
+#lup2026 .lup-bonus p{ font-size:14px; color:#C9CCD1; }
+#lup2026 .lup-bonus-flag{ display:inline-block; background:var(--lup-yellow); color:var(--lup-graphite); font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; padding:3px 10px; border-radius:999px; margin-bottom:10px; }
+
+/* ===== TESTIMONIALS (screenshot style) ===== */
+#lup2026 .lup-testi-grid{ display:grid; gap:20px; grid-template-columns:1fr; }
+#lup2026 .lup-testi{ border:1px solid #DADCE0; border-radius:12px; overflow:hidden; background:#fff; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+#lup2026 .lup-testi-head{ display:flex; align-items:center; gap:10px; padding:14px 16px 10px; }
+#lup2026 .lup-testi-avatar{ width:40px; height:40px; border-radius:50%; background:var(--lup-yellow-soft); border:1px solid var(--lup-border); display:flex; align-items:center; justify-content:center; color:var(--lup-graphite-soft); flex-shrink:0; }
+#lup2026 .lup-testi-avatar svg{ width:22px; height:22px; }
+#lup2026 .lup-testi-name{ font-weight:700; font-size:13.5px; color:#1a56db; }
+#lup2026 .lup-testi-handle{ font-size:11.5px; color:#8a8d91; }
+#lup2026 .lup-testi p{ font-size:14px; color:#3a3b3c; padding:0 16px 14px; }
+#lup2026 .lup-testi p b{ color:var(--lup-graphite); }
+
+/* ===== ANKETA-INSTEAD-OF-PRICING BLOCK ===== */
+/* ===== ANKETA SECTION — сплошной жёлтый фон секции, без вложенного блока ===== */
+#lup2026 .lup-anketa-section{ background:var(--lup-yellow); text-align:center; }
+#lup2026 .lup-anketa-section .lup-h2{ color:var(--lup-graphite); }
+#lup2026 .lup-anketa-section .lup-lead{ color:#3A3312; margin:0 auto 14px; }
+#lup2026 .lup-anketa-section .lup-start-date{ font-weight:800; color:var(--lup-graphite); margin-bottom:26px; font-size:15.5px; }
+
+/* ===== FAQ ===== */
+#lup2026 .lup-faq-item{ border-bottom:1px solid var(--lup-border); }
+#lup2026 .lup-faq-head{ width:100%; display:flex; justify-content:space-between; gap:16px; padding:20px 4px; text-align:left; font-weight:700; font-size:15.5px; }
+#lup2026 .lup-faq-icon{ flex-shrink:0; font-weight:800; color:var(--lup-graphite); transition:transform .2s ease; }
+#lup2026 .lup-faq-item[data-open="true"] .lup-faq-icon{ transform:rotate(45deg); }
+#lup2026 .lup-faq-body{ max-height:0; overflow:hidden; transition:max-height .25s ease; }
+#lup2026 .lup-faq-body p{ padding:0 4px 20px; font-size:14.5px; color:var(--lup-graphite-soft); }
+
+/* ===== FINAL CTA / FORM ===== */
+#lup2026 .lup-final{ background:var(--lup-graphite); color:#fff; border-radius:28px; padding:48px 28px; text-align:center; }
+#lup2026 .lup-final h2{ color:#fff; }
+#lup2026 .lup-final .lup-lead{ color:#C9CCD1; margin:0 auto 10px; }
+#lup2026 .lup-final .lup-start-date{ color:var(--lup-yellow); font-weight:800; margin-bottom:24px; font-size:15px; }
+#lup2026 .lup-form{ display:flex; flex-direction:column; gap:12px; max-width:420px; margin:0 auto; }
+#lup2026 .lup-form input{ font:inherit; padding:14px 16px; border-radius:10px; border:2px solid transparent; background:#fff; color:var(--lup-graphite); width:100%; }
+#lup2026 .lup-form input:focus-visible{ border-color:var(--lup-yellow); outline:none; }
+#lup2026 .lup-form-note{ font-size:12.5px; color:#9EA2A8; margin-top:14px; }
+#lup2026 .lup-success{ display:none; background:var(--lup-green); color:#fff; border-radius:14px; padding:20px; font-weight:700; }
+#lup2026 .lup-success.lup-show{ display:block; }
+#lup2026 .lup-form.lup-hide{ display:none; }
+
+/* ===== FOOTER ===== */
+#lup2026 footer{ padding:36px 0; border-top:1px solid var(--lup-border); font-size:13px; color:var(--lup-graphite-soft); }
+#lup2026 footer a{ text-decoration:underline; }
+#lup2026 .lup-footer-links{ display:flex; gap:16px; flex-wrap:wrap; margin-top:10px; }
+
+/* ===== RESPONSIVE ===== */
+@media (min-width:760px){
+  #lup2026 .lup-new-grid{ grid-template-columns:repeat(2,1fr); }
+  #lup2026 .lup-usp-list{ grid-template-columns:repeat(2,1fr); }
+  #lup2026 .lup-bonus-grid{ grid-template-columns:repeat(3,1fr); }
+  #lup2026 .lup-testi-grid{ grid-template-columns:repeat(3,1fr); }
+  #lup2026 .lup-compare-cell{ padding:18px 26px; font-size:15.5px; }
+}
+@media (min-width:1000px){
+  #lup2026 .lup-new-grid{ grid-template-columns:repeat(3,1fr); }
+}
+</style>
+
+<!-- ===================== HERO — одна кнопка, тёмный контраст ===================== -->
+<main>
+
+<!-- ===================== ЧТО НОВОГО (переписано полностью) ===================== -->
+<section class="lup-divider lup-bg-warm" aria-labelledby="lup-new-h2">
+  <div class="lup-container">
+    <div class="lup-section-head">
+      <span class="lup-eyebrow">5 лет курсу · 11 потоков · большое обновление</span>
+      <h2 class="lup-h2" id="lup-new-h2">Что реально изменилось в курсе</h2>
+      <p class="lup-lead">LevelUp newborn существует 5 лет и выпустил 11 потоков. Сейчас мы меняем курс с учётом трендов 2026 года и стремительного развития нейросетей — чтобы ты была востребована даже в эпоху кризисов и повсеместного ИИ.</p>
+    </div>
+
+    <div class="lup-tags-row">
+      <span class="lup-tag lup-tag-light"><span class="lup-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="12" r="6.5"/><circle cx="15" cy="12" r="6.5"/></svg>
+      </span>Комбо-стиль в ньюборн</span>
+      <span class="lup-tag lup-tag-light"><span class="lup-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+      </span>Ретушь с ИИ за минуты</span>
+      <span class="lup-tag lup-tag-light"><span class="lup-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+      </span>Клиенты через ИИ</span>
+    </div>
+
+    <div class="lup-new-grid">
+      <div class="lup-new-card">
+        <div class="lup-num">01</div>
+        <h3>Комбо-стиль: лайфстайл + классика</h3>
+        <p>Фотограф подстраивается под рынок и запрос клиента — в разных странах и городах ценят разное: где-то классику, где-то лайфстайл, а где-то и то, и другое сразу. Учим работать в обоих направлениях в рамках одной сессии.</p>
+      </div>
+      <div class="lup-new-card">
+        <div class="lup-num">02</div>
+        <h3>Ретушь с ИИ — блок пересобран полностью</h3>
+        <p>Обработка сессии за минуты вместо вечеров. Конкретные инструменты, а не «нейросети существуют, вот вам ссылка».</p>
+      </div>
+      <div class="lup-new-card">
+        <div class="lup-num">03</div>
+        <h3>Фотобизнес — только практика</h3>
+        <p>Убрали теорию. Оставили только практические уроки: как быстро, без команды, построить продвижение на базе ИИ — от рекламы до переписок с клиентами.</p>
+      </div>
+      <div class="lup-new-card">
+        <div class="lup-num">04</div>
+        <h3>CRM — собственная разработка</h3>
+        <p>Новинка: CRM для newborn-фотографа, которую разработала сама школа. Клиенты, повторные съёмки, финансы и советы по маркетингу от ИИ — в одном месте.</p>
+      </div>
+      <div class="lup-new-card">
+        <div class="lup-num">05</div>
+        <h3>Живые мастер-классы</h3>
+        <p>К онлайн-курсу добавились очные встречи — в Минске и Валенсии. Живая практика с реальными малышами и разбор работ вживую.</p>
+      </div>
+      <div class="lup-new-card">
+        <div class="lup-num">06</div>
+        <h3>Только про newborn</h3>
+        <p>Раньше в LevelUp были беременность, ситтеры, семейная съёмка — всё в одной большой программе. Теперь курс максимально сфокусирован на newborn, чтобы не распыляться, а остальные направления — часть Baby Plans.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ФОТОБИЗНЕС ВИЗУАЛЬНО (переписано v2) ===================== -->
+<section class="lup-divider" aria-labelledby="lup-pb-h2">
+  <div class="lup-container">
+    <div class="lup-section-head">
+      <span class="lup-eyebrow">Фотобизнес в 2026</span>
+      <h2 class="lup-h2" id="lup-pb-h2">Обновления в модуле «Фотобизнес»</h2>
+      <p class="lup-lead">Пошаговое внедрение каждого инструмента, без лишней теории.</p>
+    </div>
+    <div class="lup-pb-grid">
+      <div class="lup-pb-photo">
+        <img src="https://chatgpt.lilia.by/images/levelup/levelupads.jpg" alt="Фотобизнес с ИИ: уведомления в Instagram Direct с заявками на съёмку" loading="lazy">
+      </div>
+      <div>
+        <p class="lup-lead" style="max-width:100%">В модуле «Фотобизнес с ИИ» — 8 конкретных инструментов для привлечения клиентов, каждый с пошаговым внедрением:</p>
+        <ul class="lup-pb-list">
+          <li>Reels — снимаешь и монтируешь с ИИ за вечер, а не за неделю</li>
+          <li>Карусели и посты с ИИ</li>
+          <li>Таргетированная реклама, настроенная с нуля</li>
+          <li>Контекстная реклама в Google и Яндексе</li>
+          <li>Автоответы клиентам в директ, чтобы не терять заявки</li>
+          <li>SEO-сайт и бизнес-страница за один промпт</li>
+          <li>Подбор нужных нейросетей и как их оплатить</li>
+          <li>CRM — приводит на повторные съёмки и подсказывает, что делать дальше</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ПОЧЕМУ LEVELUP, А НЕ ДРУГОЙ КУРС ===================== -->
+<section class="lup-divider" aria-labelledby="lup-usp-h2">
+  <div class="lup-container">
+    <div class="lup-section-head">
+      <h2 class="lup-h2" id="lup-usp-h2">Почему LevelUp, а не другой курс</h2>
+    </div>
+    <div class="lup-usp-list">
+      <div class="lup-usp">
+        <div class="lup-usp-ico"><span class="lup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="12" r="6.5"/><circle cx="15" cy="12" r="6.5"/></svg></span></div>
+        <div><h3>Единственный курс про комбо-стиль в ньюборн-фотографии</h3><p>Учишься снимать классику и лайфстайл в одной сессии — то, что сегодня покупают родители и за что готовы платить выше среднего чека.</p></div>
+      </div>
+      <div class="lup-usp">
+        <div class="lup-usp-ico"><span class="lup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span></div>
+        <div><h3>Самый быстрый workflow ретуши с нейросетями</h3><p>В 5–10 раз быстрее классического. То, что раньше занимало выходные, делается за час — работает даже у тех, кто не открывал Photoshop.</p></div>
+      </div>
+      <div class="lup-usp">
+        <div class="lup-usp-ico"><span class="lup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 6"/><polyline points="15 6 21 6 21 12"/></svg></span></div>
+        <div><h3>Единственный курс, где ИИ помогает находить клиентов</h3><p>Reels, посты, таргет, реклама, переписки — без команды и сммщика. То, что у конкурентов занимает месяцы, у тебя занимает вечер.</p></div>
+      </div>
+      <div class="lup-usp">
+        <div class="lup-usp-ico"><span class="lup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 8v8M8 12h8"/></svg></span></div>
+        <div><h3>Единственный курс, где куратор — действующий врач-неонатолог и фотограф</h3><p>Не переживаешь, что сделаешь что-то не так с младенцем — куратор всегда подскажет. Родители чувствуют твою уверенность с первой минуты.</p></div>
+      </div>
+      <div class="lup-usp">
+        <div class="lup-usp-ico"><span class="lup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4-3-8-6.5-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 4.5-4 8-8 11z"/></svg></span></div>
+        <div><h3>Единственный курс с моделью Baby Plans</h3><p>Учим удерживать одну семью на 3–5 лет: беременность → newborn → ситтер → годик → семья. Поток вместо разовых заказов.</p></div>
+      </div>
+      <div class="lup-usp">
+        <div class="lup-usp-ico"><span class="lup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span></div>
+        <div><h3>Единственный курс с собственной CRM-системой</h3><p>Новинка — разработка школы Lilia.by. Клиенты на повторные съёмки, учёт финансов и советы по маркетингу от ИИ в одном месте.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== КАК ПРОХОДЯТ УРОКИ (реальное видео) ===================== -->
+<section class="lup-divider lup-bg-warm" aria-labelledby="lup-howto-h2">
+  <div class="lup-container">
+    <div class="lup-section-head">
+      <span class="lup-eyebrow">Живой формат</span>
+      <h2 class="lup-h2" id="lup-howto-h2">Как проходят уроки LevelUp</h2>
+      <p class="lup-lead">Видеоуроки, разборы домашних заданий и практика на реальных съёмках — не сухая теория.</p>
+    </div>
+    <div class="lup-video-card">
+      <iframe title="vimeo-player" src="https://player.vimeo.com/video/681343946?h=5f67aae07a" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
+    </div>
+    <p style="text-align:center;margin-top:14px;font-size:13.5px"><a href="https://vimeo.com/681343946?h=5f67aae07a" target="_blank" rel="noopener" style="text-decoration:underline;color:var(--lup-graphite-soft)">Не открылось видео? Смотреть напрямую на Vimeo →</a></p>
+    <div class="lup-howto-cta">
+      <a href="#lup-anketa" class="lup-btn lup-btn-primary">Оставить заявку на анкету предзаписи</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ДЛЯ КОГО ===================== -->
+<section class="lup-divider" aria-labelledby="lup-audience-h2">
+  <div class="lup-container">
+    <div class="lup-section-head">
+      <span class="lup-eyebrow">Для кого курс</span>
+      <h2 class="lup-h2" id="lup-audience-h2">Подходит на любом старте</h2>
+    </div>
+
+    <div class="lup-tabs-nav" role="tablist" aria-label="Для кого этот курс">
+      <button class="lup-tab-btn" role="tab" aria-selected="true" aria-controls="lup-tab-new" id="lup-tabbtn-new" data-tab="lup-tab-new">Никогда не держала камеру</button>
+      <button class="lup-tab-btn" role="tab" aria-selected="false" aria-controls="lup-tab-pro" id="lup-tabbtn-pro" data-tab="lup-tab-pro">Уже снимаю (свадьбы/семьи/портрет)</button>
+    </div>
+
+    <div class="lup-tab-panel lup-active" id="lup-tab-new" role="tabpanel" aria-labelledby="lup-tabbtn-new">
+      <p>Программа построена так, что нулевой опыт — это нормальная стартовая точка.</p>
+      <ul>
+        <li>Настройки камеры и работа со светом с азов</li>
+        <li>Безопасное позирование под контролем куратора-неонатолога</li>
+        <li>Портфолио собирается прямо во время обучения</li>
+        <li>Первые клиенты — ещё до окончания курса</li>
+      </ul>
+    </div>
+    <div class="lup-tab-panel" id="lup-tab-pro" role="tabpanel" aria-labelledby="lup-tabbtn-pro">
+      <p>Newborn — специализация с чеком выше, чем у большинства семейных и портретных съёмок.</p>
+      <ul>
+        <li>Комбо-стиль расширяет то, что ты уже умеешь снимать</li>
+        <li>Baby Plans — модель удержания клиента на 3–5 лет вперёд</li>
+        <li>ИИ-инструменты для контента и рекламы экономят часы в неделю</li>
+        <li>Готовая CRM вместо самодельных таблиц</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ПРОГРАММА (продающие названия уроков) ===================== -->
+<section class="lup-divider" aria-labelledby="lup-prog-h2">
+  <div class="lup-container">
+    <div class="lup-section-head">
+      <span class="lup-eyebrow">2 месяца · 11 модулей + дипломная работа</span>
+      <h2 class="lup-h2" id="lup-prog-h2">Программа курса</h2>
+      <p class="lup-lead">Нажми на модуль — и увидишь, какой результат даёт каждый урок.</p>
+    </div>
+
+    <div id="lupAccordionProgram">
+
+      <div class="lup-acc-item" data-open="false">
+        <button class="lup-acc-head" aria-expanded="false">
+          <span class="lup-acc-title"><b>Модуль 0. Newborn-фотография в 2026</b><small>1 урок · установочный</small></span>
+          <span class="lup-acc-icon">+</span>
+        </button>
+        <div class="lup-acc-body"><ol>
+          <li>Поймёшь, как рынок newborn изменился за 5 лет и что с этим делать уже сейчас</li>
+        </ol></div>
+      </div>
+
+      <div class="lup-acc-item" data-open="false">
+        <button class="lup-acc-head" aria-expanded="false">
+          <span class="lup-acc-title"><b>Модуль 1. Безопасность</b><small>2 урока</small></span>
+          <span class="lup-acc-icon">+</span>
+        </button>
+        <div class="lup-acc-body"><ol>
+          <li>Освоишь базовые правила безопасности при работе с младенцем</li>
+          <li>Получишь чек-лист безопасности от практикующего врача-неонатолога</li>
+        </ol></div>
+      </div>
+
+      <div class="lup-acc-item" data-open="false">
+        <button class="lup-acc-head" aria-expanded="false">
+          <span class="lup-acc-title"><b>Модуль 2. Подготовка к съёмке</b><small>3 урока</small></span>
+          <span class="lup-acc-icon">+</span>
+        </button>
+        <div class="lup-acc-body"><ol>
+          <li>Разберёшься в настройках камеры, даже если держишь её впервые</li>
+          <li>Соберёшь стартовый набор реквизита и оборудования без переплат</li>
+          <li>Найдёшь первых моделей для портфолио уже на этой неделе</li>
+        </ol></div>
+      </div>
+
+      <div class="lup-acc-item" data-open="false">
+        <button class="lup-acc-head" aria-expanded="false">
+          <span class="lup-acc-title"><b>Модуль 3. Свет и настройки камеры</b><small>5 уроков</small></span>
+          <span class="lup-acc-icon">+</span>
+        </button>
+        <div class="lup-acc-body"><ol>
+          <li>Поймёшь логику света — и перестанешь снимать наугад</li>
+          <li>Научишься работать с естественным светом в любой комнате</li>
+          <li>Отснимешь малыша при естественном свете на практике</li>
+          <li>Разберёшься, какой импульсный свет реально нужен в 2026 году</li>
+          <li>Настроишь камеру так, чтобы цвет в кадре был чистым сразу</li>
+        </ol></div>
+      </div>
+
+      <div class="lup-acc-item" data-open="false">
+        <button class="lup-acc-head" aria-expanded="false">
+          <span class="lup-acc-title"><b>Модуль 4. Позирование в классическом ньюборн</b><small>14 уроков</small></span>
+          <span class="lup-acc-icon">+</span>
+        </button>
+        <div class="lup-acc-body"><ol>
+          <li>Освоишь 5 базовых поз, с которых начинается любая newborn-съёмка</li>
+          <li>Научишься плавно переходить между позами, не разбудив малыша</li>
+          <li>Сделаешь идеальный «Кокон» с первой попытки</li>
+          <li>Освоишь «Калачик» — одну из самых фотогеничных поз</li>
+          <li>Свяжешь обмотку «С узлами» безопасно и красиво</li>
+          <li>Отработаешь базовую позу — основу большинства коммерческих кадров</li>
+          <li>Уложишь малыша на бок красиво и без риска</li>
+          <li>Освоишь «ручки под подбородком» на бинбеге</li>
+          <li>Повторишь ту же позу в реквизите — для вариативности кадра</li>
+          <li>Освоишь «Полутако» — одну из самых простых и красивых поз</li>
+          <li>Дойдёшь до «Тако» — самой компактной позы</li>
+          <li>Отснимешь «Лягушку» безопасно, без лишнего риска</li>
+          <li>Освоишь базовую позу на кроватке — даже в условиях домашней съёмки</li>
+          <li>Найдёшь ракурсы, которые уберегут от ошибок большинства — супернавык для фотографа newborn</li>
+        </ol></div>
+      </div>
+
+      <div class="lup-acc-item" data-open="false">
+        <button class="lup-acc-head" aria-expanded="false">
+          <span class="lup-acc-title"><b>Модуль 5. Съёмка с родителями и старшими детьми</b><small>3 урока · переснят полностью</small></span>
+          <span class="lup-acc-icon">+</span>
+        </button>
+        <div class="lup-acc-body"><ol>
+          <li>Освоишь новые позы для съёмки с родителями и малышом</li>
+          <li>Получишь лайфхаки и живые примеры, как вовлечь в кадр старшего ребёнка без хаоса на площадке</li>
+          <li>Разберёшь сложные ситуации на съёмке — и не растеряешься</li>
+        </ol></div>
+      </div>
+
+      <div class="lup-acc-item" data-open="false">
+        <button class="lup-acc-head" aria-expanded="false">
+          <span class="lup-acc-title"><b>Модуль 6. Лайфстайл в newborn</b><small>2 урока · переснят полностью</small></span>
+          <span class="lup-acc-icon">+</span>
+        </button>
+        <div class="lup-acc-body"><ol>
+          <li>Поймёшь логику лайфстайл-съёмки от подготовки до финального кадра</li>
+          <li>Проведёшь свою первую лайфстайл-сессию по чёткому плану</li>
+        </ol></div>
+      </div>
+
+      <div class="lup-acc-item" data-open="false">
+        <button class="lup-acc-head" aria-expanded="false">
+          <span class="lup-acc-title"><b>Модуль 7. Съёмка двойни</b><small>2 урока</small></span>
+          <span class="lup-acc-icon">+</span>
+        </button>
+        <div class="lup-acc-body"><ol>
+          <li>Подготовишься к съёмке двойни без стресса</li>
+          <li>Проведёшь съёмку двойни, даже если это твой первый такой заказ</li>
+        </ol></div>
+      </div>
+
+      <div class="lup-acc-item" data-open="false">
+        <button class="lup-acc-head" aria-expanded="false">
+          <span class="lup-acc-title"><b>Модуль 8. Ретушь с ИИ</b><small>9 уроков · полностью новый</small></span>
+          <span class="lup-acc-icon">+</span>
+        </button>
+        <div class="lup-acc-body"><ol>
+          <li>Настроишь Lightroom и Photoshop — классический трек ретуши с нуля</li>
+          <li>Освоишь классическую ретушь: цветокоррекция и базовая обработка в Lightroom + Photoshop</li>
+          <li>Научишься убирать зелёный пупок и перекрашивать фон</li>
+          <li>Освоишь ретушь без Photoshop через Evoto — готовые пресеты для быстрой обработки</li>
+          <li>Настроишь пресеты Evoto под свой стиль один раз — и переиспользуешь на каждой съёмке</li>
+          <li>Подключишь плагины Retouch4me для ещё более быстрой ретуши кожи</li>
+          <li>Обработаешь целую серию кадров с ИИ за один присест</li>
+          <li>Освоишь стильную ретушь чёрно-белых кадров</li>
+          <li>Сформируешь свой узнаваемый стиль обработки</li>
+        </ol></div>
+      </div>
+
+      <div class="lup-acc-item" data-open="false">
+        <button class="lup-acc-head" aria-expanded="false">
+          <span class="lup-acc-title"><b>Модуль 9. Фотобизнес с ИИ</b><small>13 уроков · переписан с нуля</small></span>
+          <span class="lup-acc-icon">+</span>
+        </button>
+        <div class="lup-acc-body"><ol>
+          <li>Поймёшь, как устроен фотобизнес в 2026 году, и с чего начать</li>
+          <li>Упакуешь Instagram-профиль так, чтобы ему сразу доверяли</li>
+          <li>Снимешь и смонтируешь Reels с ИИ без навыков видеомонтажа</li>
+          <li>Соберёшь карусели и посты с ИИ за 20 минут вместо вечера</li>
+          <li>Настроишь автоответы клиентам, чтобы не терять заявки</li>
+          <li>Запустишь таргет с ИИ, даже если никогда этого не делала</li>
+          <li>Настроишь контекстную рекламу в Google и Яндексе с ИИ</li>
+          <li>Соберёшь бизнес-страницу и сайт с помощью одного промпта</li>
+          <li>Продвинешь себя в поиске и офлайн без бюджета на агентства</li>
+          <li>Выстроишь Baby Plans — систему, которая удерживает клиента на 3–5 лет</li>
+          <li>Пересмотришь цены и позиционирование без страха потерять клиентов</li>
+          <li>Составишь личный план на 90 дней, если сейчас 0 клиентов</li>
+          <li>Освоишь вёрстку фотокниг — дополнительный доход почти без усилий</li>
+        </ol></div>
+      </div>
+
+      <div class="lup-acc-item" data-open="false">
+        <button class="lup-acc-head" aria-expanded="false">
+          <span class="lup-acc-title"><b>Модуль 10. Масштабирование</b><small>1 урок · на старшем тарифе</small></span>
+          <span class="lup-acc-icon">+</span>
+        </button>
+        <div class="lup-acc-body"><ol>
+          <li>Составишь реальный план открытия своей студии, не уходя в минус</li>
+        </ol></div>
+      </div>
+
+      <div class="lup-acc-item" data-open="false">
+        <button class="lup-acc-head" aria-expanded="false">
+          <span class="lup-acc-title"><b>Дипломная работа</b><small>полный цикл</small></span>
+          <span class="lup-acc-icon">+</span>
+        </button>
+        <div class="lup-acc-body"><ol>
+          <li>Проведёшь полную съёмку от А до Я и защитишь дипломную работу</li>
+        </ol></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== БОНУСЫ ===================== -->
+<section class="lup-divider lup-bg-warm" aria-labelledby="lup-bonus-h2">
+  <div class="lup-container">
+    <div class="lup-section-head">
+      <span class="lup-eyebrow">Бонусы выпускникам</span>
+      <h2 class="lup-h2" id="lup-bonus-h2">Что получаешь сверх программы</h2>
+    </div>
+    <div class="lup-bonus-grid">
+      <div class="lup-bonus">
+        <span class="lup-bonus-flag">Новинка</span>
+        <span class="lup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>
+        <h4>CRM для фотографов</h4><p>Собственная разработка школы Lilia.by. Клиенты, съёмки, оплаты, воронка Baby Plans</p>
+      </div>
+      <div class="lup-bonus">
+        <span class="lup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 3 10.5l6.5 2 2 6.5L21 3z"/></svg></span>
+        <h4>Живой воркшоп в Валенсии</h4><p>Бесплатно для выпускников</p>
+      </div>
+      <div class="lup-bonus">
+        <span class="lup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg></span>
+        <h4>Живой воркшоп в Минске</h4><p>Бесплатно для выпускников, при наборе группы</p>
+      </div>
+      <div class="lup-bonus">
+        <span class="lup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21l4-2 4 2M9 9l2 2 4-4"/></svg></span>
+        <h4>Именной сертификат Lilia.by</h4><p>Школа зарегистрирована в Минобразования РБ</p>
+      </div>
+      <div class="lup-bonus">
+        <span class="lup-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3 2.5-5 5-5s5 2 5 5M14 20c.3-2 1.7-3.5 3.5-3.8"/></svg></span>
+        <h4>База проверенных мастеров реквизита</h4><p>Партнёры, которых мы собирали годами</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ОТЗЫВЫ (в виде скринов) ===================== -->
+<section class="lup-divider" aria-labelledby="lup-testi-h2">
+  <div class="lup-container">
+    <div class="lup-section-head">
+      <span class="lup-eyebrow">Из старого потока — обновим после релонча</span>
+      <h2 class="lup-h2" id="lup-testi-h2">Что говорят выпускники</h2>
+    </div>
+    <div class="lup-testi-grid">
+      <div class="lup-testi">
+        <div class="lup-testi-head">
+          <div class="lup-testi-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+          <div><div class="lup-testi-name">Анастасия Силицкая</div><div class="lup-testi-handle">@newborn_silitskaya · выпускница потока</div></div>
+        </div>
+        <p>«С каждой съёмкой я становилась более уверенной в себе. <b>И вот я уже зарабатываю на ньюборн и горжусь собой, что всё получается.</b>»</p>
+      </div>
+      <div class="lup-testi">
+        <div class="lup-testi-head">
+          <div class="lup-testi-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+          <div><div class="lup-testi-name">Наталья Королёнок</div><div class="lup-testi-handle">@nemaulyatka_photo · выпускница потока</div></div>
+        </div>
+        <p>«После курса у меня <b>сложился пазл</b>: появилась уверенность, перестала стесняться называть цены, подняла стоимость.»</p>
+      </div>
+      <div class="lup-testi">
+        <div class="lup-testi-head">
+          <div class="lup-testi-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+          <div><div class="lup-testi-name">Виктория Хохлова</div><div class="lup-testi-handle">@viktoriaphotography_baby · выпускница потока</div></div>
+        </div>
+        <p>«После курса <b>я подняла цены на съёмку</b>, разделила пакеты. Средний пакет теперь заказывают чаще минимального.»</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <a href="https://www.instagram.com/lilia.by.newbornschool/" target="_blank" rel="noopener" class="lup-btn lup-btn-ghost">Посмотреть кейсы наших выпускников</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== АНКЕТА ПРЕДЗАПИСИ (без вложенного квадрата) ===================== -->
+<section class="lup-anketa-section" aria-labelledby="lup-price-h2">
+  <div class="lup-container" style="max-width:680px">
+    <h2 class="lup-h2" id="lup-price-h2">Анкета предзаписи</h2>
+    <p class="lup-lead">Оставьте ваши данные, и вы узнаете быстрее всех о старте продаж по самой выгодной цене.</p>
+    <div class="lup-start-date">Старт потока — октябрь 2026</div>
+    <a href="#lup-anketa" class="lup-btn" style="background:var(--lup-graphite);color:#fff">Оставить заявку</a>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="lup-divider" aria-labelledby="lup-faq-h2">
+  <div class="lup-container" style="max-width:760px">
+    <div class="lup-section-head">
+      <h2 class="lup-h2" id="lup-faq-h2">Частые вопросы</h2>
+    </div>
+    <div id="lupAccordionFaq">
+      <div class="lup-faq-item" data-open="false">
+        <button class="lup-faq-head" aria-expanded="false">У меня нет опыта с камерой. Можно на курс?<span class="lup-faq-icon">+</span></button>
+        <div class="lup-faq-body"><p>Да. Модуль 3 и урок для новичков в модуле 2 закрывают базу с нуля — среди учеников уже были те, кто начинал без опыта.</p></div>
+      </div>
+      <div class="lup-faq-item" data-open="false">
+        <button class="lup-faq-head" aria-expanded="false">Обязательно ли уметь пользоваться нейросетями заранее?<span class="lup-faq-icon">+</span></button>
+        <div class="lup-faq-body"><p>Нет. Модули 8 и 9 показывают всё с нуля — ИИ-инструменты объясняются пошагово, без предположения, что ты уже с ними работала.</p></div>
+      </div>
+      <div class="lup-faq-item" data-open="false">
+        <button class="lup-faq-head" aria-expanded="false">Как быть уверенной, что будут заказы в маленьком городе?<span class="lup-faq-icon">+</span></button>
+        <div class="lup-faq-body"><p>Модуль 9 отдельно разбирает стратегии продвижения offline и online для любого размера города, включая план на 90 дней с нуля.</p></div>
+      </div>
+      <div class="lup-faq-item" data-open="false">
+        <button class="lup-faq-head" aria-expanded="false">Когда станут известны тарифы и цены?<span class="lup-faq-icon">+</span></button>
+        <div class="lup-faq-body"><p>Вместе с открытием предзаписи. Кто в анкете — узнают первыми и получают самую низкую цену из всех, что будут на потоке.</p></div>
+      </div>
+      <div class="lup-faq-item" data-open="false">
+        <button class="lup-faq-head" aria-expanded="false">Буду ли успевать при основной работе?<span class="lup-faq-icon">+</span></button>
+        <div class="lup-faq-body"><p>Зависит от тебя. Уроки можно смотреть в любое время, но в среднем стоит закладывать около часа в день на теорию и практику, чтобы выйти на хороший результат.</p></div>
+      </div>
+      <div class="lup-faq-item" data-open="false">
+        <button class="lup-faq-head" aria-expanded="false">Почему нет тарифа без обратной связи?<span class="lup-faq-icon">+</span></button>
+        <div class="lup-faq-body"><p>Потому что без неё результат почти не случается. Особенно у новичков или тех, у кого пока мало опыта — нужен человек, который укажет на ошибку и подскажет, как сделать лучше. Поэтому в каждом тарифе LevelUp есть сопровождение куратора.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ПРОБНЫЙ УРОК (крупный блок, светлый фон) ===================== -->
+<section class="lup-divider" id="lup-trial-video" style="padding:0">
+  <div class="lup-trial">
+    <div class="lup-container lup-trial-inner">
+      <div>
+        <div class="lup-trial-head">Хочешь посмотреть пробные уроки бесплатно?</div>
+        <p class="lup-trial-sub">«Как делать обмотку без страха» — бесплатный урок на YouTube. Посмотри, как проходит обучение, прежде чем оставить заявку.</p>
+        <div style="margin-top:24px">
+          <a href="https://www.youtube.com/watch?v=wAXhYquTi5A" target="_blank" rel="noopener" class="lup-btn lup-btn-primary">Смотреть бесплатные уроки</a>
+        </div>
+      </div>
+      <a href="https://www.youtube.com/watch?v=wAXhYquTi5A" target="_blank" rel="noopener" class="lup-trial-thumb">
+        <img src="https://chatgpt.lilia.by/images/levelup/levelupvideo.jpg" alt="Превью бесплатного урока: как делать обмотку без страха" loading="lazy">
+        <div class="lup-trial-play"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ФИНАЛЬНЫЙ CTA / ФОРМА ===================== -->
+<section id="lup-anketa" aria-labelledby="lup-final-h2">
+  <div class="lup-container">
+    <div class="lup-final">
+      <h2 class="lup-h2" id="lup-final-h2">Оставь заявку на анкету предзаписи</h2>
+      <p class="lup-lead">У тех, кто в списке — самая низкая цена на курс. Дальше цена только растёт.</p>
+      <div class="lup-start-date">Старт потока — октябрь 2026</div>
+
+      <form class="lup-form" id="lupForm">
+        <label for="lupName" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Имя</label>
+        <input id="lupName" type="text" placeholder="Твоё имя" required>
+        <label for="lupContact" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Telegram или email</label>
+        <input id="lupContact" type="text" placeholder="Telegram или email" required>
+        <button type="submit" class="lup-btn lup-btn-dark">Отправить заявку</button>
+      </form>
+      <div class="lup-success" id="lupSuccess">Заявка принята! Мы напишем тебе с деталями и датой вебинара 🎉</div>
+      <p class="lup-form-note">Заполняя форму, вы соглашаетесь с политикой конфиденциальности.<br>
+      Форма пока без бэкенда — программисту нужно подключить реальный приём заявок (CRM/анкета) вместо демо-обработчика в скрипте.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== СЛУЖБА ЗАБОТЫ ===================== -->
+<section class="lup-divider lup-bg-warm" aria-labelledby="lup-care-h2">
+  <div class="lup-container lup-care">
+    <h2 class="lup-h2" id="lup-care-h2">Остались вопросы?</h2>
+    <p>Служба заботы Lilia.by поможет разобраться — по курсу, оплате или чему угодно ещё.</p>
+    <a href="https://edu.lilia.by/cms/system/contact" target="_blank" rel="noopener" class="lup-btn lup-btn-ghost">Написать в службу заботы</a>
+  </div>
+</section>
+
+</main>
+
+
+</div><!-- /#lup2026 -->
+
+<script>
+(function(){
+  var root = document.getElementById('lup2026');
+  if(!root) return;
+
+  root.querySelectorAll('#lupAccordionProgram .lup-acc-item').forEach(function(item){
+    var head = item.querySelector('.lup-acc-head');
+    var body = item.querySelector('.lup-acc-body');
+    head.addEventListener('click', function(){
+      var isOpen = item.getAttribute('data-open') === 'true';
+      item.setAttribute('data-open', String(!isOpen));
+      head.setAttribute('aria-expanded', String(!isOpen));
+      body.style.maxHeight = isOpen ? null : body.scrollHeight + 'px';
+    });
+  });
+
+  root.querySelectorAll('#lupAccordionFaq .lup-faq-item').forEach(function(item){
+    var head = item.querySelector('.lup-faq-head');
+    var body = item.querySelector('.lup-faq-body');
+    head.addEventListener('click', function(){
+      var isOpen = item.getAttribute('data-open') === 'true';
+      item.setAttribute('data-open', String(!isOpen));
+      head.setAttribute('aria-expanded', String(!isOpen));
+      body.style.maxHeight = isOpen ? null : body.scrollHeight + 'px';
+    });
+  });
+
+  var tabBtns = root.querySelectorAll('.lup-tab-btn');
+  tabBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      tabBtns.forEach(function(b){ b.setAttribute('aria-selected','false'); });
+      root.querySelectorAll('.lup-tab-panel').forEach(function(p){ p.classList.remove('lup-active'); });
+      btn.setAttribute('aria-selected','true');
+      var target = root.querySelector('#' + btn.getAttribute('data-tab'));
+      if(target) target.classList.add('lup-active');
+    });
+  });
+
+  var form = root.querySelector('#lupForm');
+  var success = root.querySelector('#lupSuccess');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      // TODO: заменить на реальный POST в CRM/анкету
+      form.classList.add('lup-hide');
+      success.classList.add('lup-show');
+    });
+  }
+})();
+</script>
+</body>
+</html>
