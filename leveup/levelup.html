@@ -1994,6 +1994,24 @@
     careSection.parentNode.insertBefore(pricingSection, careSection);
   }
 
+  root.addEventListener('click', function(event){
+    var link = event.target.closest('a[href="#tarif"]');
+    var target = root.querySelector('#tarif');
+    if(!link || !target) return;
+
+    event.preventDefault();
+    if(window.parent === window){
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+      return;
+    }
+
+    var targetOffset = target.getBoundingClientRect().top + window.scrollY;
+    window.parent.postMessage({
+      type:'lup2026:scroll-to-tarif',
+      targetOffset:targetOffset
+    }, '*');
+  });
+
   root.querySelectorAll('#lupAccordionProgram .lup-acc-item').forEach(function(item){
     var head = item.querySelector('.lup-acc-head');
     var body = item.querySelector('.lup-acc-body');
