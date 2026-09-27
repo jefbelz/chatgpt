@@ -254,19 +254,6 @@
 #lup2026 .lup-faq-body{ max-height:0; overflow:hidden; transition:max-height .25s ease; }
 #lup2026 .lup-faq-body p{ padding:0 4px 20px; font-size:14.5px; color:var(--lup-graphite-soft); }
 
-/* ===== FINAL CTA / FORM ===== */
-#lup2026 .lup-final{ background:var(--lup-graphite); color:#fff; border-radius:28px; padding:48px 28px; text-align:center; }
-#lup2026 .lup-final h2{ color:#fff; }
-#lup2026 .lup-final .lup-lead{ color:#C9CCD1; margin:0 auto 10px; }
-#lup2026 .lup-final .lup-start-date{ color:var(--lup-yellow); font-weight:800; margin-bottom:24px; font-size:15px; }
-#lup2026 .lup-form{ display:flex; flex-direction:column; gap:12px; max-width:420px; margin:0 auto; }
-#lup2026 .lup-form input{ font:inherit; padding:14px 16px; border-radius:10px; border:2px solid transparent; background:#fff; color:var(--lup-graphite); width:100%; }
-#lup2026 .lup-form input:focus-visible{ border-color:var(--lup-yellow); outline:none; }
-#lup2026 .lup-form-note{ font-size:12.5px; color:#9EA2A8; margin-top:14px; }
-#lup2026 .lup-success{ display:none; background:var(--lup-green); color:#fff; border-radius:14px; padding:20px; font-weight:700; }
-#lup2026 .lup-success.lup-show{ display:block; }
-#lup2026 .lup-form.lup-hide{ display:none; }
-
 /* ===== FOOTER ===== */
 #lup2026 footer{ padding:36px 0; border-top:1px solid var(--lup-border); font-size:13px; color:var(--lup-graphite-soft); }
 #lup2026 footer a{ text-decoration:underline; }
@@ -924,6 +911,143 @@
       padding-right: max(12px, env(safe-area-inset-right));
     }
   }
+
+  #lup2026 #tarif {
+    display: block !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+  }
+
+  #lup2026 #tarif .lu-header-wrap {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  #lup2026 #tarif .lu-warning,
+  #lup2026 #tarif .lu-promo-banner {
+    display: block !important;
+    float: none !important;
+    clear: both;
+    width: 100% !important;
+    max-width: 900px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+
+  #lup2026 #tarif .lu-warning {
+    margin-top: 0 !important;
+    margin-bottom: 18px !important;
+    color: #252525 !important;
+    line-height: 1.3 !important;
+  }
+
+  #lup2026 #tarif .lu-promo-banner {
+    margin-top: 0 !important;
+    margin-bottom: 34px !important;
+  }
+
+  #lup2026 #tarif .lu-promo-banner h3 {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 0 8px !important;
+    padding: 0 !important;
+    color: #ffffff !important;
+    text-align: center !important;
+    font-size: clamp(18px, 2vw, 21px) !important;
+    line-height: 1.3 !important;
+  }
+
+  #lup2026 #tarif .lu-promo-banner p {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    color: #f3f4f6 !important;
+    text-align: center !important;
+    line-height: 1.55 !important;
+  }
+
+  #lup2026 #tarif .lu-cards {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    align-items: stretch;
+    gap: 22px;
+    width: 100% !important;
+    max-width: 1160px !important;
+    margin: 0 auto !important;
+  }
+
+  #lup2026 #tarif .lu-card {
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0;
+  }
+
+  @media screen and (max-width: 1000px) {
+    #lup2026 #tarif .lu-cards {
+      grid-template-columns: minmax(0, 680px) !important;
+      justify-content: center;
+      gap: 20px !important;
+    }
+
+    #lup2026 #tarif .lu-card {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    #lup2026 #tarif .lu-warning {
+      margin-bottom: 14px !important;
+    }
+
+    #lup2026 #tarif .lu-promo-banner {
+      margin-bottom: 27px !important;
+    }
+  }
+
+  #lup2026 #tarif .lu-actions-block {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 600px !important;
+    margin: 36px auto 0 !important;
+    padding: 0 12px 24px !important;
+    box-sizing: border-box !important;
+  }
+
+  #lup2026 #tarif .lu-action-btn {
+    display: flex !important;
+    flex: 1 1 0 !important;
+    min-width: 0;
+    min-height: 60px !important;
+    margin: 0 !important;
+    padding: 16px 20px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  @media screen and (max-width: 600px) {
+    #lup2026 #tarif .lu-actions-block {
+      flex-direction: column !important;
+      max-width: 420px !important;
+      margin-top: 28px !important;
+      padding-right: 8px !important;
+      padding-left: 8px !important;
+    }
+
+    #lup2026 #tarif .lu-action-btn {
+      width: 100% !important;
+      min-height: 56px !important;
+      padding: 16px 18px !important;
+    }
+  }
 </style>
 <!-- ===================== HERO — одна кнопка, тёмный контраст ===================== -->
 <header class="lup-hero">
@@ -934,7 +1058,7 @@
     <p class="lup-lead">За 2 месяца — портфолио, клиенты, усиление и рост через использование нейросетей.</p>
 
     <div class="lup-hero-cta-row">
-      <a href="https://edu.lilia.by/Anketa_LevelUpperezagruzka" target="_blank" class="lup-btn lup-btn-primary">тарифы предзаписи</a>
+      <a href="#tarif" class="lup-btn lup-btn-primary">тарифы предзаписи</a>
     </div>
     <div class="lup-hero-start">Старт потока — октябрь 2026</div>
   </div>
@@ -1084,7 +1208,7 @@
 
 <!-- ===================== ПОЧЕМУ LEVELUP, А НЕ ДРУГОЙ КУРС ===================== -->
 <section class="lup-divider" aria-labelledby="lup-usp-h2">
- <div class="lu-pricing">
+ <div class="lu-pricing" id="tarif">
 
   <div class="lu-header-wrap">
     <h2>
@@ -1209,7 +1333,7 @@
         </span>
       </div>
 
-      <a href="#tarif" class="lu-btn">
+      <a href="https://edu.lilia.by/levelupperezagruzka#tarif" class="lu-btn">
         Выбрать START
       </a>
 
@@ -1282,7 +1406,7 @@
         </span>
       </div>
 
-      <a href="#tarif" class="lu-btn">
+      <a href="https://edu.lilia.by/levelupperezagruzka#tarif" class="lu-btn">
         Выбрать PRO
       </a>
 
@@ -1355,7 +1479,7 @@
         </span>
       </div>
 
-      <a href="#tarif" class="lu-btn">
+      <a href="https://edu.lilia.by/levelupperezagruzka#tarif" class="lu-btn">
         Выбрать VIP
       </a>
 
@@ -1365,10 +1489,10 @@
 
   <!-- Две дополнительные кнопки перед блоком «Почему купить сейчас» -->
   <div class="lu-actions-block">
-    <a href="#tarif" class="lu-action-btn lu-btn-reserve">
+    <a href="https://edu.lilia.by/levelupperezagruzka#tarif" class="lu-action-btn lu-btn-reserve">
       Внести бронь
     </a>
-    <a href="#tarif" class="lu-action-btn lu-btn-pay">
+    <a href="https://edu.lilia.by/levelupperezagruzka#tarif" class="lu-action-btn lu-btn-pay">
       Оплатить
     </a>
   </div>
@@ -1420,7 +1544,7 @@
         </strong>
 
         <span>
-          Съёмка, безопасность, ретушь, работа с клиентами и развитие фотографа.
+          Съёмка, безопасность, ре  тушь, работа с клиентами и развитие фотографа.
         </span>
       </div>
 
@@ -1463,7 +1587,7 @@
     </div>
     <p style="text-align:center;margin-top:14px;font-size:13.5px"><a href="https://vimeo.com/681343946?h=5f67aae07a" target="_blank" rel="noopener" style="text-decoration:underline;color:var(--lup-graphite-soft)">Не открылось видео? Смотреть напрямую на Vimeo →</a></p>
     <div class="lup-howto-cta">
-      <a href="https://edu.lilia.by/Anketa_LevelUpperezagruzka" target="_blank" class="lup-btn lup-btn-primary">тарифы предзаписи</a>
+      <a href="#tarif" class="lup-btn lup-btn-primary">тарифы предзаписи</a>
     </div>
   </div>
 </section>
@@ -1991,24 +2115,6 @@
   </div>
 </section>
 
-<!-- ===================== ФИНАЛЬНЫЙ CTA / ФОРМА ===================== -->
-<section id="lup-anketa" aria-labelledby="lup-final-h2">
-  <div class="lup-container">
-    <div class="lup-final">
-      <h2 class="lup-h2" id="lup-final-h2">Оставь заявку на анкету предзаписи</h2>
-      <p class="lup-lead">У тех, кто в списке — самая низкая цена на курс. Дальше цена только растёт.</p>
-      <div class="lup-start-date">Старт потока — октябрь 2026</div>
-
-        <div class="lup-hero-cta-row">
-      <a href="https://edu.lilia.by/Anketa_LevelUpperezagruzka" target="_blank" class="lup-btn lup-btn-primary">тарифы предзаписи</a>
-    </div>
-      <div class="lup-success" id="lupSuccess">Заявка принята! Мы напишем тебе с деталями и датой вебинара 🎉</div>
-      <p class="lup-form-note">Заполняя форму, вы соглашаетесь с политикой конфиденциальности.<br>
-      Форма пока без бэкенда — программисту нужно подключить реальный приём заявок (CRM/анкета) вместо демо-обработчика в скрипте.</p>
-    </div>
-  </div>
-</section>
-
 <!-- ===================== СЛУЖБА ЗАБОТЫ ===================== -->
 <section class="lup-divider lup-bg-warm" aria-labelledby="lup-care-h2">
   <div class="lup-container lup-care">
@@ -2072,16 +2178,6 @@
     });
   });
 
-  var form = root.querySelector('#lupForm');
-  var success = root.querySelector('#lupSuccess');
-  if(form){
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      // TODO: заменить на реальный POST в CRM/анкету
-      form.classList.add('lup-hide');
-      success.classList.add('lup-show');
-    });
-  }
 })();
 </script>
 </body>
